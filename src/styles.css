@@ -298,6 +298,10 @@ h1 {
   color: #EA141F;
 }
 
+.rating-star.nostalgia.active {
+  color: #00ADEC;
+}
+
 .first-heard-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 110px;

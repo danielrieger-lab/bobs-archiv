@@ -8,6 +8,7 @@ type Radioplay = {
   coverImage?: string;
   zuerstGehoertAm: string;
   wiedergaben: number;
+  nostalgie: number;
   lieblingscharakter: string;
   atmosphaere: number;
   wiederhoerenswert: number;
@@ -291,6 +292,7 @@ function buildDefaultRadioplays(): Radioplay[] {
         coverImage: undefined,
         zuerstGehoertAm: '',
         wiedergaben: 0,
+        nostalgie: 0,
         lieblingscharakter: '',
         atmosphaere: 0,
         wiederhoerenswert: 0,
@@ -317,9 +319,15 @@ const ratingCategories: Array<{ key: RatingCategory; label: string }> = [
 ];
 
 function overallRating(play: Radioplay): number {
-  const sum = play.atmosphaere + play.wiederhoerenswert + play.story + play.charakterdynamik;
-  const normalized = sum / 8;
-  return Math.max(0, Math.min(5, (normalized + 1) * 2.5));
+  const scaledRatings = [
+    play.atmosphaere,
+    play.wiederhoerenswert,
+    play.story,
+    play.charakterdynamik,
+  ].map((value) => ((value + 2) / 4) * 5);
+
+  const sum = scaledRatings.reduce((total, value) => total + value, play.nostalgie);
+  return Math.max(0, Math.min(5, sum / 5));
 }
 
 function hasGeneralRating(play: Radioplay): boolean {
@@ -328,6 +336,7 @@ function hasGeneralRating(play: Radioplay): boolean {
     || play.wiederhoerenswert !== 0
     || play.story !== 0
     || play.charakterdynamik !== 0
+    || play.nostalgie !== 0
   );
 }
 
@@ -357,6 +366,7 @@ function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radiopl
     coverImage: typeof raw.coverImage === 'string' ? raw.coverImage : fallback.coverImage,
     zuerstGehoertAm: typeof raw.zuerstGehoertAm === 'string' ? raw.zuerstGehoertAm : '',
     wiedergaben: typeof raw.wiedergaben === 'number' ? raw.wiedergaben : 0,
+    nostalgie: typeof raw.nostalgie === 'number' ? raw.nostalgie : 0,
     lieblingscharakter: typeof raw.lieblingscharakter === 'string' ? raw.lieblingscharakter : '',
     atmosphaere: typeof raw.atmosphaere === 'number' ? raw.atmosphaere : 0,
     wiederhoerenswert: typeof raw.wiederhoerenswert === 'number' ? raw.wiederhoerenswert : 0,
@@ -599,6 +609,7 @@ export default function App() {
       coverImage: addForm.coverImage || undefined,
       zuerstGehoertAm: '',
       wiedergaben: 0,
+      nostalgie: 0,
       lieblingscharakter: '',
       atmosphaere: 0,
       wiederhoerenswert: 0,
@@ -798,6 +809,24 @@ export default function App() {
                   </div>
                 </label>
               ))}
+
+              <label className="field">
+                <span>Nostalgie</span>
+                <div className="rating-stars" role="group" aria-label="Nostalgie Bewertung">
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      className={`rating-star nostalgia ${selected.nostalgie >= value ? 'active' : ''}`}
+                      onClick={() => setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === selected.id ? { ...play, nostalgie: value } : play)))}
+                      aria-pressed={selected.nostalgie >= value}
+                      aria-label={`Nostalgie: ${value}`}
+                    >
+                      ★
+                    </button>
+                  ))}
+                </div>
+              </label>
 
               <label className="field">
                 <span>Gruselfaktor: {selected.gruselfaktor}/5</span>
