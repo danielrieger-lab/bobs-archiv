@@ -596,7 +596,8 @@ input[type='range'] {
   }
 
   .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .archive-suggestions {
@@ -662,13 +663,17 @@ input[type='range'] {
   }
 
   .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .play-card {
-    padding: 8px;
-    min-height: 88px;
+    padding: 6px;
+    min-height: 78px;
+  }
+
+  .cover-image {
+    border-radius: 8px;
   }
 
   .panel {
