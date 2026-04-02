@@ -468,7 +468,6 @@ export default function App() {
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [archiveSearch, setArchiveSearch] = useState('');
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
-  const [isWiedergabenRankingListOpen, setIsWiedergabenRankingListOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [addForm, setAddForm] = useState<AddEpisodeForm>(createEmptyAddEpisodeForm);
   const selected = useMemo(
@@ -525,14 +524,7 @@ export default function App() {
       .sort((a, b) => b.score - a.score),
     [radioplays],
   );
-  const topWiedergabenEpisodes = useMemo(
-    () => radioplays
-      .filter((play) => play.wiedergaben > 0)
-      .map((play) => ({ play, score: play.wiedergaben }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3),
-    [radioplays],
-  );
+
   const wiedergabenRankedEpisodes = useMemo(
     () => radioplays
       .filter((play) => play.wiedergaben > 0)
@@ -640,7 +632,6 @@ export default function App() {
     setSelectedId(nextId);
     setIsStatsOpen(false);
     setIsRankingListOpen(false);
-    setIsWiedergabenRankingListOpen(false);
     closeAddForm();
   };
 
@@ -1067,88 +1058,28 @@ export default function App() {
             </div>
 
             <div className="scary-section">
-              <h3 className="scary-title">Wiedergaben Ranking</h3>
+              <h3 className="scary-title">Meist gehört Folgen</h3>
 
-              <div
-                className="podium podium-clickable"
-                role="button"
-                tabIndex={0}
-                onClick={() => setIsWiedergabenRankingListOpen((current) => !current)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    setIsWiedergabenRankingListOpen((current) => !current);
-                  }
-                }}
-                aria-label="Wiedergaben-Podium öffnen, um alle Wiedergaben-Rankings zu zeigen"
-              >
-                {[1, 0, 2].map((index) => {
-                  const item = topWiedergabenEpisodes[index];
-                  const rank = index + 1;
-                  const heightClass = rank === 1 ? 'podium-rank-first' : rank === 2 ? 'podium-rank-second' : 'podium-rank-third';
-
-                  return (
-                    <div key={`wied-${rank}`} className={`podium-item ${heightClass}`}>
-                      {item ? (
-                        <>
-                          <p className="podium-rating">{item.score}</p>
-                          <button
-                            className="podium-cover-button"
-                            type="button"
-                            onClick={(event) => {
-                              event.stopPropagation();
-                              setSelectedId(item.play.id);
-                              setIsStatsOpen(false);
-                              setIsRankingListOpen(false);
-                              setIsWiedergabenRankingListOpen(false);
-                            }}
-                            aria-label={`${item.play.episode} öffnen`}
-                          >
-                            <img
-                              className="podium-cover"
-                              src={getCoverSource(item.play)}
-                              alt={`${item.play.episode} Cover`}
-                              onError={handleCoverError}
-                            />
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <p className="podium-rating">-</p>
-                          <div className="podium-cover podium-placeholder" />
-                        </>
-                      )}
-                      <div className="podium-step">
-                        <p className="podium-rank">#{rank}</p>
-                      </div>
-                    </div>
-                  );
-                })}
+              <div className="ranking-list">
+                {wiedergabenRankedEpisodes.slice(0, 5).map((item, index) => (
+                  <button
+                    key={`wied-top5-${item.play.id}`}
+                    type="button"
+                    className="ranking-item"
+                    onClick={() => {
+                      setSelectedId(item.play.id);
+                      setIsStatsOpen(false);
+                      setIsRankingListOpen(false);
+                    }}
+                    aria-label={`${item.play.episode} öffnen`}
+                  >
+                    <span className="ranking-position">#{index + 1}</span>
+                    <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
+                    <span className="ranking-title">{item.play.episode}</span>
+                    <span className="ranking-score">{item.score}</span>
+                  </button>
+                ))}
               </div>
-
-              {isWiedergabenRankingListOpen ? (
-                <div className="ranking-list">
-                  {wiedergabenRankedEpisodes.map((item, index) => (
-                    <button
-                      key={`wied-list-${item.play.id}`}
-                      type="button"
-                      className="ranking-item"
-                      onClick={() => {
-                        setSelectedId(item.play.id);
-                        setIsStatsOpen(false);
-                        setIsRankingListOpen(false);
-                        setIsWiedergabenRankingListOpen(false);
-                      }}
-                      aria-label={`${item.play.episode} öffnen`}
-                    >
-                      <span className="ranking-position">#{index + 1}</span>
-                      <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
-                      <span className="ranking-title">{item.play.episode}</span>
-                      <span className="ranking-score">{item.score}</span>
-                    </button>
-                  ))}
-                </div>
-              ) : null}
             </div>
 
           </div>
