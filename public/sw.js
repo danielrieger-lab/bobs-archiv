@@ -1,9 +1,18 @@
-const CACHE_NAME = 'bobs-fallometer-v6';
+const CACHE_NAME = 'bobs-fallometer-v7';
 const APP_BASE_PATH = self.location.pathname.replace(/[^/]+$/, '');
 const toAppPath = (path) => `${APP_BASE_PATH}${path}`;
 const INDEX_URL = toAppPath('index.html');
 const LOGO_URL = toAppPath('logo.jpeg');
-const CORE_ASSETS = [toAppPath(''), INDEX_URL, toAppPath('manifest.webmanifest'), LOGO_URL];
+const RATING_ICON_FILES = ['b', 'b2', 'c', 'c2', 'g', 'g2', 'p', 'p2', 'q', 'q2', 's', 's2', 'u', 'u2', 'v', 'v_2'];
+const RATING_ICON_ASSETS = RATING_ICON_FILES.map((fileName) => toAppPath(`rating-icons/${fileName}.svg`));
+const CORE_ASSETS = [
+  toAppPath(''),
+  INDEX_URL,
+  toAppPath('manifest.webmanifest'),
+  toAppPath('header.jpeg'),
+  LOGO_URL,
+  ...RATING_ICON_ASSETS,
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
