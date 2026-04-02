@@ -290,8 +290,10 @@ h1 {
   background: transparent;
   color: rgba(148, 163, 184, 0.45);
   padding: 0;
-  font-size: 1.6rem;
-  line-height: 1;
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .rating-star.active {
@@ -300,6 +302,21 @@ h1 {
 
 .rating-star.nostalgia.active {
   color: #00ADEC;
+}
+
+.rating-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.toggle-icon-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0 6px 0 0;
+  line-height: 0;
+  vertical-align: middle;
 }
 
 .first-heard-row {

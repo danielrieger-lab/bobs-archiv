@@ -342,6 +342,20 @@ function hasGeneralRating(play: Radioplay): boolean {
 
 const ratingStarValues = [1, 2, 3, 4, 5] as const;
 
+function ratingIconPair(category: string): { off: string; on: string } {
+  if (category === 'story') return { off: 'b', on: 'b2' };
+  if (category === 'charakterdynamik') return { off: 'u', on: 'u2' };
+  if (category === 'atmosphaere') return { off: 'q', on: 'q2' };
+  if (category === 'wiederhoerenswert') return { off: 'v', on: 'v_2' };
+  if (category === 'nostalgie') return { off: 'c', on: 'c2' };
+  if (category === 'gruselfaktor') return { off: 'g', on: 'g2' };
+  return { off: 'b', on: 'b2' };
+}
+
+function ratingIconPath(fileName: string): string {
+  return `${BASE_URL}rating-icons/${fileName}.svg`;
+}
+
 function hydrateStarValue(rawValue: unknown): number {
   if (typeof rawValue !== 'number') return 0;
   if (rawValue >= 0 && rawValue <= 5) return rawValue;
@@ -567,6 +581,10 @@ export default function App() {
 
   const updateWiedergaben = (id: string, wiedergaben: number) => {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, wiedergaben } : play)));
+  };
+
+  const updateNostalgie = (id: string, nostalgie: number) => {
+    setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, nostalgie } : play)));
   };
 
   const updateLieblingscharakter = (id: string, lieblingscharakter: string) => {
@@ -814,7 +832,12 @@ export default function App() {
                         aria-pressed={selected[category.key] >= value}
                         aria-label={`${category.label}: ${value}`}
                       >
-                        ★
+                        <img
+                          className="rating-icon"
+                          src={ratingIconPath((selected[category.key] >= value ? ratingIconPair(category.key).on : ratingIconPair(category.key).off))}
+                          alt=""
+                          aria-hidden="true"
+                        />
                       </button>
                     ))}
                   </div>
@@ -829,11 +852,16 @@ export default function App() {
                       key={value}
                       type="button"
                       className={`rating-star nostalgia ${selected.nostalgie >= value ? 'active' : ''}`}
-                      onClick={() => setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === selected.id ? { ...play, nostalgie: selected.nostalgie === value ? 0 : value } : play)))}
+                      onClick={() => updateNostalgie(selected.id, selected.nostalgie === value ? 0 : value)}
                       aria-pressed={selected.nostalgie >= value}
                       aria-label={`Nostalgie: ${value}`}
                     >
-                      ★
+                      <img
+                        className="rating-icon"
+                        src={ratingIconPath(selected.nostalgie >= value ? ratingIconPair('nostalgie').on : ratingIconPair('nostalgie').off)}
+                        alt=""
+                        aria-hidden="true"
+                      />
                     </button>
                   ))}
                 </div>
@@ -841,34 +869,63 @@ export default function App() {
 
               <label className="field">
                 <span>Gruselfaktor: {selected.gruselfaktor}/5</span>
-                <input
-                  type="range"
-                  min="0"
-                  max="5"
-                  step="1"
-                  value={selected.gruselfaktor}
-                  onChange={(event) => updateGruselfaktor(selected.id, Number(event.target.value))}
-                />
+                <div className="rating-stars" role="group" aria-label="Gruselfaktor Bewertung">
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      className={`rating-star ${selected.gruselfaktor >= value ? 'active' : ''}`}
+                      onClick={() => updateGruselfaktor(selected.id, selected.gruselfaktor === value ? 0 : value)}
+                      aria-pressed={selected.gruselfaktor >= value}
+                      aria-label={`Gruselfaktor: ${value}`}
+                    >
+                      <img
+                        className="rating-icon"
+                        src={ratingIconPath(selected.gruselfaktor >= value ? ratingIconPair('gruselfaktor').on : ratingIconPair('gruselfaktor').off)}
+                        alt=""
+                        aria-hidden="true"
+                      />
+                    </button>
+                  ))}
+                </div>
               </label>
 
               <label className="field">
                 <span>
-                  <input
-                    type="checkbox"
-                    checked={selected.klassiker}
-                    onChange={(event) => updateToggle(selected.id, 'klassiker', event.target.checked)}
-                  />{' '}
+                  <button
+                    type="button"
+                    className="toggle-icon-button"
+                    onClick={() => updateToggle(selected.id, 'klassiker', !selected.klassiker)}
+                    aria-pressed={selected.klassiker}
+                    aria-label="Klassiker umschalten"
+                  >
+                    <img
+                      className="rating-icon"
+                      src={ratingIconPath(selected.klassiker ? 's2' : 's')}
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </button>{' '}
                   Klassiker
                 </span>
               </label>
 
               <label className="field">
                 <span>
-                  <input
-                    type="checkbox"
-                    checked={selected.bobcastGehoert}
-                    onChange={(event) => updateToggle(selected.id, 'bobcastGehoert', event.target.checked)}
-                  />{' '}
+                  <button
+                    type="button"
+                    className="toggle-icon-button"
+                    onClick={() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert)}
+                    aria-pressed={selected.bobcastGehoert}
+                    aria-label="Bobcast gehört umschalten"
+                  >
+                    <img
+                      className="rating-icon"
+                      src={ratingIconPath(selected.bobcastGehoert ? 'p2' : 'p')}
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </button>{' '}
                   Bobcast gehört
                 </span>
               </label>
