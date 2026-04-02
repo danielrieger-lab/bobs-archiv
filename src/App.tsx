@@ -468,7 +468,6 @@ export default function App() {
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [archiveSearch, setArchiveSearch] = useState('');
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
-  const [isScaryRankingListOpen, setIsScaryRankingListOpen] = useState(false);
   const [isWiedergabenRankingListOpen, setIsWiedergabenRankingListOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [addForm, setAddForm] = useState<AddEpisodeForm>(createEmptyAddEpisodeForm);
@@ -518,14 +517,7 @@ export default function App() {
       .sort((a, b) => b.rating - a.rating),
     [radioplays],
   );
-  const topScaryEpisodes = useMemo(
-    () => radioplays
-      .filter((play) => play.gruselfaktor > 0)
-      .map((play) => ({ play, score: play.gruselfaktor }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3),
-    [radioplays],
-  );
+
   const scaryRankedEpisodes = useMemo(
     () => radioplays
       .filter((play) => play.gruselfaktor > 0)
@@ -648,7 +640,6 @@ export default function App() {
     setSelectedId(nextId);
     setIsStatsOpen(false);
     setIsRankingListOpen(false);
-    setIsScaryRankingListOpen(false);
     setIsWiedergabenRankingListOpen(false);
     closeAddForm();
   };
@@ -1051,88 +1042,28 @@ export default function App() {
             ) : null}
 
             <div className="scary-section">
-              <h3 className="scary-title">Peter - der Schisser - Shaw Ranking</h3>
+              <h3 className="scary-title">Gruseligste Folgen</h3>
 
-              <div
-                className="podium podium-clickable"
-                role="button"
-                tabIndex={0}
-                onClick={() => setIsScaryRankingListOpen((current) => !current)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    setIsScaryRankingListOpen((current) => !current);
-                  }
-                }}
-                aria-label="Grusel-Podium öffnen, um alle Grusel-Rankings zu zeigen"
-              >
-                {[1, 0, 2].map((index) => {
-                  const item = topScaryEpisodes[index];
-                  const rank = index + 1;
-                  const heightClass = rank === 1 ? 'podium-rank-first' : rank === 2 ? 'podium-rank-second' : 'podium-rank-third';
-
-                  return (
-                    <div key={`scary-${rank}`} className={`podium-item ${heightClass}`}>
-                      {item ? (
-                        <>
-                          <p className="podium-rating">{item.score}/5</p>
-                          <button
-                            className="podium-cover-button"
-                            type="button"
-                            onClick={(event) => {
-                              event.stopPropagation();
-                              setSelectedId(item.play.id);
-                              setIsStatsOpen(false);
-                              setIsRankingListOpen(false);
-                              setIsScaryRankingListOpen(false);
-                            }}
-                            aria-label={`${item.play.episode} öffnen`}
-                          >
-                            <img
-                              className="podium-cover"
-                              src={getCoverSource(item.play)}
-                              alt={`${item.play.episode} Cover`}
-                              onError={handleCoverError}
-                            />
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <p className="podium-rating">-</p>
-                          <div className="podium-cover podium-placeholder" />
-                        </>
-                      )}
-                      <div className="podium-step">
-                        <p className="podium-rank">#{rank}</p>
-                      </div>
-                    </div>
-                  );
-                })}
+              <div className="ranking-list">
+                {scaryRankedEpisodes.slice(0, 5).map((item, index) => (
+                  <button
+                    key={`scary-top5-${item.play.id}`}
+                    type="button"
+                    className="ranking-item"
+                    onClick={() => {
+                      setSelectedId(item.play.id);
+                      setIsStatsOpen(false);
+                      setIsRankingListOpen(false);
+                    }}
+                    aria-label={`${item.play.episode} öffnen`}
+                  >
+                    <span className="ranking-position">#{index + 1}</span>
+                    <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
+                    <span className="ranking-title">{item.play.episode}</span>
+                    <span className="ranking-score">{item.score}/5</span>
+                  </button>
+                ))}
               </div>
-
-              {isScaryRankingListOpen ? (
-                <div className="ranking-list">
-                  {scaryRankedEpisodes.map((item, index) => (
-                    <button
-                      key={`scary-list-${item.play.id}`}
-                      type="button"
-                      className="ranking-item"
-                      onClick={() => {
-                        setSelectedId(item.play.id);
-                        setIsStatsOpen(false);
-                        setIsRankingListOpen(false);
-                        setIsScaryRankingListOpen(false);
-                      }}
-                      aria-label={`${item.play.episode} öffnen`}
-                    >
-                      <span className="ranking-position">#{index + 1}</span>
-                      <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
-                      <span className="ranking-title">{item.play.episode}</span>
-                      <span className="ranking-score">{item.score}/5</span>
-                    </button>
-                  ))}
-                </div>
-              ) : null}
             </div>
 
             <div className="scary-section">
@@ -1169,7 +1100,6 @@ export default function App() {
                               setSelectedId(item.play.id);
                               setIsStatsOpen(false);
                               setIsRankingListOpen(false);
-                              setIsScaryRankingListOpen(false);
                               setIsWiedergabenRankingListOpen(false);
                             }}
                             aria-label={`${item.play.episode} öffnen`}
@@ -1207,7 +1137,6 @@ export default function App() {
                         setSelectedId(item.play.id);
                         setIsStatsOpen(false);
                         setIsRankingListOpen(false);
-                        setIsScaryRankingListOpen(false);
                         setIsWiedergabenRankingListOpen(false);
                       }}
                       aria-label={`${item.play.episode} öffnen`}
@@ -1298,7 +1227,6 @@ export default function App() {
           setSelectedId('');
           setIsStatsOpen(false);
           setIsRankingListOpen(false);
-          setIsScaryRankingListOpen(false);
         }} aria-label="Archiv öffnen">
           <svg className="beam-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h13A1.5 1.5 0 0 1 20 8.5v8A1.5 1.5 0 0 1 18.5 18h-13A1.5 1.5 0 0 1 4 16.5z" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -1313,7 +1241,6 @@ export default function App() {
           setIsStatsOpen(true);
           setSelectedId('');
           setIsRankingListOpen(false);
-          setIsScaryRankingListOpen(false);
         }}>
           <svg className="beam-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M8 5h8v3a4 4 0 0 1-8 0z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>

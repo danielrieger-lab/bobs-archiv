@@ -568,7 +568,7 @@ input[type='range'] {
 .scary-section {
   display: grid;
   gap: 12px;
-  margin-top: 4px;
+  margin-top: 24px;
 }
 
 .scary-title {
