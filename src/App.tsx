@@ -613,7 +613,8 @@ export default function App() {
                     className={`cover-image ${isEpisodeRated(play) ? 'rated' : 'unrated'}`}
                     src={getCoverSource(play)}
                     alt={`${play.episode} Cover`}
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
                     onError={handleCoverError}
                   />
                 </button>
