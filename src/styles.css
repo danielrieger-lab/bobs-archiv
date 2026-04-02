@@ -294,6 +294,13 @@ h1 {
   line-height: 1;
 }
 
+.rating-star-zero {
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
 .rating-star.active {
   color: #EA141F;
 }
