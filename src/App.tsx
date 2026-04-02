@@ -319,15 +319,8 @@ const ratingCategories: Array<{ key: RatingCategory; label: string }> = [
 ];
 
 function overallRating(play: Radioplay): number {
-  const scaledRatings = [
-    play.atmosphaere,
-    play.wiederhoerenswert,
-    play.story,
-    play.charakterdynamik,
-  ].map((value) => ((value + 2) / 4) * 5);
-
-  const sum = scaledRatings.reduce((total, value) => total + value, play.nostalgie);
-  return Math.max(0, Math.min(5, sum / 5));
+  const sum = play.atmosphaere + play.wiederhoerenswert + play.story + play.charakterdynamik + play.nostalgie;
+  return sum / 5;
 }
 
 function hasGeneralRating(play: Radioplay): boolean {
