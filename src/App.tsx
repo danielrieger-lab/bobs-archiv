@@ -805,21 +805,12 @@ export default function App() {
                 <label className="field" key={category.key}>
                   <span>{category.label}</span>
                   <div className="rating-stars" role="group" aria-label={`${category.label} Bewertung`}>
-                    <button
-                      type="button"
-                      className={`rating-star rating-star-zero ${selected[category.key] === 0 ? 'active' : ''}`}
-                      onClick={() => updateCategory(selected.id, category.key, 0)}
-                      aria-pressed={selected[category.key] === 0}
-                      aria-label={`${category.label}: 0 Sterne`}
-                    >
-                      0★
-                    </button>
                     {ratingStarValues.map((value) => (
                       <button
                         key={value}
                         type="button"
                         className={`rating-star ${selected[category.key] >= value ? 'active' : ''}`}
-                        onClick={() => updateCategory(selected.id, category.key, value)}
+                        onClick={() => updateCategory(selected.id, category.key, selected[category.key] === value ? 0 : value)}
                         aria-pressed={selected[category.key] >= value}
                         aria-label={`${category.label}: ${value}`}
                       >
@@ -838,7 +829,7 @@ export default function App() {
                       key={value}
                       type="button"
                       className={`rating-star nostalgia ${selected.nostalgie >= value ? 'active' : ''}`}
-                      onClick={() => setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === selected.id ? { ...play, nostalgie: value } : play)))}
+                      onClick={() => setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === selected.id ? { ...play, nostalgie: selected.nostalgie === value ? 0 : value } : play)))}
                       aria-pressed={selected.nostalgie >= value}
                       aria-label={`Nostalgie: ${value}`}
                     >
