@@ -1033,7 +1033,7 @@ export default function App() {
             ) : null}
 
             <div className="scary-section">
-              <h3 className="scary-title">Gruseligste Folgen</h3>
+              <h3 className="scary-title">gruseligste Folgen</h3>
 
               <div className="ranking-list">
                 {scaryRankedEpisodes.slice(0, 5).map((item, index) => (
@@ -1058,7 +1058,7 @@ export default function App() {
             </div>
 
             <div className="scary-section">
-              <h3 className="scary-title">Meist gehört Folgen</h3>
+              <h3 className="scary-title">meist gehörte Folgen</h3>
 
               <div className="ranking-list">
                 {wiedergabenRankedEpisodes.slice(0, 5).map((item, index) => (
