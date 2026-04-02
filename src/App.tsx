@@ -935,6 +935,8 @@ export default function App() {
               <h2>Statistik</h2>
             </div>
 
+            <h3 className="beste-folgen-title">Beste Folgen</h3>
+
             <div
               className="podium podium-clickable"
               role="button"
