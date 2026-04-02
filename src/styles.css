@@ -292,6 +292,7 @@ h1 {
 
 .field input[type='number'],
 .field input[type='text'],
+.field input[type='date'],
 .add-form input[type='text'],
 .add-form input[type='number'],
 .add-form input[type='file'],
@@ -699,6 +700,11 @@ input[type='range'] {
   .first-heard-row {
     grid-template-columns: minmax(0, 1fr) 90px;
     gap: 8px;
+    align-items: center;
+  }
+
+  .field-small-number {
+    padding-top: 22px;
   }
 
   .detail-header {
