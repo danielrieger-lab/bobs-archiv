@@ -999,10 +999,7 @@ export default function App() {
 
               <div className="top-flop-card top-flop-average-card">
                 <div className="top-flop-average-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" className="top-flop-average-svg">
-                    <path d="M6 14l3-3 3 3 6-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M5 18h14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                  </svg>
+                  <span className="top-flop-mean-symbol">x̄</span>
                 </div>
                 <p className="top-flop-score">{rankedEpisodes.length > 0 ? `${averageRatedEpisodes.toFixed(1)}/5` : '-'}</p>
               </div>
