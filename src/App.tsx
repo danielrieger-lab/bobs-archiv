@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
 import episodeMetadata from '../episode-metadata.json';
+import { miniEpisodeSeeds } from './mini-episodes';
 
 type RatingNoteKey = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik' | 'nostalgie' | 'gruselfaktor';
 
@@ -329,7 +330,31 @@ function buildDefaultRadioplays(): Radioplay[] {
     });
 }
 
-const defaultRadioplays: Radioplay[] = buildDefaultRadioplays();
+function buildMiniRadioplays(): Radioplay[] {
+  return miniEpisodeSeeds.map((seed) => ({
+    id: seed.id,
+    title: 'Die Drei ???',
+    episode: seed.episode,
+    year: seed.year,
+    coverImage: seed.coverImage,
+    zuerstGehoertAm: '',
+    wiedergaben: 0,
+    nostalgie: 0,
+    lieblingscharakter: '',
+    atmosphaere: 0,
+    wiederhoerenswert: 0,
+    story: 0,
+    charakterdynamik: 0,
+    fallquality: 0,
+    gruselfaktor: 0,
+    klassiker: false,
+    bobcastGehoert: false,
+    beschreibungDerFolge: '',
+    ratingNotizen: createEmptyRatingNotizen(),
+  }));
+}
+
+const defaultRadioplays: Radioplay[] = [...buildDefaultRadioplays(), ...buildMiniRadioplays()];
 const episodeMetadataEntries = episodeMetadata as unknown as EpisodeMetadataEntry[];
 
 type RatingCategory = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik';
@@ -382,19 +407,19 @@ function hydrateStarValue(rawValue: unknown): number {
 }
 
 function normalizeEpisodeLabel(value: string): string {
-  return value.replace(/^(Folge\s*\d+)\s*::\s*/i, '$1: ').replace(/\s{2,}/g, ' ').trim();
+  return value.replace(/^(Folge\s*\d+|K\d+)\s*::\s*/i, '$1: ').replace(/\s{2,}/g, ' ').trim();
 }
 
 function episodeNameFromLabel(value: string): string {
   const normalized = normalizeEpisodeLabel(value);
-  const match = normalized.match(/^Folge\s*\d+\s*:\s*(.+)$/i);
+  const match = normalized.match(/^(?:Folge\s*\d+|K\d+)\s*:\s*(.+)$/i);
   return match?.[1]?.trim() ?? normalized;
 }
 
 function episodeNumberFromLabel(value: string): string {
   const normalized = normalizeEpisodeLabel(value);
-  const match = normalized.match(/^Folge\s*(\d+)\s*:/i);
-  return match?.[1] ? `Folge ${match[1]}` : '';
+  const match = normalized.match(/^((?:Folge\s*\d+)|(?:K\d+))\s*:/i);
+  return match?.[1] ?? '';
 }
 
 function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radioplay {
@@ -503,7 +528,15 @@ function readFileAsDataUrl(file: File): Promise<string> {
 }
 
 function getCoverSource(play: Pick<Radioplay, 'id' | 'coverImage'>): string {
-  return play.coverImage || coverPath(play.id);
+  if (play.coverImage) {
+    if (play.coverImage.startsWith('data:') || play.coverImage.startsWith('http')) {
+      return play.coverImage;
+    }
+
+    return `${BASE_URL}${play.coverImage.replace(/^\/+/, '')}`;
+  }
+
+  return coverPath(play.id);
 }
 
 function handleCoverError(event: SyntheticEvent<HTMLImageElement>) {
