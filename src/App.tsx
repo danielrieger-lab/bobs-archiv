@@ -312,14 +312,13 @@ type RatingCategory = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakter
 const ratingCategories: Array<{ key: RatingCategory; label: string }> = [
   { key: 'atmosphaere', label: 'Atmosphäre' },
   { key: 'wiederhoerenswert', label: 'Wiederhörenswert' },
-  { key: 'story', label: 'Story' },
+  { key: 'story', label: 'STory/Fallqualität' },
   { key: 'charakterdynamik', label: 'Charakterdynamik' },
-  { key: 'fallquality', label: 'Fallquality' },
 ];
 
 function overallRating(play: Radioplay): number {
-  const sum = play.atmosphaere + play.wiederhoerenswert + play.story + play.charakterdynamik + play.fallquality;
-  const normalized = sum / 10;
+  const sum = play.atmosphaere + play.wiederhoerenswert + play.story + play.charakterdynamik;
+  const normalized = sum / 8;
   return Math.max(0, Math.min(5, (normalized + 1) * 2.5));
 }
 
@@ -329,9 +328,10 @@ function hasGeneralRating(play: Radioplay): boolean {
     || play.wiederhoerenswert !== 0
     || play.story !== 0
     || play.charakterdynamik !== 0
-    || play.fallquality !== 0
   );
 }
+
+const ratingStarValues = [-2, -1, 0, 1, 2] as const;
 
 function normalizeEpisodeLabel(value: string): string {
   return value.replace(/^(Folge\s*\d+)\s*::\s*/i, '$1: ').replace(/\s{2,}/g, ' ').trim();
@@ -360,7 +360,7 @@ function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radiopl
     lieblingscharakter: typeof raw.lieblingscharakter === 'string' ? raw.lieblingscharakter : '',
     atmosphaere: typeof raw.atmosphaere === 'number' ? raw.atmosphaere : 0,
     wiederhoerenswert: typeof raw.wiederhoerenswert === 'number' ? raw.wiederhoerenswert : 0,
-    story: typeof raw.story === 'number' ? raw.story : 0,
+    story: typeof raw.story === 'number' ? raw.story : (typeof raw.fallquality === 'number' ? raw.fallquality : 0),
     charakterdynamik: typeof raw.charakterdynamik === 'number' ? raw.charakterdynamik : 0,
     fallquality: typeof raw.fallquality === 'number' ? raw.fallquality : 0,
     gruselfaktor: typeof raw.gruselfaktor === 'number' ? raw.gruselfaktor : 0,
@@ -758,11 +758,11 @@ export default function App() {
                 </label>
 
                 <label className="field field-small-number">
-                  <span>Nr.</span>
                   <input
                     type="number"
                     min="0"
                     step="1"
+                    aria-label="Wiedergaben"
                     value={selected.wiedergaben}
                     onChange={(event) => updateWiedergaben(selected.id, Math.max(0, Number(event.target.value) || 0))}
                   />
@@ -781,15 +781,21 @@ export default function App() {
 
               {ratingCategories.map((category) => (
                 <label className="field" key={category.key}>
-                  <span>{category.label}: {selected[category.key]}</span>
-                  <input
-                    type="range"
-                    min="-2"
-                    max="2"
-                    step="1"
-                    value={selected[category.key]}
-                    onChange={(event) => updateCategory(selected.id, category.key, Number(event.target.value))}
-                  />
+                  <span>{category.label}</span>
+                  <div className="rating-stars" role="group" aria-label={`${category.label} Bewertung`}>
+                    {ratingStarValues.map((value) => (
+                      <button
+                        key={value}
+                        type="button"
+                        className={`rating-star ${selected[category.key] >= value ? 'active' : ''}`}
+                        onClick={() => updateCategory(selected.id, category.key, value)}
+                        aria-pressed={selected[category.key] >= value}
+                        aria-label={`${category.label}: ${value}`}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
                 </label>
               ))}
 
