@@ -1,0 +1,18 @@
+{
+  "name": "Bobs Archiv Das ???-Fallometer",
+  "short_name": "Fallometer",
+  "description": "PWA zum Bewerten von Radioplays",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "/logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
