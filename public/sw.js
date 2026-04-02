@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bobs-fallometer-v7';
+const CACHE_NAME = 'bobs-fallometer-v8';
 const APP_BASE_PATH = self.location.pathname.replace(/[^/]+$/, '');
 const toAppPath = (path) => `${APP_BASE_PATH}${path}`;
 const INDEX_URL = toAppPath('index.html');
