@@ -1,5 +1,9 @@
-const CACHE_NAME = 'bobs-fallometer-v2';
-const CORE_ASSETS = ['/', '/index.html', '/manifest.webmanifest', '/logo.jpeg'];
+const CACHE_NAME = 'bobs-fallometer-v3';
+const APP_BASE_PATH = self.location.pathname.replace(/[^/]+$/, '');
+const toAppPath = (path) => `${APP_BASE_PATH}${path}`;
+const INDEX_URL = toAppPath('index.html');
+const LOGO_URL = toAppPath('logo.jpeg');
+const CORE_ASSETS = [toAppPath(''), INDEX_URL, toAppPath('manifest.webmanifest'), LOGO_URL];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -30,11 +34,11 @@ self.addEventListener('fetch', (event) => {
       fetch(event.request)
         .then(async (response) => {
           const cache = await caches.open(CACHE_NAME);
-          cache.put('/index.html', response.clone());
+          cache.put(INDEX_URL, response.clone());
           return response;
         })
         .catch(async () => {
-          const cachedPage = await caches.match('/index.html');
+          const cachedPage = await caches.match(INDEX_URL);
           return cachedPage || new Response('Offline', { status: 503, statusText: 'Offline' });
         }),
     );
@@ -54,7 +58,7 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       } catch {
         if (event.request.destination === 'image') {
-          const fallbackImage = await caches.match('/logo.jpeg');
+          const fallbackImage = await caches.match(LOGO_URL);
           if (fallbackImage) return fallbackImage;
         }
         return new Response('Offline', { status: 503, statusText: 'Offline' });

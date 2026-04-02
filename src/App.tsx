@@ -27,6 +27,7 @@ type AddEpisodeForm = {
 };
 
 const STORAGE_KEY = 'bobs-archiv-fallometer-ratings-v1';
+const BASE_URL = import.meta.env.BASE_URL;
 
 const EPISODE_SEED = `Folge 1: und der Superpapagei (12.10.1979)
 Folge 2: und der Phantomsee (13.10.1979)
@@ -390,7 +391,7 @@ function ratingLabel(rating: number): string {
 }
 
 function coverPath(id: string): string {
-  return `/covers/folge-${id.padStart(3, '0')}.png`;
+  return `${BASE_URL}covers/folge-${id.padStart(3, '0')}.png`;
 }
 
 function createEmptyAddEpisodeForm(): AddEpisodeForm {
@@ -416,7 +417,7 @@ function getCoverSource(play: Pick<Radioplay, 'id' | 'coverImage'>): string {
 }
 
 function handleCoverError(event: SyntheticEvent<HTMLImageElement>) {
-  event.currentTarget.src = '/logo.jpeg';
+  event.currentTarget.src = `${BASE_URL}logo.jpeg`;
 }
 
 function isEpisodeRated(play: Radioplay): boolean {
@@ -586,7 +587,7 @@ export default function App() {
   return (
     <main className="app-shell">
       <section className="hero">
-        <img className="hero-image" src="/header.jpeg" alt="Bobs Archiv Das ???-Fallometer" />
+        <img className="hero-image" src={`${BASE_URL}header.jpeg`} alt="Bobs Archiv Das ???-Fallometer" />
       </section>
 
       <section className={`layout ${selected && !isStatsOpen ? 'with-details' : ''}`}>
