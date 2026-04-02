@@ -474,16 +474,19 @@ input[type='range'] {
 .top-flop-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 24px;
+  margin: 0;
 }
 
 .top-flop-card {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 8px;
-  padding: 12px;
-  border-radius: 18px;
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  background: rgba(30, 41, 59, 0.65);
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background: transparent;
 }
 
 .top-flop-label,
@@ -499,8 +502,8 @@ input[type='range'] {
 }
 
 .top-flop-cover {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 14px;
   border: 1px solid rgba(148, 163, 184, 0.16);
@@ -512,6 +515,13 @@ input[type='range'] {
 }
 
 .top-flop-score {
+  color: #cbd5e1;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.top-flop-empty {
+  margin: 0;
   color: #cbd5e1;
 }
 
@@ -800,11 +810,16 @@ input[type='range'] {
   }
 
   .top-flop-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .top-flop-card {
-    padding: 10px;
+    padding: 0;
+  }
+
+  .top-flop-cover {
+    width: 70px;
+    height: 70px;
   }
 
   .ranking-list {

@@ -993,7 +993,6 @@ export default function App() {
 
             <div className="top-flop-grid">
               <div className="top-flop-card">
-                <p className="top-flop-label">Top-Folge</p>
                 {rankedEpisodes[0] ? (
                   <>
                     <img
@@ -1002,16 +1001,14 @@ export default function App() {
                       alt={`${rankedEpisodes[0].play.episode} Cover`}
                       onError={handleCoverError}
                     />
-                    <p className="top-flop-title">{rankedEpisodes[0].play.episode}</p>
                     <p className="top-flop-score">{rankedEpisodes[0].rating.toFixed(1)}/5</p>
                   </>
                 ) : (
-                  <p className="top-flop-title">Noch keine Bewertung</p>
+                  <p className="top-flop-empty">Noch keine Bewertung</p>
                 )}
               </div>
 
               <div className="top-flop-card">
-                <p className="top-flop-label">Flop-Folge</p>
                 {rankedEpisodes[rankedEpisodes.length - 1] ? (
                   <>
                     <img
@@ -1020,11 +1017,10 @@ export default function App() {
                       alt={`${rankedEpisodes[rankedEpisodes.length - 1].play.episode} Cover`}
                       onError={handleCoverError}
                     />
-                    <p className="top-flop-title">{rankedEpisodes[rankedEpisodes.length - 1].play.episode}</p>
                     <p className="top-flop-score">{rankedEpisodes[rankedEpisodes.length - 1].rating.toFixed(1)}/5</p>
                   </>
                 ) : (
-                  <p className="top-flop-title">Noch keine Bewertung</p>
+                  <p className="top-flop-empty">Noch keine Bewertung</p>
                 )}
               </div>
             </div>
