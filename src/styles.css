@@ -294,10 +294,12 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.5;
 }
 
 .rating-star.active {
   color: #EA141F;
+  opacity: 1;
 }
 
 .rating-star.nostalgia.active {
@@ -308,6 +310,15 @@ h1 {
   width: 24px;
   height: 24px;
   display: block;
+  filter: brightness(0) invert(1);
+}
+
+.rating-star.active .rating-icon {
+  filter: brightness(0) saturate(100%) invert(17%) sepia(94%) saturate(4110%) hue-rotate(348deg) brightness(95%) contrast(99%);
+}
+
+.rating-star.nostalgia.active .rating-icon {
+  filter: brightness(0) saturate(100%) invert(49%) sepia(85%) saturate(1380%) hue-rotate(160deg) brightness(96%) contrast(101%);
 }
 
 .toggle-icon-button {
@@ -317,6 +328,11 @@ h1 {
   margin: 0 6px 0 0;
   line-height: 0;
   vertical-align: middle;
+  opacity: 0.6;
+}
+
+.toggle-icon-button[aria-pressed='true'] {
+  opacity: 1;
 }
 
 .first-heard-row {
