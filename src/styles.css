@@ -704,7 +704,14 @@ input[type='range'] {
   }
 
   .field-small-number {
-    padding-top: 22px;
+    align-self: end;
+    padding-top: 0;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .field-small-number input[type='number'] {
+    margin-bottom: 0;
   }
 
   .detail-header {
