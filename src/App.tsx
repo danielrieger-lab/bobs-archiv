@@ -6,6 +6,7 @@ type Radioplay = {
   episode: string;
   year: number;
   coverImage?: string;
+  zuerstGehoertAm: string;
   wiedergaben: number;
   lieblingscharakter: string;
   atmosphaere: number;
@@ -288,6 +289,7 @@ function buildDefaultRadioplays(): Radioplay[] {
         episode: `Folge ${episodeNumber}: ${episodeName}`,
         year: parseYearFromLine(line),
         coverImage: undefined,
+        zuerstGehoertAm: '',
         wiedergaben: 0,
         lieblingscharakter: '',
         atmosphaere: 0,
@@ -353,6 +355,7 @@ function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radiopl
     ...raw,
     episode: normalizeEpisodeLabel(typeof raw.episode === 'string' ? raw.episode : fallback.episode),
     coverImage: typeof raw.coverImage === 'string' ? raw.coverImage : fallback.coverImage,
+    zuerstGehoertAm: typeof raw.zuerstGehoertAm === 'string' ? raw.zuerstGehoertAm : '',
     wiedergaben: typeof raw.wiedergaben === 'number' ? raw.wiedergaben : 0,
     lieblingscharakter: typeof raw.lieblingscharakter === 'string' ? raw.lieblingscharakter : '',
     atmosphaere: typeof raw.atmosphaere === 'number' ? raw.atmosphaere : 0,
@@ -537,6 +540,10 @@ export default function App() {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, beschreibungDerFolge } : play)));
   };
 
+  const updateZuerstGehoertAm = (id: string, zuerstGehoertAm: string) => {
+    setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, zuerstGehoertAm } : play)));
+  };
+
   const updateWiedergaben = (id: string, wiedergaben: number) => {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, wiedergaben } : play)));
   };
@@ -590,6 +597,7 @@ export default function App() {
       episode: `Folge ${folgennummer}: ${titel} (${jahr})`,
       year: jahr,
       coverImage: addForm.coverImage || undefined,
+      zuerstGehoertAm: '',
       wiedergaben: 0,
       lieblingscharakter: '',
       atmosphaere: 0,
@@ -739,16 +747,27 @@ export default function App() {
                 />
               </label>
 
-              <label className="field">
-                <span>Wiedergaben</span>
-                <input
-                  type="number"
-                  min="0"
-                  step="1"
-                  value={selected.wiedergaben}
-                  onChange={(event) => updateWiedergaben(selected.id, Math.max(0, Number(event.target.value) || 0))}
-                />
-              </label>
+              <div className="first-heard-row">
+                <label className="field">
+                  <span>Zuerst gehört am</span>
+                  <input
+                    type="date"
+                    value={selected.zuerstGehoertAm}
+                    onChange={(event) => updateZuerstGehoertAm(selected.id, event.target.value)}
+                  />
+                </label>
+
+                <label className="field field-small-number">
+                  <span>Nr.</span>
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={selected.wiedergaben}
+                    onChange={(event) => updateWiedergaben(selected.id, Math.max(0, Number(event.target.value) || 0))}
+                  />
+                </label>
+              </div>
 
               <label className="field">
                 <span>Lieblingscharakter</span>
