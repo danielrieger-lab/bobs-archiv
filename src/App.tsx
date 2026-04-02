@@ -1,6 +1,13 @@
 import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
+import episodeMetadata from '../episode-metadata.json';
 
 type RatingNoteKey = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik' | 'nostalgie' | 'gruselfaktor';
+
+type EpisodeMetadataEntry = {
+  episode: number;
+  autor?: string;
+  dauerMs?: number;
+};
 
 type Radioplay = {
   id: string;
@@ -323,6 +330,7 @@ function buildDefaultRadioplays(): Radioplay[] {
 }
 
 const defaultRadioplays: Radioplay[] = buildDefaultRadioplays();
+const episodeMetadataEntries = episodeMetadata as unknown as EpisodeMetadataEntry[];
 
 type RatingCategory = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik';
 
@@ -454,6 +462,24 @@ function ratingLabel(rating: number): string {
   return 'Katastrophe';
 }
 
+function formatDuration(durationMs: number): string {
+  const totalMinutes = Math.max(0, Math.floor(durationMs / 60000));
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, '0')}`;
+  }
+
+  return `${totalMinutes} min`;
+}
+
+function getEpisodeMetadata(episodeId: string): EpisodeMetadataEntry | undefined {
+  const nummer = Number(episodeId);
+  if (!Number.isFinite(nummer)) return undefined;
+  return episodeMetadataEntries.find((entry) => entry.episode === nummer);
+}
+
 function coverPath(id: string): string {
   return `${BASE_URL}covers/folge-${id.padStart(3, '0')}.png`;
 }
@@ -507,6 +533,7 @@ export default function App() {
     () => radioplays.find((play: Radioplay) => play.id === selectedId),
     [radioplays, selectedId],
   );
+  const selectedMetadata = useMemo(() => (selected ? getEpisodeMetadata(selected.id) : undefined), [selected]);
   const normalizedArchiveSearch = archiveSearch.trim().toLowerCase();
   const filteredRadioplays = useMemo(() => {
     if (!normalizedArchiveSearch) return radioplays;
@@ -784,6 +811,12 @@ export default function App() {
                   <h2>{`${selected.title} ${episodeNameFromLabel(selected.episode)}`}</h2>
                   <p className="detail-episode-number">{episodeNumberFromLabel(selected.episode)}</p>
                   <p className="detail-year">{selected.year}</p>
+                  {selectedMetadata?.autor ? (
+                    <p className="detail-author">{selectedMetadata.autor}</p>
+                  ) : null}
+                  {selectedMetadata?.dauerMs ? (
+                    <p className="detail-duration">{formatDuration(selectedMetadata.dauerMs)}</p>
+                  ) : null}
                 </div>
                 <img className="detail-cover" src={getCoverSource(selected)} alt={`${selected.episode} Cover`} onError={handleCoverError} />
               </div>

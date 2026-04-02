@@ -216,6 +216,14 @@ h1 {
   font-weight: 700;
 }
 
+.detail-author,
+.detail-duration {
+  margin: 4px 0 0 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .detail-cover {
   width: 96px;
   height: 96px;
