@@ -435,6 +435,7 @@ export default function App() {
   const [radioplays, setRadioplays] = useState<Radioplay[]>(loadRadioplays);
   const [selectedId, setSelectedId] = useState('');
   const [isStatsOpen, setIsStatsOpen] = useState(false);
+  const [archiveSearch, setArchiveSearch] = useState('');
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
   const [isScaryRankingListOpen, setIsScaryRankingListOpen] = useState(false);
   const [isWiedergabenRankingListOpen, setIsWiedergabenRankingListOpen] = useState(false);
@@ -444,6 +445,33 @@ export default function App() {
     () => radioplays.find((play: Radioplay) => play.id === selectedId),
     [radioplays, selectedId],
   );
+  const normalizedArchiveSearch = archiveSearch.trim().toLowerCase();
+  const filteredRadioplays = useMemo(() => {
+    if (!normalizedArchiveSearch) return radioplays;
+
+    return radioplays.filter((play) => {
+      const episodeNumber = `folge ${play.id}`;
+      const episodeName = episodeNameFromLabel(play.episode).toLowerCase();
+      const episodeLabel = play.episode.toLowerCase();
+      return (
+        episodeLabel.includes(normalizedArchiveSearch)
+        || episodeNumber.includes(normalizedArchiveSearch)
+        || episodeName.includes(normalizedArchiveSearch)
+      );
+    });
+  }, [normalizedArchiveSearch, radioplays]);
+  const archiveSuggestions = useMemo(() => {
+    if (!normalizedArchiveSearch) return [];
+
+    return radioplays
+      .map((play) => ({
+        id: play.id,
+        label: `${episodeNumberFromLabel(play.episode)} · ${episodeNameFromLabel(play.episode)}`,
+        title: episodeNameFromLabel(play.episode).toLowerCase(),
+      }))
+      .filter((item) => item.title.includes(normalizedArchiveSearch))
+      .slice(0, 6);
+  }, [normalizedArchiveSearch, radioplays]);
   const topRatedEpisodes = useMemo(
     () => radioplays
       .filter((play) => hasGeneralRating(play))
@@ -594,12 +622,46 @@ export default function App() {
         {!selected && !isStatsOpen ? (
           <div className="panel list-panel">
             <div className="panel-header">
-              <h2>Archiv</h2>
-              <span>{radioplays.length} Einträge</span>
+              <div>
+                <h2>Archiv</h2>
+                <span>{filteredRadioplays.length} von {radioplays.length} Einträgen</span>
+              </div>
             </div>
 
+            <label className="archive-search">
+              <span>Suche nach Folge oder Titel</span>
+              <input
+                type="search"
+                value={archiveSearch}
+                onChange={(event) => setArchiveSearch(event.target.value)}
+                placeholder="z. B. 12 oder Gespensterschloss"
+                list="archive-title-suggestions"
+              />
+            </label>
+
+            <datalist id="archive-title-suggestions">
+              {archiveSuggestions.map((item) => (
+                <option key={item.id} value={episodeNameFromLabel(radioplays.find((play) => play.id === item.id)?.episode ?? item.label)} />
+              ))}
+            </datalist>
+
+            {archiveSuggestions.length ? (
+              <div className="archive-suggestions" aria-label="Titelvorschläge">
+                {archiveSuggestions.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className="archive-suggestion"
+                    onClick={() => setArchiveSearch(item.label)}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+
             <div className="cards">
-              {radioplays.map((play) => (
+              {filteredRadioplays.map((play) => (
                 <button
                   key={play.id}
                   className={`play-card ${selectedId === play.id ? 'active' : ''}`}
@@ -620,6 +682,8 @@ export default function App() {
                 </button>
               ))}
             </div>
+
+            {!filteredRadioplays.length ? <p className="empty-state">Keine Folgen gefunden.</p> : null}
           </div>
         ) : null}
 
