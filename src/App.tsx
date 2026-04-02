@@ -51,6 +51,7 @@ function createEmptyRatingNotizen(): Record<RatingNoteKey, string> {
 }
 
 const STORAGE_KEY = 'bobs-archiv-fallometer-ratings-v1';
+const STORAGE_BACKUP_KEY = 'bobs-archiv-fallometer-ratings-backup-v1';
 const BASE_URL = import.meta.env.BASE_URL;
 
 const EPISODE_SEED = `Folge 1: und der Superpapagei (12.10.1979)
@@ -466,14 +467,53 @@ function autoResizeTextarea(element: HTMLTextAreaElement): void {
 
 function loadRadioplays(): Radioplay[] {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return defaultRadioplays;
-    const parsed = JSON.parse(raw) as Array<Partial<Radioplay>>;
-    if (!Array.isArray(parsed) || !parsed.length) return defaultRadioplays;
-    return defaultRadioplays.map((fallback) => {
+    const readStoredRadioplays = (key: string): Array<Partial<Radioplay>> | null => {
+      const raw = localStorage.getItem(key);
+      if (!raw) return null;
+
+      const parsed = JSON.parse(raw) as Array<Partial<Radioplay>>;
+      if (!Array.isArray(parsed) || !parsed.length) return null;
+      return parsed;
+    };
+
+    const parsed = readStoredRadioplays(STORAGE_KEY) ?? readStoredRadioplays(STORAGE_BACKUP_KEY);
+    if (!parsed) return defaultRadioplays;
+
+    const mergedDefaults = defaultRadioplays.map((fallback) => {
       const existing = parsed.find((item) => item.id === fallback.id);
       return existing ? hydrateRadioplay(existing, fallback) : fallback;
     });
+
+    const knownIds = new Set(mergedDefaults.map((play) => play.id));
+    const customEpisodes = parsed
+      .filter((item): item is Partial<Radioplay> & { id: string } => typeof item.id === 'string' && !knownIds.has(item.id))
+      .map((item) => {
+        const fallback: Radioplay = {
+          id: item.id,
+          title: typeof item.title === 'string' ? item.title : 'Die Drei ???',
+          episode: normalizeEpisodeLabel(typeof item.episode === 'string' ? item.episode : item.id),
+          year: typeof item.year === 'number' ? item.year : 0,
+          coverImage: typeof item.coverImage === 'string' ? item.coverImage : undefined,
+          zuerstGehoertAm: '',
+          wiedergaben: 0,
+          nostalgie: 0,
+          lieblingscharakter: '',
+          atmosphaere: 0,
+          wiederhoerenswert: 0,
+          story: 0,
+          charakterdynamik: 0,
+          fallquality: 0,
+          gruselfaktor: 0,
+          klassiker: false,
+          bobcastGehoert: false,
+          beschreibungDerFolge: '',
+          ratingNotizen: createEmptyRatingNotizen(),
+        };
+
+        return hydrateRadioplay(item, fallback);
+      });
+
+    return [...mergedDefaults, ...customEpisodes];
   } catch {
     return defaultRadioplays;
   }
@@ -632,8 +672,19 @@ export default function App() {
     [radioplays],
   );
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(radioplays));
+    try {
+      const serialized = JSON.stringify(radioplays);
+      localStorage.setItem(STORAGE_KEY, serialized);
+      localStorage.setItem(STORAGE_BACKUP_KEY, serialized);
+    } catch {
+      // keep app running even if iOS storage quota/availability fails
+    }
   }, [radioplays]);
+
+  useEffect(() => {
+    if (!('storage' in navigator) || typeof navigator.storage.persist !== 'function') return;
+    void navigator.storage.persist();
+  }, []);
 
   useEffect(() => {
     if (!selected) return;
