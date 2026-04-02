@@ -345,6 +345,12 @@ textarea {
   min-height: 120px;
 }
 
+.rating-note-input {
+  resize: none;
+  min-height: 0;
+  overflow: hidden;
+}
+
 input[type='range'] {
   accent-color: #EA141F;
 }

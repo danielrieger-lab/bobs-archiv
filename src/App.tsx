@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
 
+type RatingNoteKey = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik' | 'nostalgie' | 'gruselfaktor';
+
 type Radioplay = {
   id: string;
   title: string;
@@ -19,6 +21,7 @@ type Radioplay = {
   klassiker: boolean;
   bobcastGehoert: boolean;
   beschreibungDerFolge: string;
+  ratingNotizen: Record<RatingNoteKey, string>;
 };
 
 type AddEpisodeForm = {
@@ -27,6 +30,17 @@ type AddEpisodeForm = {
   jahr: string;
   coverImage: string;
 };
+
+function createEmptyRatingNotizen(): Record<RatingNoteKey, string> {
+  return {
+    atmosphaere: '',
+    wiederhoerenswert: '',
+    story: '',
+    charakterdynamik: '',
+    nostalgie: '',
+    gruselfaktor: '',
+  };
+}
 
 const STORAGE_KEY = 'bobs-archiv-fallometer-ratings-v1';
 const BASE_URL = import.meta.env.BASE_URL;
@@ -303,13 +317,14 @@ function buildDefaultRadioplays(): Radioplay[] {
         klassiker: false,
         bobcastGehoert: false,
         beschreibungDerFolge: '',
+        ratingNotizen: createEmptyRatingNotizen(),
       };
     });
 }
 
 const defaultRadioplays: Radioplay[] = buildDefaultRadioplays();
 
-type RatingCategory = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik' | 'fallquality';
+type RatingCategory = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik';
 
 const ratingCategories: Array<{ key: RatingCategory; label: string }> = [
   { key: 'atmosphaere', label: 'Atmosphäre' },
@@ -375,6 +390,11 @@ function episodeNumberFromLabel(value: string): string {
 }
 
 function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radioplay {
+  const rawRatingNotizen = (raw as { ratingNotizen?: unknown }).ratingNotizen;
+  const ratingNotizen = typeof rawRatingNotizen === 'object' && rawRatingNotizen !== null
+    ? rawRatingNotizen as Partial<Record<RatingNoteKey, unknown>>
+    : {};
+
   return {
     ...fallback,
     ...raw,
@@ -395,7 +415,20 @@ function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radiopl
     klassiker: typeof raw.klassiker === 'boolean' ? raw.klassiker : false,
     bobcastGehoert: typeof raw.bobcastGehoert === 'boolean' ? raw.bobcastGehoert : false,
     beschreibungDerFolge: typeof raw.beschreibungDerFolge === 'string' ? raw.beschreibungDerFolge : '',
+    ratingNotizen: {
+      atmosphaere: typeof ratingNotizen.atmosphaere === 'string' ? ratingNotizen.atmosphaere : fallback.ratingNotizen.atmosphaere,
+      wiederhoerenswert: typeof ratingNotizen.wiederhoerenswert === 'string' ? ratingNotizen.wiederhoerenswert : fallback.ratingNotizen.wiederhoerenswert,
+      story: typeof ratingNotizen.story === 'string' ? ratingNotizen.story : fallback.ratingNotizen.story,
+      charakterdynamik: typeof ratingNotizen.charakterdynamik === 'string' ? ratingNotizen.charakterdynamik : fallback.ratingNotizen.charakterdynamik,
+      nostalgie: typeof ratingNotizen.nostalgie === 'string' ? ratingNotizen.nostalgie : fallback.ratingNotizen.nostalgie,
+      gruselfaktor: typeof ratingNotizen.gruselfaktor === 'string' ? ratingNotizen.gruselfaktor : fallback.ratingNotizen.gruselfaktor,
+    },
   };
+}
+
+function autoResizeTextarea(element: HTMLTextAreaElement): void {
+  element.style.height = 'auto';
+  element.style.height = `${element.scrollHeight}px`;
 }
 
 function loadRadioplays(): Radioplay[] {
@@ -542,6 +575,13 @@ export default function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(radioplays));
   }, [radioplays]);
 
+  useEffect(() => {
+    if (!selected) return;
+    document.querySelectorAll<HTMLTextAreaElement>('.rating-note-input').forEach((textarea) => {
+      autoResizeTextarea(textarea);
+    });
+  }, [selected]);
+
   const updateCategory = (id: string, category: RatingCategory, value: number) => {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, [category]: value } : play)));
   };
@@ -572,6 +612,12 @@ export default function App() {
 
   const updateLieblingscharakter = (id: string, lieblingscharakter: string) => {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, lieblingscharakter } : play)));
+  };
+
+  const updateRatingNotiz = (id: string, field: RatingNoteKey, value: string) => {
+    setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id
+      ? { ...play, ratingNotizen: { ...play.ratingNotizen, [field]: value } }
+      : play)));
   };
 
   const openAddForm = () => {
@@ -632,6 +678,7 @@ export default function App() {
       klassiker: false,
       bobcastGehoert: false,
       beschreibungDerFolge: '',
+      ratingNotizen: createEmptyRatingNotizen(),
     };
 
     setRadioplays((current) => [...current, newEpisode]);
@@ -822,6 +869,14 @@ export default function App() {
                       </button>
                     ))}
                   </div>
+                  <textarea
+                    className="rating-note-input"
+                    rows={1}
+                    value={selected.ratingNotizen[category.key]}
+                    onInput={(event) => autoResizeTextarea(event.currentTarget)}
+                    onChange={(event) => updateRatingNotiz(selected.id, category.key, event.target.value)}
+                    placeholder="Notiz..."
+                  />
                 </label>
               ))}
 
@@ -846,6 +901,14 @@ export default function App() {
                     </button>
                   ))}
                 </div>
+                <textarea
+                  className="rating-note-input"
+                  rows={1}
+                  value={selected.ratingNotizen.nostalgie}
+                  onInput={(event) => autoResizeTextarea(event.currentTarget)}
+                  onChange={(event) => updateRatingNotiz(selected.id, 'nostalgie', event.target.value)}
+                  placeholder="Notiz..."
+                />
               </label>
 
               <label className="field">
@@ -869,6 +932,14 @@ export default function App() {
                     </button>
                   ))}
                 </div>
+                <textarea
+                  className="rating-note-input"
+                  rows={1}
+                  value={selected.ratingNotizen.gruselfaktor}
+                  onInput={(event) => autoResizeTextarea(event.currentTarget)}
+                  onChange={(event) => updateRatingNotiz(selected.id, 'gruselfaktor', event.target.value)}
+                  placeholder="Notiz..."
+                />
               </label>
 
               <label className="field">
