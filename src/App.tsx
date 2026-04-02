@@ -993,6 +993,7 @@ export default function App() {
 
             <div className="top-flop-grid">
               <div className="top-flop-card">
+                <p className="top-flop-label">Top-Folge</p>
                 {rankedEpisodes[0] ? (
                   <>
                     <img
@@ -1009,6 +1010,7 @@ export default function App() {
               </div>
 
               <div className="top-flop-card">
+                <p className="top-flop-label">Flop-Folge</p>
                 {rankedEpisodes[rankedEpisodes.length - 1] ? (
                   <>
                     <img
