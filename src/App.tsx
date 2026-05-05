@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
 import episodeMetadata from '../episode-metadata.json';
 import { miniEpisodeSeeds } from './mini-episodes';
 
@@ -39,6 +39,19 @@ type AddEpisodeForm = {
   coverImage: string;
 };
 
+type BackupPayload = {
+  schemaVersion: 1;
+  exportedAt: string;
+  radioplays: Array<Partial<Radioplay>>;
+};
+
+type MergeImportPreview = {
+  importedEntries: number;
+  added: number;
+  updated: number;
+  unchanged: number;
+};
+
 function createEmptyRatingNotizen(): Record<RatingNoteKey, string> {
   return {
     atmosphaere: '',
@@ -50,8 +63,10 @@ function createEmptyRatingNotizen(): Record<RatingNoteKey, string> {
   };
 }
 
+const STORAGE_CANONICAL_KEY = 'bobs-archiv-fallometer-ratings';
 const STORAGE_KEY = 'bobs-archiv-fallometer-ratings-v1';
 const STORAGE_BACKUP_KEY = 'bobs-archiv-fallometer-ratings-backup-v1';
+const STORAGE_WRITE_KEYS = [STORAGE_CANONICAL_KEY, STORAGE_KEY, STORAGE_BACKUP_KEY] as const;
 const BASE_URL = import.meta.env.BASE_URL;
 
 const EPISODE_SEED = `Folge 1: und der Superpapagei (12.10.1979)
@@ -467,17 +482,36 @@ function autoResizeTextarea(element: HTMLTextAreaElement): void {
 
 function loadRadioplays(): Radioplay[] {
   try {
-    const readStoredRadioplays = (key: string): Array<Partial<Radioplay>> | null => {
+    type StoredRadioplayPayload = {
+      key: string;
+      raw: string;
+      parsed: Array<Partial<Radioplay>>;
+    };
+
+    const readStoredRadioplays = (key: string): StoredRadioplayPayload | null => {
       const raw = localStorage.getItem(key);
       if (!raw) return null;
 
       const parsed = JSON.parse(raw) as Array<Partial<Radioplay>>;
       if (!Array.isArray(parsed) || !parsed.length) return null;
-      return parsed;
+      return { key, raw, parsed };
     };
 
-    const parsed = readStoredRadioplays(STORAGE_KEY) ?? readStoredRadioplays(STORAGE_BACKUP_KEY);
-    if (!parsed) return defaultRadioplays;
+    const storedPayload = STORAGE_WRITE_KEYS
+      .map((key) => readStoredRadioplays(key))
+      .find((value): value is StoredRadioplayPayload => value !== null);
+
+    if (!storedPayload) return defaultRadioplays;
+
+    if (storedPayload.key !== STORAGE_CANONICAL_KEY) {
+      try {
+        STORAGE_WRITE_KEYS.forEach((key) => localStorage.setItem(key, storedPayload.raw));
+      } catch {
+        // keep app running even if iOS storage quota/availability fails
+      }
+    }
+
+    const { parsed } = storedPayload;
 
     const mergedDefaults = defaultRadioplays.map((fallback) => {
       const existing = parsed.find((item) => item.id === fallback.id);
@@ -546,7 +580,7 @@ function getEpisodeMetadata(episodeId: string): EpisodeMetadataEntry | undefined
 }
 
 function coverPath(id: string): string {
-  return `${BASE_URL}covers/folge-${id.padStart(3, '0')}.png`;
+  return `${BASE_URL}covers/folge-${id.padStart(3, '0')}.webp`;
 }
 
 function createEmptyAddEpisodeForm(): AddEpisodeForm {
@@ -602,6 +636,10 @@ export default function App() {
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [addForm, setAddForm] = useState<AddEpisodeForm>(createEmptyAddEpisodeForm);
+  const [backupMessage, setBackupMessage] = useState('');
+  const [backupMessageTone, setBackupMessageTone] = useState<'info' | 'error'>('info');
+  const replaceImportFileRef = useRef<HTMLInputElement | null>(null);
+  const mergeImportFileRef = useRef<HTMLInputElement | null>(null);
   const selected = useMemo(
     () => radioplays.find((play: Radioplay) => play.id === selectedId),
     [radioplays, selectedId],
@@ -674,8 +712,7 @@ export default function App() {
   useEffect(() => {
     try {
       const serialized = JSON.stringify(radioplays);
-      localStorage.setItem(STORAGE_KEY, serialized);
-      localStorage.setItem(STORAGE_BACKUP_KEY, serialized);
+      STORAGE_WRITE_KEYS.forEach((key) => localStorage.setItem(key, serialized));
     } catch {
       // keep app running even if iOS storage quota/availability fails
     }
@@ -799,6 +836,219 @@ export default function App() {
     closeAddForm();
   };
 
+  const createBackupFileName = () => {
+    const now = new Date();
+    const iso = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    return `bobs-archiv-backup-${iso}.json`;
+  };
+
+  const triggerBackupDownload = (serialized: string, fileName: string) => {
+    const blob = new Blob([serialized], { type: 'application/json' });
+    const blobUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.download = fileName;
+    link.rel = 'noopener';
+    link.click();
+    URL.revokeObjectURL(blobUrl);
+  };
+
+  const handleExportBackup = async () => {
+    try {
+      const backup: BackupPayload = {
+        schemaVersion: 1,
+        exportedAt: new Date().toISOString(),
+        radioplays,
+      };
+      const serialized = JSON.stringify(backup, null, 2);
+      const fileName = createBackupFileName();
+
+      const shareFile = new File([serialized], fileName, { type: 'application/json' });
+      const canShareFiles = typeof navigator.canShare === 'function' && navigator.canShare({ files: [shareFile] });
+
+      if (typeof navigator.share === 'function' && canShareFiles) {
+        await navigator.share({
+          title: 'Bobs Archiv Backup',
+          text: 'Backup deiner lokalen Archivdaten',
+          files: [shareFile],
+        });
+      } else {
+        triggerBackupDownload(serialized, fileName);
+      }
+
+      setBackupMessageTone('info');
+      setBackupMessage('Backup exportiert. Datei sicher aufheben (z. B. iCloud, Google Drive oder Dateien-App).');
+    } catch {
+      setBackupMessageTone('error');
+      setBackupMessage('Backup konnte nicht exportiert werden. Bitte erneut versuchen.');
+    }
+  };
+
+  const getImportedRadioplays = (payload: unknown): Array<Partial<Radioplay>> | null => {
+    const imported = Array.isArray(payload)
+      ? payload
+      : (typeof payload === 'object' && payload !== null && Array.isArray((payload as { radioplays?: unknown }).radioplays)
+        ? (payload as { radioplays: Array<Partial<Radioplay>> }).radioplays
+        : null);
+
+    if (!imported || !imported.length) {
+      return null;
+    }
+
+    return imported;
+  };
+
+  const createFallbackFromImportedItem = (item: Partial<Radioplay> & { id: string }): Radioplay => ({
+    id: item.id,
+    title: typeof item.title === 'string' ? item.title : 'Die Drei ???',
+    episode: normalizeEpisodeLabel(typeof item.episode === 'string' ? item.episode : item.id),
+    year: typeof item.year === 'number' ? item.year : 0,
+    coverImage: typeof item.coverImage === 'string' ? item.coverImage : undefined,
+    zuerstGehoertAm: '',
+    wiedergaben: 0,
+    nostalgie: 0,
+    lieblingscharakter: '',
+    atmosphaere: 0,
+    wiederhoerenswert: 0,
+    story: 0,
+    charakterdynamik: 0,
+    fallquality: 0,
+    gruselfaktor: 0,
+    klassiker: false,
+    bobcastGehoert: false,
+    beschreibungDerFolge: '',
+    ratingNotizen: createEmptyRatingNotizen(),
+  });
+
+  const persistImportedRadioplays = (imported: Array<Partial<Radioplay>>) => {
+    const serialized = JSON.stringify(imported);
+    STORAGE_WRITE_KEYS.forEach((key) => localStorage.setItem(key, serialized));
+    setRadioplays(loadRadioplays());
+    setSelectedId('');
+    setIsStatsOpen(false);
+    setIsRankingListOpen(false);
+  };
+
+  const applyImportedPayloadReplace = (payload: unknown) => {
+    const imported = getImportedRadioplays(payload);
+    if (!imported) {
+      throw new Error('invalid-backup');
+    }
+
+    persistImportedRadioplays(imported);
+  };
+
+  const applyImportedPayloadMerge = (payload: unknown) => {
+    const imported = getImportedRadioplays(payload);
+    if (!imported) {
+      throw new Error('invalid-backup');
+    }
+
+    const mergedMap = new Map<string, Radioplay>(radioplays.map((play) => [play.id, play]));
+
+    imported.forEach((item) => {
+      if (typeof item.id !== 'string') return;
+      const fallback = mergedMap.get(item.id)
+        ?? defaultRadioplays.find((entry) => entry.id === item.id)
+        ?? createFallbackFromImportedItem(item as Partial<Radioplay> & { id: string });
+      mergedMap.set(item.id, hydrateRadioplay(item, fallback));
+    });
+
+    persistImportedRadioplays(Array.from(mergedMap.values()));
+  };
+
+  const createMergeImportPreview = (imported: Array<Partial<Radioplay>>): MergeImportPreview => {
+    const currentById = new Map<string, Radioplay>(radioplays.map((play) => [play.id, play]));
+    const importedById = new Map<string, Partial<Radioplay>>();
+
+    imported.forEach((item) => {
+      if (typeof item.id !== 'string') return;
+      importedById.set(item.id, item);
+    });
+
+    let added = 0;
+    let updated = 0;
+    let unchanged = 0;
+
+    importedById.forEach((item, id) => {
+      const current = currentById.get(id);
+      const fallback = current
+        ?? defaultRadioplays.find((entry) => entry.id === id)
+        ?? createFallbackFromImportedItem(item as Partial<Radioplay> & { id: string });
+      const merged = hydrateRadioplay(item, fallback);
+
+      if (!current) {
+        added += 1;
+        return;
+      }
+
+      if (JSON.stringify(current) === JSON.stringify(merged)) {
+        unchanged += 1;
+      } else {
+        updated += 1;
+      }
+    });
+
+    return {
+      importedEntries: importedById.size,
+      added,
+      updated,
+      unchanged,
+    };
+  };
+
+  const handleImportBackup = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const shouldImport = window.confirm('Aktuelle lokale Daten werden durch dieses Backup ersetzt. Fortfahren?');
+      if (!shouldImport) return;
+
+      const text = await file.text();
+      const parsed = JSON.parse(text) as unknown;
+      applyImportedPayloadReplace(parsed);
+
+      setBackupMessageTone('info');
+      setBackupMessage('Backup erfolgreich importiert. Alle Daten werden weiterhin nur lokal gespeichert.');
+    } catch {
+      setBackupMessageTone('error');
+      setBackupMessage('Import fehlgeschlagen. Bitte eine gueltige Backup-JSON auswaehlen.');
+    } finally {
+      event.currentTarget.value = '';
+    }
+  };
+
+  const handleMergeImportBackup = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      const parsed = JSON.parse(text) as unknown;
+      const imported = getImportedRadioplays(parsed);
+      if (!imported) {
+        throw new Error('invalid-backup');
+      }
+
+      const preview = createMergeImportPreview(imported);
+      const shouldImport = window.confirm(
+        `Merge-Vorschau:\n- Importierte Eintraege: ${preview.importedEntries}\n- Wird aktualisiert: ${preview.updated}\n- Wird hinzugefuegt: ${preview.added}\n- Unveraendert: ${preview.unchanged}\n\nFortfahren?`,
+      );
+      if (!shouldImport) return;
+
+      applyImportedPayloadMerge(parsed);
+
+      setBackupMessageTone('info');
+      setBackupMessage('Merge-Import erfolgreich. Vorhandene Daten wurden behalten und passende Eintraege aktualisiert.');
+    } catch {
+      setBackupMessageTone('error');
+      setBackupMessage('Merge-Import fehlgeschlagen. Bitte eine gueltige Backup-JSON auswaehlen.');
+    } finally {
+      event.currentTarget.value = '';
+    }
+  };
+
   return (
     <main className="app-shell">
       <section className="hero">
@@ -871,6 +1121,55 @@ export default function App() {
             </div>
 
             {!filteredRadioplays.length ? <p className="empty-state">Keine Folgen gefunden.</p> : null}
+
+            <section className="backup-tools" aria-label="Backup und Wiederherstellung">
+              <h3>Daten-Backup</h3>
+              <p>
+                Exportiere dein Archiv als JSON und importiere es spaeter wieder. Alle Daten bleiben lokal auf deinem Geraet.
+              </p>
+              <div className="backup-actions">
+                <button type="button" className="backup-button" onClick={() => { void handleExportBackup(); }}>
+                  Backup exportieren
+                </button>
+                <button
+                  type="button"
+                  className="backup-button backup-button-secondary"
+                  onClick={() => replaceImportFileRef.current?.click()}
+                >
+                  Backup importieren
+                </button>
+                <button
+                  type="button"
+                  className="backup-button backup-button-secondary"
+                  onClick={() => mergeImportFileRef.current?.click()}
+                >
+                  Backup mergen
+                </button>
+                <input
+                  ref={replaceImportFileRef}
+                  type="file"
+                  accept="application/json,.json"
+                  className="sr-only"
+                  onChange={(event) => {
+                    void handleImportBackup(event);
+                  }}
+                />
+                <input
+                  ref={mergeImportFileRef}
+                  type="file"
+                  accept="application/json,.json"
+                  className="sr-only"
+                  onChange={(event) => {
+                    void handleMergeImportBackup(event);
+                  }}
+                />
+              </div>
+              {backupMessage ? (
+                <p className={`backup-message ${backupMessageTone === 'error' ? 'backup-message-error' : ''}`}>
+                  {backupMessage}
+                </p>
+              ) : null}
+            </section>
           </div>
         ) : null}
 

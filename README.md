@@ -4,13 +4,26 @@ A mobile-first PWA for rating radioplays on iPhone and iPad.
 
 ## Features
 - Radioplay rating cards
-- Local storage for ratings and notes
+- Local-only storage for ratings and notes
 - iOS-friendly PWA meta tags
 - Offline caching with a service worker
+
+## Data Safety
+- All user data is saved in browser localStorage only.
+- Existing stored entries are kept and migrated to a stable storage key on app updates.
+- No cloud sync is used, so data stays on the device/browser profile.
+- The archive page includes JSON backup export/import actions for manual restore on iOS and Android.
+- The archive page also includes a merge-import mode (same episode ID = update, missing ID = keep, new ID = add).
+- Before merge-import is applied, the app shows a preview (updates, new entries, unchanged entries).
 
 ## Development
 1. Install Node.js.
 2. Run the app with the Vite scripts in package.json.
+
+## Cover Optimization
+1. Run `npm install`.
+2. Run `npm run covers:optimize` to convert all files in `public/covers` from PNG to WebP.
+3. The script resizes covers to max 400x400 and removes original PNG files to reduce bundle size.
 
 ## Deploy to GitHub Pages
 1. Push this project to a GitHub repository.
