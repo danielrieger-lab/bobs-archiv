@@ -398,9 +398,6 @@ h1 {
 .field input[type='number'],
 .field input[type='text'],
 .field input[type='date'],
-.add-form input[type='text'],
-.add-form input[type='number'],
-.add-form input[type='file'],
 textarea {
   width: 100%;
   border-radius: 16px;
@@ -425,46 +422,34 @@ input[type='range'] {
   accent-color: #EA141F;
 }
 
-.submit-button {
-  border: 0;
-  border-radius: 14px;
-  padding: 12px 16px;
-  background: rgba(0, 173, 236, 0.95);
-  color: #fff;
+.detail-cast {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.detail-cast summary {
+  cursor: pointer;
+  color: #93c5fd;
   font-weight: 700;
 }
 
-.add-overlay {
-  position: fixed;
-  inset: 0;
+.cast-list {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cast-chip {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 16px;
-  background: rgba(2, 6, 23, 0.75);
-  z-index: 40;
-}
-
-.add-modal {
-  width: min(100%, 560px);
-  background: rgba(15, 23, 42, 0.98);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 24px;
-  padding: 20px;
-  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.5);
-}
-
-.add-form {
-  display: grid;
-  gap: 14px;
-}
-
-.add-cover-preview {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 18px;
-  border: 1px solid rgba(148, 163, 184, 0.16);
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(148, 163, 184, 0.1);
+  color: #e5e7eb;
+  font-size: 0.86rem;
 }
 
 .beste-folgen-title {
@@ -669,29 +654,6 @@ input[type='range'] {
   font-size: 1rem;
 }
 
-.floating-add-button {
-  position: fixed;
-  left: 50%;
-  bottom: calc(88px + env(safe-area-inset-bottom));
-  transform: translateX(-50%);
-  width: 68px;
-  height: 68px;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(0, 173, 236, 0.98), rgba(0, 173, 236, 0.8));
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.45);
-  z-index: 30;
-}
-
-.floating-add-icon {
-  width: 28px;
-  height: 28px;
-}
-
 .app-beam {
   position: fixed;
   left: 0;
@@ -797,9 +759,6 @@ input[type='range'] {
     height: 40px;
   }
 
-  .floating-add-button {
-    bottom: calc(86px + env(safe-area-inset-bottom));
-  }
 }
 
 @media (max-width: 560px) {
@@ -952,13 +911,4 @@ input[type='range'] {
     padding-inline: 12px;
   }
 
-  .floating-add-button {
-    width: 62px;
-    height: 62px;
-  }
-
-  .floating-add-icon {
-    width: 24px;
-    height: 24px;
-  }
 }

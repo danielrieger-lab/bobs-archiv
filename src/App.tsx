@@ -1,13 +1,22 @@
-import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
-import episodeMetadata from '../episode-metadata.json';
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type SyntheticEvent } from 'react';
+import episodeCatalog from './dreimetadaten-series.json';
 import { miniEpisodeSeeds } from './mini-episodes';
 
 type RatingNoteKey = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik' | 'nostalgie' | 'gruselfaktor';
 
-type EpisodeMetadataEntry = {
-  episode: number;
-  autor?: string;
-  dauerMs?: number;
+type EpisodeCatalogEntry = {
+  id: string;
+  episode: string;
+  year: number;
+  coverImage: string;
+  autor: string;
+  veroeffentlichungsdatum: string;
+  gesamtdauerMs: number;
+  sprechrollen: Array<{
+    rolle: string;
+    sprecher: string;
+    pseudonym?: string;
+  }>;
 };
 
 type Radioplay = {
@@ -30,13 +39,6 @@ type Radioplay = {
   bobcastGehoert: boolean;
   beschreibungDerFolge: string;
   ratingNotizen: Record<RatingNoteKey, string>;
-};
-
-type AddEpisodeForm = {
-  folgennummer: string;
-  titel: string;
-  jahr: string;
-  coverImage: string;
 };
 
 type BackupPayload = {
@@ -68,282 +70,28 @@ const STORAGE_KEY = 'bobs-archiv-fallometer-ratings-v1';
 const STORAGE_BACKUP_KEY = 'bobs-archiv-fallometer-ratings-backup-v1';
 const STORAGE_WRITE_KEYS = [STORAGE_CANONICAL_KEY, STORAGE_KEY, STORAGE_BACKUP_KEY] as const;
 const BASE_URL = import.meta.env.BASE_URL;
-
-const EPISODE_SEED = `Folge 1: und der Superpapagei (12.10.1979)
-Folge 2: und der Phantomsee (13.10.1979)
-Folge 3: und der Karpatenhund (14.10.1979)
-Folge 4: und die schwarze Katze (15.10.1979)
-Folge 5: und der Fluch des Rubins (16.10.1979)
-Folge 6: und der sprechende Totenkopf (17.10.1979)
-Folge 7: und der unheimliche Drache (31.10.1979)
-Folge 8: und der grüne Geist (01.11.1979)
-Folge 9: und die rätselhaften Bilder (02.11.1979)
-Folge 10: und die flüsternde Mumie (01.03.1980)
-Folge 11: und das Gespensterschloss (02.03.1980)
-Folge 12: und der seltsame Wecker (03.03.1980)
-Folge 13: und der lachende Schatten (31.03.1980)
-Folge 14: und das Bergmonster (01.04.1980)
-Folge 15: und der rasende Löwe (02.04.1980)
-Folge 16: und der Zauberspiegel (01.10.1980)
-Folge 17: und die gefährliche Erbschaft (02.10.1980)
-Folge 18: und die Geisterinsel (03.10.1980)
-Folge 19: und der Teufelsberg (04.10.1980)
-Folge 20: und die flammende Spur (09.10.1980)
-Folge 21: und der tanzende Teufel (10.10.1980)
-Folge 22: und der verschwundene Schatz (13.05.1981)
-Folge 23: und das Aztekenschwert (14.05.1981)
-Folge 24: und die silberne Spinne (15.05.1981)
-Folge 25: und die singende Schlange (19.10.1981)
-Folge 26: und die Silbermine (20.10.1981)
-Folge 27: und der magische Kreis (20.10.1981)
-Folge 28: und der Doppelgänger (22.10.1981)
-Folge 29: Die Originalmusik (07.06.1982)
-Folge 30: und das Riff der Haie (20.06.1982)
-Folge 31: und das Narbengesicht (11.03.1983)
-Folge 32: und der Ameisenmensch (12.03.1983)
-Folge 33: und die bedrohte Ranch (21.10.1983)
-Folge 34: und der rote Pirat (05.04.1984)
-Folge 35: und der Höhlenmensch (16.10.1984)
-Folge 36: und der Super-Wal (29.05.1985)
-Folge 37: und der heimliche Hehler (01.11.1985)
-Folge 38: und der unsichtbare Gegner (17.03.1986)
-Folge 39: und die Perlenvögel (18.03.1986)
-Folge 40: und der Automarder (27.11.1986)
-Folge 41: und das Volk der Winde (17.09.1987)
-Folge 42: und der weinende Sarg (26.10.1987)
-Folge 43: und der höllische Werwolf (01.10.1988)
-Folge 44: und der gestohlene Preis (02.10.1988)
-Folge 45: und das Gold der Wikinger (01.04.1989)
-Folge 46: und der schrullige Millionär (08.04.1989)
-Folge 47: und der giftige Gockel (24.11.1989)
-Folge 48: und die gefährlichen Fässer (25.11.1989)
-Folge 49: und die Comic-Diebe (26.11.1990)
-Folge 50: und der verschwundene Filmstar (19.03.1991)
-Folge 51: und der riskante Ritt (20.03.1991)
-Folge 52: und die Musikpiraten (12.07.1991)
-Folge 53: und die Automafia (13.07.1991)
-Folge 54: Gefahr in Verzug (17.02.1992)
-Folge 55: Gekaufte Spieler (18.02.1992)
-Folge 56: Angriff der Computer-Viren (14.09.1992)
-Folge 57: Tatort Zirkus (18.07.1994)
-Folge 58: und der verrückte Maler (18.07.1994)
-Folge 59: Giftiges Wasser (10.08.1994)
-Folge 60: Dopingmixer (11.08.1994)
-Folge 61: und die Rache des Tigers (27.02.1995)
-Folge 62: Spuk im Hotel (28.02.1995)
-Folge 63: Fußball-Gangster (28.08.1995)
-Folge 64: Geisterstadt (28.08.1995)
-Folge 65: Diamantenschmuggel (04.12.1995)
-Folge 66: und die Schattenmänner (04.12.1995)
-Folge 67: und das Geheimnis der Särge (01.04.1996)
-Folge 68: und der Schatz am Bergsee (02.04.1996)
-Folge 69: Späte Rache (05.08.1996)
-Folge 70: Schüsse aus dem Dunkel (05.08.1996)
-Folge 71: und die verschwundene Seglerin (07.10.1996)
-Folge 72: Dreckiger Deal (07.10.1996)
-Folge 73: Poltergeist (10.02.1997)
-Folge 74: und das brennende Schwert (10.02.1997)
-Folge 75: Die Spur des Raben (14.07.1997)
-Folge 76: Stimmen aus dem Nichts (08.09.1997)
-Folge 77: Pistenteufel (08.12.1997)
-Folge 78: Das leere Grab (12.01.1998)
-Folge 79: Im Bann des Voodoo (09.03.1998)
-Folge 80: Geheimakte Ufo (11.05.1998)
-Folge 81: Verdeckte Fouls (08.06.1998)
-Folge 82: Die Karten des Bösen (12.10.1998)
-Folge 83: Meuterei auf hoher See (08.02.1999)
-Folge 84: Musik des Teufels (08.02.1999)
-Folge 85: Feuerturm (10.05.1999)
-Folge 86: Nacht in Angst (09.08.1999)
-Folge 87: Wolfsgesicht (11.10.1999)
-Folge 88: Vampir im Internet (13.12.1999)
-Folge 89: Tödliche Spur (15.05.2000)
-Folge 90: Der Feuerteufel (15.05.2000)
-Folge 91: Labyrinth der Götter (14.08.2000)
-Folge 92: Todesflug (09.10.2000)
-Folge 93 und das Geisterschiff (27.11.2000)
-Folge 94: Das schwarze Monster (27.11.2000)
-Folge 95: Botschaft von Geisterhand (12.02.2001)
-Folge 96: und der rote Rächer (09.04.2001)
-Folge 97: Insektenstachel (11.06.2001)
-Folge 98: Tal des Schreckens (13.08.2001)
-Folge 99: Rufmord (10.09.2001)
-Folge 100: Toteninsel (15.10.2001)
-Folge 101: und das Hexen-Handy (03.12.2001)
-Folge 102: Doppelte Täuschung (11.03.2002)
-Folge 103: Erbe des Meisterdiebes (13.05.2002)
-Folge 104: Gift per E-Mail (08.07.2002)
-Folge 105: Der Nebelberg (16.09.2002)
-Folge 106: Der Mann ohne Kopf (16.09.2002)
-Folge 107: und der Schatz der Mönche (13.01.2003)
-Folge 108: Die sieben Tore (07.04.2003)
-Folge 109: Gefährliches Quiz (07.04.2003)
-Folge 110: Panik im Park (10.06.2003)
-Folge 111: Höhle des Grauens (11.08.2003)
-Folge 112: Schlucht der Dämonen (13.10.2003)
-Folge 113: Auge des Drachen (24.11.2003)
-Folge 114: Die Villa der Toten (09.02.2004)
-Folge 115: Auf tödlichem Kurs (05.04.2004)
-Folge 116: Codename: Cobra (14.06.2004)
-Folge 117: Der finstere Rivale (06.09.2004)
-Folge 118: Düsteres Vermächtnis (06.09.2004)
-Folge 119: Geheime Schlüssel (29.11.2004)
-Folge 120: Der schwarze Skorpion (10.01.2005)
-Folge 121: Spur ins Nichts (04.04.2008)
-Folge 122: und der Geisterzug (04.04.2008)
-Folge 123: Fußballfieber (09.05.2008)
-Folge 124: Geister-Canyon (11.07.2008)
-Folge 125: Feuermond (10.10.2008)
-Folge 126: Schrecken aus dem Moor (14.11.2008)
-Folge 127: Schwarze Madonna (05.12.2008)
-Folge 128: Schatten über Hollywood (06.02.2009)
-Folge 129: SMS aus dem Grab (13.03.2009)
-Folge 130: Fluch des Drachen (15.05.2009)
-Folge 131: Haus des Schreckens (03.07.2009)
-Folge 132: Spuk im Netz (21.08.2009)
-Folge 133: Fels der Dämonen (02.10.2009)
-Folge 134: Der tote Mönch (02.10.2009)
-Folge 135: Fluch des Piraten (27.11.2009)
-Folge 136: und das versunkene Dorf (05.02.2010)
-Folge 137: Pfad der Angst (12.03.2010)
-Folge 138: Die Geheime Treppe (21.05.2010)
-Folge 139: Das Geheimnis der Diva (09.07.2010)
-Folge 140: Stadt der Vampire (20.08.2010)
-Folge 141: und die Fußball-Falle (01.10.2010)
-Folge 142: Tödliches Eis (03.12.2010)
-Folge 143: und die Pokerhölle (03.12.2010)
-Folge 144: Zwillinge in der Finsternis (28.01.2011)
-Folge 145: und die Rache der Samurai (04.03.2011)
-Folge 146: Der Biss der Bestie (06.05.2011)
-Folge 147: Grusel auf Campbell Castle (24.06.2011)
-Folge 148: und die feurige Flut (19.08.2011)
-Folge 149: Der namenlose Gegner (30.09.2011)
-Folge 150: Geisterbucht (11.11.2011)
-Folge 151: Schwarze Sonne (20.01.2012)
-Folge 152: Skateboardfieber (02.03.2012)
-Folge 153: und das Fußballphantom (13.04.2012)
-Folge 154: Botschaft aus der Unterwelt (18.05.2012)
-Folge 155: und der Meister des Todes (13.07.2012)
-Folge 156: Im Netz des Drachen (24.08.2012)
-Folge 157: Im Zeichen der Schlangen (28.09.2012)
-Folge 158: und der Feuergeist (30.11.2012)
-Folge 159: Nacht der Tiger (11.01.2013)
-Folge 160: Geheiminisvolle Botschaften (01.03.2013)
-Folge 161: die blutenden Bilder (10.05.2013)
-Folge 162: und der schreiende Nebel (12.07.2013)
-Folge 163: und der verschollene Pilot (30.08.2013)
-Folge 164: Fußball-Teufel (04.10.2013)
-Folge 165: Schatten des Giganten (29.11.2013)
-Folge 166: und die brennende Stadt (17.01.2014)
-Folge 167: und das blaue Biest (21.02.2014)
-Folge 168: GPS-Gangster (02.05.2014)
-Folge 169: Die Spur des Spielers (04.07.2014)
-Folge 170: Straße des Grauens (29.08.2014)
-Folge 171: und das Phantom aus dem Meer (03.10.2014)
-Folge 172: und der Eisenmann (28.11.2014)
-Folge 173: Dämon der Rache (16.01.2015)
-Folge 174: und das Tuch der Toten (06.03.2015)
-Folge 175: Schattenwelt (15.05.2015)
-Folge 176: und der gestohlene Sieg (10.07.2015)
-Folge 177: Der Geist des Goldgräbers (02.10.2015)
-Folge 178: Der gefiederte Schrecken (04.12.2015)
-Folge 179: Die Rache des Untoten (15.01.2016)
-Folge 180: und die flüsternden Puppen (04.03.2016)
-Folge 181: Das Kabinett des Zauberers (13.05.2016)
-Folge 182: Im Haus des Henkers (22.07.2016)
-Folge 183: und der letzte Song (30.09.2016)
-Folge 184: und der Hexengarten (02.12.2016)
-Folge 185: und der Mann ohne Augen (20.01.2017)
-Folge 186: Insel des Vergessens (10.03.2017)
-Folge 187: und das silberne Amulett (19.05.2017)
-Folge 188: Signale aus dem Jenseits (28.07.2017)
-Folge 189: und der unsichtbare Passagier (29.09.2017)
-Folge 190: und die Kammer der Rätsel (01.12.2017)
-Folge 191: Verbrechen im Nichts (26.01.2018)
-Folge 192: Im Bann des Drachen (02.03.2018)
-Folge 193: Schrecken aus der Tiefe (11.05.2018)
-Folge 194: und die Zeitreisende (20.07.2018)
-Folge 195: Im Reich der Ungeheuer (28.09.2018)
-Folge 196: Geheimnis des Bauchredners (30.11.2018)
-Folge 197: Im Auge des Sturms (18.01.2019)
-Folge 198: Die Legende der Gaukler (08.03.2019)
-Folge 199: und der grüne Kobold (17.05.2019)
-Folge 200: Feuriges Auge (19.07.2019)
-Folge 201: Höhenangst (27.09.2019)
-Folge 202: Das weiße Grab (29.11.2019)
-Folge 203: Tauchgang ins Ungewisse (31.01.2020)
-Folge 204: Der dunkle Wächter (13.03.2020)
-Folge 205: Das rätselhafte Erbe (15.05.2020)
-Folge 206: und der Mottenmann (17.07.2020)
-Folge 207: Die falschen Detektive (25.09.2020)
-Folge 208: Kelch des Schicksals (15.01.2021)
-Folge 209: Kreaturen der Nacht (12.03.2021)
-Folge 210: und die schweigende Grotte (11.06.2021)
-Folge 211: und der Jadekönig (16.07.2021)
-Folge 212: und der weiße Leopard (17.09.2021)
-Folge 213: der Fluch der Medusa (26.11.2021)
-Folge 214: und der Geisterbunker (04.02.2022)
-Folge 215: und die verlorene Zeit (25.03.2022)
-Folge 216: Die Schwingen des Unheils (27.05.2022)
-Folge 217: und der Kristallschädel (15.07.2022)
-Folge 218: Im Netz der Lügen (16.09.2022)
-Folge 219: und die Teufelsklippe (18.11.2022)
-Folge 220: Im Wald der Gefahren (20.01.2023)
-Folge 221: Manuskript des Satans (03.03.2023)
-Folge 222: Die Gesetzlosen (12.05.2023)
-Folge 223: und der Knochenmann (28.07.2023)
-Folge 224: Die Yacht des Verrats (24.11.2023)
-Folge 225: Der Puppenmacher (26.01.2024)
-Folge 226: Die Spur der Toten (22.03.2024)
-Folge 227: Melodie der Rache (10.05.2024)
-Folge 228: Der Ruf der Krähen (12.07.2024)
-Folge 229: Das Drehbuch der Täuschung (06.09.2024)
-Folge 230: Der Tag der Toten (08.11.2024)
-Folge 231: Und der Dreiäugige Schakal (17.01.2025)
-Folge 232: Die Stadt aus Gold (21.03.2025)
-Folge 233: Die Nacht der Gewitter (23.05.2025)
-Folge 234: Und der Lebende Tresor (25.07.2025)
-Folge 235: Und das Fantasmofon (12.09.2025)
-Folge 236: Im Bann des Barrakudas (12.12.2025)
-Folge 237: Und der Rote Büffel (20.02.2026`;
-
-function parseYearFromLine(line: string): number {
-  const yearMatch = line.match(/(19|20)\d{2}/);
-  return yearMatch ? Number(yearMatch[0]) : 0;
-}
-
 function buildDefaultRadioplays(): Radioplay[] {
-  return EPISODE_SEED
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((line, index) => {
-      const parsed = line.match(/^Folge\s*(\d+)\s*:?\s*(.+?)(?:\s*\(([^)]*)\)?)?$/i);
-      const episodeNumber = parsed?.[1] ?? String(index + 1);
-      const episodeName = parsed?.[2]?.trim() ?? line;
-
-      return {
-        id: episodeNumber,
-        title: 'Die Drei ???',
-        episode: `Folge ${episodeNumber}: ${episodeName}`,
-        year: parseYearFromLine(line),
-        coverImage: undefined,
-        zuerstGehoertAm: '',
-        wiedergaben: 0,
-        nostalgie: 0,
-        lieblingscharakter: '',
-        atmosphaere: 0,
-        wiederhoerenswert: 0,
-        story: 0,
-        charakterdynamik: 0,
-        fallquality: 0,
-        gruselfaktor: 0,
-        klassiker: false,
-        bobcastGehoert: false,
-        beschreibungDerFolge: '',
-        ratingNotizen: createEmptyRatingNotizen(),
-      };
-    });
+  return (episodeCatalog as unknown as EpisodeCatalogEntry[]).map((entry) => ({
+    id: entry.id,
+    title: 'Die Drei ???',
+    episode: entry.episode,
+    year: entry.year,
+    coverImage: entry.coverImage,
+    zuerstGehoertAm: '',
+    wiedergaben: 0,
+    nostalgie: 0,
+    lieblingscharakter: '',
+    atmosphaere: 0,
+    wiederhoerenswert: 0,
+    story: 0,
+    charakterdynamik: 0,
+    fallquality: 0,
+    gruselfaktor: 0,
+    klassiker: false,
+    bobcastGehoert: false,
+    beschreibungDerFolge: '',
+    ratingNotizen: createEmptyRatingNotizen(),
+  }));
 }
 
 function buildMiniRadioplays(): Radioplay[] {
@@ -371,7 +119,7 @@ function buildMiniRadioplays(): Radioplay[] {
 }
 
 const defaultRadioplays: Radioplay[] = [...buildDefaultRadioplays(), ...buildMiniRadioplays()];
-const episodeMetadataEntries = episodeMetadata as unknown as EpisodeMetadataEntry[];
+const episodeMetadataEntries = episodeCatalog as unknown as EpisodeCatalogEntry[];
 
 type RatingCategory = 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik';
 
@@ -573,32 +321,12 @@ function formatDuration(durationMs: number): string {
   return `${totalMinutes} min`;
 }
 
-function getEpisodeMetadata(episodeId: string): EpisodeMetadataEntry | undefined {
-  const nummer = Number(episodeId);
-  if (!Number.isFinite(nummer)) return undefined;
-  return episodeMetadataEntries.find((entry) => entry.episode === nummer);
+function getEpisodeMetadata(episodeId: string): EpisodeCatalogEntry | undefined {
+  return episodeMetadataEntries.find((entry) => entry.id === episodeId);
 }
 
 function coverPath(id: string): string {
   return `${BASE_URL}covers/folge-${id.padStart(3, '0')}.webp`;
-}
-
-function createEmptyAddEpisodeForm(): AddEpisodeForm {
-  return {
-    folgennummer: '',
-    titel: '',
-    jahr: '',
-    coverImage: '',
-  };
-}
-
-function readFileAsDataUrl(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result ?? ''));
-    reader.onerror = () => reject(new Error('Datei konnte nicht gelesen werden'));
-    reader.readAsDataURL(file);
-  });
 }
 
 function getCoverSource(play: Pick<Radioplay, 'id' | 'coverImage'>): string {
@@ -634,8 +362,6 @@ export default function App() {
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [archiveSearch, setArchiveSearch] = useState('');
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
-  const [isAddOpen, setIsAddOpen] = useState(false);
-  const [addForm, setAddForm] = useState<AddEpisodeForm>(createEmptyAddEpisodeForm);
   const [backupMessage, setBackupMessage] = useState('');
   const [backupMessageTone, setBackupMessageTone] = useState<'info' | 'error'>('info');
   const replaceImportFileRef = useRef<HTMLInputElement | null>(null);
@@ -766,74 +492,6 @@ export default function App() {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id
       ? { ...play, ratingNotizen: { ...play.ratingNotizen, [field]: value } }
       : play)));
-  };
-
-  const openAddForm = () => {
-    setAddForm(createEmptyAddEpisodeForm());
-    setIsAddOpen(true);
-  };
-
-  const closeAddForm = () => {
-    setIsAddOpen(false);
-    setAddForm(createEmptyAddEpisodeForm());
-  };
-
-  const handleCoverFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      setAddForm((current) => ({ ...current, coverImage: '' }));
-      return;
-    }
-
-    const dataUrl = await readFileAsDataUrl(file);
-    setAddForm((current) => ({ ...current, coverImage: dataUrl }));
-  };
-
-  const handleAddEpisodeSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const folgennummer = addForm.folgennummer.trim();
-    const titel = addForm.titel.trim();
-    const jahr = Number(addForm.jahr);
-
-    if (!folgennummer || !titel || !Number.isFinite(jahr)) {
-      return;
-    }
-
-    const nextId = String(
-      radioplays.reduce((max, play) => {
-        const numericId = Number(play.id);
-        return Number.isFinite(numericId) ? Math.max(max, numericId) : max;
-      }, 0) + 1,
-    );
-
-    const newEpisode: Radioplay = {
-      id: nextId,
-      title: 'Die Drei ???',
-      episode: `Folge ${folgennummer}: ${titel} (${jahr})`,
-      year: jahr,
-      coverImage: addForm.coverImage || undefined,
-      zuerstGehoertAm: '',
-      wiedergaben: 0,
-      nostalgie: 0,
-      lieblingscharakter: '',
-      atmosphaere: 0,
-      wiederhoerenswert: 0,
-      story: 0,
-      charakterdynamik: 0,
-      fallquality: 0,
-      gruselfaktor: 0,
-      klassiker: false,
-      bobcastGehoert: false,
-      beschreibungDerFolge: '',
-      ratingNotizen: createEmptyRatingNotizen(),
-    };
-
-    setRadioplays((current) => [...current, newEpisode]);
-    setSelectedId(nextId);
-    setIsStatsOpen(false);
-    setIsRankingListOpen(false);
-    closeAddForm();
   };
 
   const createBackupFileName = () => {
@@ -1205,8 +863,20 @@ export default function App() {
                   {selectedMetadata?.autor ? (
                     <p className="detail-author">{selectedMetadata.autor}</p>
                   ) : null}
-                  {selectedMetadata?.dauerMs ? (
-                    <p className="detail-duration">{formatDuration(selectedMetadata.dauerMs)}</p>
+                  {selectedMetadata?.gesamtdauerMs ? (
+                    <p className="detail-duration">{formatDuration(selectedMetadata.gesamtdauerMs)}</p>
+                  ) : null}
+                  {selectedMetadata?.sprechrollen?.length ? (
+                    <details className="detail-cast">
+                      <summary>Sprechrollen ({selectedMetadata.sprechrollen.length})</summary>
+                      <div className="cast-list">
+                        {selectedMetadata.sprechrollen.map((role) => (
+                          <span key={`${role.rolle}-${role.sprecher}-${role.pseudonym ?? ''}`} className="cast-chip">
+                            {role.rolle}: {role.sprecher}{role.pseudonym ? ` (${role.pseudonym})` : ''}
+                          </span>
+                        ))}
+                      </div>
+                    </details>
                   ) : null}
                 </div>
                 <img className="detail-cover" src={getCoverSource(selected)} alt={`${selected.episode} Cover`} onError={handleCoverError} />
@@ -1593,73 +1263,6 @@ export default function App() {
           </div>
         ) : null}
       </section>
-
-      {!selected && !isStatsOpen ? (
-        <button className="floating-add-button" type="button" onClick={openAddForm} aria-label="Neue Episode hinzufügen">
-        <svg className="floating-add-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
-        </svg>
-        </button>
-      ) : null}
-
-      {isAddOpen ? (
-        <div className="add-overlay" role="presentation" onClick={closeAddForm}>
-          <div className="add-modal" role="dialog" aria-modal="true" aria-labelledby="add-episode-title" onClick={(event) => event.stopPropagation()}>
-            <div className="panel-header">
-              <h2 id="add-episode-title">Neue Episode</h2>
-              <button className="back-button" type="button" onClick={closeAddForm}>
-                Schließen
-              </button>
-            </div>
-
-            <form className="add-form" onSubmit={handleAddEpisodeSubmit}>
-              <label className="field">
-                <span>Folgennummer</span>
-                <input
-                  type="text"
-                  value={addForm.folgennummer}
-                  onChange={(event) => setAddForm((current) => ({ ...current, folgennummer: event.target.value }))}
-                  placeholder="z. B. 238"
-                  required
-                />
-              </label>
-
-              <label className="field">
-                <span>Titel</span>
-                <input
-                  type="text"
-                  value={addForm.titel}
-                  onChange={(event) => setAddForm((current) => ({ ...current, titel: event.target.value }))}
-                  placeholder="z. B. Der neue Fall"
-                  required
-                />
-              </label>
-
-              <label className="field">
-                <span>Jahr</span>
-                <input
-                  type="number"
-                  min="1900"
-                  max="2100"
-                  value={addForm.jahr}
-                  onChange={(event) => setAddForm((current) => ({ ...current, jahr: event.target.value }))}
-                  placeholder="2026"
-                  required
-                />
-              </label>
-
-              <label className="field">
-                <span>Coverbild</span>
-                <input type="file" accept="image/*" onChange={handleCoverFileChange} />
-              </label>
-
-              {addForm.coverImage ? <img className="add-cover-preview" src={addForm.coverImage} alt="Cover Vorschau" /> : null}
-
-              <button className="submit-button" type="submit">Episode hinzufügen</button>
-            </form>
-          </div>
-        </div>
-      ) : null}
 
       <footer className="app-beam" aria-label="Navigation">
         <button className="beam-button beam-button-left" type="button" onClick={() => {
