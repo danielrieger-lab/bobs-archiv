@@ -63,6 +63,25 @@ a {
   object-fit: cover;
 }
 
+.new-episodes-banner {
+  margin: 8px 0 16px 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(2,132,199,0.12), rgba(16,185,129,0.07));
+  border: 1px solid rgba(148,163,184,0.08);
+  color: #cfeef5;
+}
+
+.linkish-button {
+  background: transparent;
+  border: 0;
+  color: #00ADEC;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: #00ADEC;

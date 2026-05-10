@@ -315,7 +315,7 @@ function formatDuration(durationMs: number): string {
   const minutes = totalMinutes % 60;
 
   if (hours > 0) {
-    return `${hours}:${String(minutes).padStart(2, '0')}`;
+    return `${hours}:${String(minutes).padStart(2, '0')} h`;
   }
 
   return `${totalMinutes} min`;
@@ -398,6 +398,71 @@ export default function App() {
       .filter((item) => item.title.includes(normalizedArchiveSearch))
       .slice(0, 6);
   }, [normalizedArchiveSearch, radioplays]);
+
+  const allCharacters = useMemo(() => {
+    const set = new Set<string>();
+    (episodeMetadataEntries as EpisodeCatalogEntry[]).forEach((entry) => {
+      entry.sprechrollen?.forEach((r) => {
+        if (r?.rolle) set.add(r.rolle);
+      });
+    });
+    return Array.from(set).sort((a, b) => a.localeCompare(b, 'de'));
+  }, []);
+
+  // last check persisted in localStorage under 'bobs-archiv-last-berlin-check'
+  const [newEpisodesAvailable, setNewEpisodesAvailable] = useState<number>(0);
+  const [newEpisodesPreview, setNewEpisodesPreview] = useState<Array<{ nummer?: string; titel?: string }>>([]);
+
+  useEffect(() => {
+    const checkNow = async () => {
+      try {
+        const parts = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Europe/Berlin',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        }).formatToParts(new Date());
+
+        const obj: Record<string, string> = {};
+        parts.forEach((p) => { if (p.type !== 'literal') obj[p.type] = p.value; });
+        const dateKey = `${obj.year}-${obj.month}-${obj.day}`;
+        const hour = Number(obj.hour);
+        const minute = Number(obj.minute);
+
+        if (hour === 4 && minute === 0 && localStorage.getItem('bobs-archiv-last-berlin-check') !== dateKey) {
+          try {
+            const res = await fetch('https://dreimetadaten.de/data/Serie.json', { cache: 'no-store' });
+            if (!res.ok) {
+              localStorage.setItem('bobs-archiv-last-berlin-check', dateKey);
+              return;
+            }
+
+            const payload = await res.json();
+            const serie = Array.isArray(payload?.serie) ? payload.serie : [];
+            const completeCount = serie.filter((e: any) => !e.unvollständig).length || serie.length;
+            if (completeCount > episodeMetadataEntries.length) {
+              setNewEpisodesAvailable(completeCount - episodeMetadataEntries.length);
+              setNewEpisodesPreview(serie.slice(Math.max(0, serie.length - 10)).map((it: any) => ({ nummer: it.nummer, titel: it.titel })));
+            }
+
+            localStorage.setItem('bobs-archiv-last-berlin-check', dateKey);
+          } catch {
+            // ignore network errors
+            localStorage.setItem('bobs-archiv-last-berlin-check', dateKey);
+          }
+        }
+      } catch {
+        // ignore
+      }
+    };
+
+    void checkNow();
+    const id = setInterval(() => { void checkNow(); }, 60_000);
+    return () => { clearInterval(id); };
+  }, []);
   const topRatedEpisodes = useMemo(
     () => radioplays
       .filter((play) => hasGeneralRating(play))
@@ -721,6 +786,23 @@ export default function App() {
         <img className="hero-image" src={`${BASE_URL}header.jpeg`} alt="Bobs Archiv Das ???-Fallometer" />
       </section>
 
+      {newEpisodesAvailable ? (
+        <div className="new-episodes-banner">
+          <p>
+            Neue Folgen verfügbar: {newEpisodesAvailable}.{' '}
+            <button type="button" className="linkish-button" onClick={() => {
+              if (newEpisodesPreview.length) {
+                alert(newEpisodesPreview.map((p) => `${p.nummer ?? ''}: ${p.titel ?? ''}`).join('\n'));
+              } else {
+                window.open('https://dreimetadaten.de/index.html', '_blank');
+              }
+            }}>
+              Anzeigen
+            </button>
+          </p>
+        </div>
+      ) : null}
+
       <section className={`layout ${selected && !isStatsOpen ? 'with-details' : ''}`}>
         {!selected && !isStatsOpen ? (
           <div className="panel list-panel">
@@ -868,7 +950,7 @@ export default function App() {
                   ) : null}
                   {selectedMetadata?.sprechrollen?.length ? (
                     <details className="detail-cast">
-                      <summary>Sprechrollen ({selectedMetadata.sprechrollen.length})</summary>
+                      <summary>Charaktere ({selectedMetadata.sprechrollen.length})</summary>
                       <div className="cast-list">
                         {selectedMetadata.sprechrollen.map((role) => (
                           <span key={`${role.rolle}-${role.sprecher}-${role.pseudonym ?? ''}`} className="cast-chip">
@@ -938,7 +1020,13 @@ export default function App() {
                   value={selected.lieblingscharakter}
                   onChange={(event) => updateLieblingscharakter(selected.id, event.target.value)}
                   placeholder="z. B. Peter Shaw"
+                  list="charakter-suggestions"
                 />
+                <datalist id="charakter-suggestions">
+                  {allCharacters.map((c) => (
+                    <option key={c} value={c} />
+                  ))}
+                </datalist>
               </label>
 
               {ratingCategories.map((category) => (
