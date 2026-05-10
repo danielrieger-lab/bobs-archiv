@@ -400,15 +400,16 @@ export default function App() {
       .slice(0, 6);
   }, [normalizedArchiveSearch, radioplays]);
 
-  const allCharacters = useMemo(() => {
+  const selectedEpisodeCharacters = useMemo(() => {
+    if (!selectedMetadata?.sprechrollen?.length) return [];
+
     const set = new Set<string>();
-    (episodeMetadataEntries as EpisodeCatalogEntry[]).forEach((entry) => {
-      entry.sprechrollen?.forEach((r) => {
-        if (r?.rolle) set.add(r.rolle);
-      });
+    selectedMetadata.sprechrollen.forEach((role) => {
+      if (role?.rolle) set.add(role.rolle);
     });
+
     return Array.from(set).sort((a, b) => a.localeCompare(b, 'de'));
-  }, []);
+  }, [selectedMetadata]);
 
   // last check persisted in localStorage under 'bobs-archiv-last-berlin-check'
   const [newEpisodesAvailable, setNewEpisodesAvailable] = useState<number>(0);
@@ -1025,7 +1026,7 @@ export default function App() {
                   list="charakter-suggestions"
                 />
                 <datalist id="charakter-suggestions">
-                  {allCharacters.map((c) => (
+                  {selectedEpisodeCharacters.map((c) => (
                     <option key={c} value={c} />
                   ))}
                 </datalist>
