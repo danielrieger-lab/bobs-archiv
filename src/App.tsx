@@ -17,6 +17,7 @@ type EpisodeCatalogEntry = {
     sprecher: string;
     pseudonym?: string;
   }>;
+  type?: 'episode' | 'special' | 'kurz';
 };
 
 type Radioplay = {
@@ -442,9 +443,10 @@ export default function App() {
 
             const payload = await res.json();
             const serie = Array.isArray(payload?.serie) ? payload.serie : [];
-            const completeCount = serie.filter((e: any) => !e.unvollständig).length || serie.length;
-            if (completeCount > episodeMetadataEntries.length) {
-              setNewEpisodesAvailable(completeCount - episodeMetadataEntries.length);
+            const standardCount = serie.filter((e: any) => !e.unvollständig && e.nummer).length || serie.length;
+            const localStandardCount = (episodeMetadataEntries as EpisodeCatalogEntry[]).filter((e) => (e.type ?? 'episode') === 'episode').length;
+            if (standardCount > localStandardCount) {
+              setNewEpisodesAvailable(standardCount - localStandardCount);
               setNewEpisodesPreview(serie.slice(Math.max(0, serie.length - 10)).map((it: any) => ({ nummer: it.nummer, titel: it.titel })));
             }
 

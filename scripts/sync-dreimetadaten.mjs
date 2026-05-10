@@ -55,6 +55,8 @@ async function main() {
   const serie = Array.isArray(root?.serie) ? root.serie : [];
   const completeEpisodes = [];
   const coverJobs = [];
+  const specialEpisodes = [];
+  const kurzgeschichten = [];
 
   for (const entry of serie) {
     if (entry?.unvollständig) {
@@ -85,6 +87,7 @@ async function main() {
     }
 
     completeEpisodes.push({
+      type: 'episode',
       id: String(nummer),
       episode: formatEpisodeLabel(nummer, title),
       year: releasedAt ? new Date(releasedAt).getFullYear() : 0,
@@ -102,8 +105,100 @@ async function main() {
     });
   }
 
-  await writeFile(outputJsonPath, `${JSON.stringify(completeEpisodes, null, 2)}\n`, 'utf8');
-  console.log(`Wrote ${completeEpisodes.length} episodes to ${outputJsonPath}`);
+  // Try fetch specials
+  try {
+    const specialsRoot = await fetchJson('https://dreimetadaten.de/data/Spezial.json');
+    const specials = Array.isArray(specialsRoot?.serie) ? specialsRoot.serie : [];
+    let sIndex = 1;
+    for (const entry of specials) {
+      const title = typeof entry.titel === 'string' ? entry.titel.trim() : '';
+      const autor = typeof entry.autor === 'string' ? entry.autor.trim() : '';
+      const releasedAt = typeof entry.veröffentlichungsdatum === 'string' ? entry.veröffentlichungsdatum : '';
+      const durationMs = Number(entry.gesamtdauer);
+      const coverUrl = typeof entry?.links?.cover === 'string' ? entry.links.cover : '';
+      const artworkUrl = typeof entry?.links?.artwork === 'string' ? entry.links.artwork : '';
+      const fileName = `special-${String(sIndex).padStart(3, '0')}.webp`;
+      const coverImage = `covers/${fileName}`;
+
+      if (coverUrl || artworkUrl) {
+        coverJobs.push(
+          downloadAndConvertCover([coverUrl, artworkUrl], path.join(coversDir, fileName))
+        );
+      }
+
+      specialEpisodes.push({
+        type: 'special',
+        id: `S-${String(sIndex).padStart(3, '0')}`,
+        episode: title,
+        year: releasedAt ? new Date(releasedAt).getFullYear() : 0,
+        coverImage,
+        autor,
+        veroeffentlichungsdatum: releasedAt,
+        gesamtdauerMs: Number.isFinite(durationMs) ? durationMs : 0,
+        sprechrollen: Array.isArray(entry.sprechrollen)
+          ? entry.sprechrollen.map((role) => ({
+              rolle: typeof role?.rolle === 'string' ? role.rolle : '',
+              sprecher: typeof role?.sprecher === 'string' ? role.sprecher : '',
+              ...(typeof role?.pseudonym === 'string' && role.pseudonym ? { pseudonym: role.pseudonym } : {}),
+            }))
+          : [],
+      });
+
+      sIndex += 1;
+    }
+  } catch (e) {
+    // ignore if Spezial.json doesn't exist or fails
+  }
+
+  // Try fetch Kurzgeschichten
+  try {
+    const kurzRoot = await fetchJson('https://dreimetadaten.de/data/Kurzgeschichten.json');
+    const kurzes = Array.isArray(kurzRoot?.serie) ? kurzRoot.serie : [];
+    let kIndex = 1;
+    for (const entry of kurzes) {
+      const title = typeof entry.titel === 'string' ? entry.titel.trim() : '';
+      const autor = typeof entry.autor === 'string' ? entry.autor.trim() : '';
+      const releasedAt = typeof entry.veröffentlichungsdatum === 'string' ? entry.veröffentlichungsdatum : '';
+      const durationMs = Number(entry.gesamtdauer);
+      const coverUrl = typeof entry?.links?.cover === 'string' ? entry.links.cover : '';
+      const artworkUrl = typeof entry?.links?.artwork === 'string' ? entry.links.artwork : '';
+      const fileName = `kurz-${String(kIndex).padStart(3, '0')}.webp`;
+      const coverImage = `covers/${fileName}`;
+
+      if (coverUrl || artworkUrl) {
+        coverJobs.push(
+          downloadAndConvertCover([coverUrl, artworkUrl], path.join(coversDir, fileName))
+        );
+      }
+
+      kurzgeschichten.push({
+        type: 'kurz',
+        id: `K-${String(kIndex).padStart(3, '0')}`,
+        episode: title,
+        year: releasedAt ? new Date(releasedAt).getFullYear() : 0,
+        coverImage,
+        autor,
+        veroeffentlichungsdatum: releasedAt,
+        gesamtdauerMs: Number.isFinite(durationMs) ? durationMs : 0,
+        sprechrollen: Array.isArray(entry.sprechrollen)
+          ? entry.sprechrollen.map((role) => ({
+              rolle: typeof role?.rolle === 'string' ? role.rolle : '',
+              sprecher: typeof role?.sprecher === 'string' ? role.sprecher : '',
+              ...(typeof role?.pseudonym === 'string' && role.pseudonym ? { pseudonym: role.pseudonym } : {}),
+            }))
+          : [],
+      });
+
+      kIndex += 1;
+    }
+  } catch (e) {
+    // ignore if Kurzgeschichten.json doesn't exist or fails
+  }
+
+  const allEntries = [...completeEpisodes, ...specialEpisodes, ...kurzgeschichten];
+
+  await writeFile(outputJsonPath, `${JSON.stringify(allEntries, null, 2)}\n`, 'utf8');
+  console.log(`Wrote ${allEntries.length} episodes (${completeEpisodes.length} standard, ${specialEpisodes.length} specials, ${kurzgeschichten.length} Kurzgeschichten) to ${outputJsonPath}`);
 
   const results = await Promise.allSettled(coverJobs);
   const failures = results.filter((result) => result.status === 'rejected');
