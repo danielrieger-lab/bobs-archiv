@@ -1,5 +1,6 @@
 [
   {
+    "type": "episode",
     "id": "1",
     "episode": "Folge 1: und der Super-Papagei",
     "year": 1979,
@@ -61,6 +62,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "2",
     "episode": "Folge 2: und der Phantomsee",
     "year": 1979,
@@ -131,6 +133,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "3",
     "episode": "Folge 3: und der Karpatenhund",
     "year": 1979,
@@ -197,6 +200,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "4",
     "episode": "Folge 4: und die schwarze Katze",
     "year": 1979,
@@ -275,6 +279,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "5",
     "episode": "Folge 5: und der Fluch des Rubins",
     "year": 1979,
@@ -338,6 +343,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "6",
     "episode": "Folge 6: und der sprechende Totenkopf",
     "year": 1979,
@@ -411,6 +417,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "7",
     "episode": "Folge 7: und der unheimliche Drache",
     "year": 1979,
@@ -463,6 +470,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "8",
     "episode": "Folge 8: und der grüne Geist",
     "year": 1979,
@@ -536,6 +544,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "9",
     "episode": "Folge 9: und die rätselhaften Bilder",
     "year": 1979,
@@ -606,6 +615,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "10",
     "episode": "Folge 10: und die flüsternde Mumie",
     "year": 1980,
@@ -675,6 +685,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "11",
     "episode": "Folge 11: und das Gespensterschloss",
     "year": 1980,
@@ -722,6 +733,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "12",
     "episode": "Folge 12: und der seltsame Wecker",
     "year": 1980,
@@ -801,6 +813,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "13",
     "episode": "Folge 13: und der lachende Schatten",
     "year": 1980,
@@ -873,6 +886,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "14",
     "episode": "Folge 14: und das Bergmonster",
     "year": 1980,
@@ -940,6 +954,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "15",
     "episode": "Folge 15: und der rasende Löwe",
     "year": 1980,
@@ -1012,6 +1027,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "16",
     "episode": "Folge 16: und der Zauberspiegel",
     "year": 1980,
@@ -1072,6 +1088,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "17",
     "episode": "Folge 17: und die gefährliche Erbschaft",
     "year": 1980,
@@ -1136,6 +1153,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "18",
     "episode": "Folge 18: und die Geisterinsel",
     "year": 1980,
@@ -1208,6 +1226,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "19",
     "episode": "Folge 19: und der Teufelsberg",
     "year": 1980,
@@ -1271,6 +1290,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "20",
     "episode": "Folge 20: und die flammende Spur",
     "year": 1980,
@@ -1338,6 +1358,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "21",
     "episode": "Folge 21: und der tanzende Teufel",
     "year": 1980,
@@ -1412,6 +1433,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "22",
     "episode": "Folge 22: und der verschwundene Schatz",
     "year": 1981,
@@ -1490,6 +1512,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "23",
     "episode": "Folge 23: und das Aztekenschwert",
     "year": 1981,
@@ -1567,6 +1590,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "24",
     "episode": "Folge 24: und die silberne Spinne",
     "year": 1981,
@@ -1644,6 +1668,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "25",
     "episode": "Folge 25: und die singende Schlange",
     "year": 1981,
@@ -1715,6 +1740,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "26",
     "episode": "Folge 26: und die Silbermine",
     "year": 1981,
@@ -1774,6 +1800,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "27",
     "episode": "Folge 27: und der magische Kreis",
     "year": 1981,
@@ -1838,6 +1865,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "28",
     "episode": "Folge 28: und der Doppelgänger",
     "year": 1981,
@@ -1912,6 +1940,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "29",
     "episode": "Folge 29: Die Originalmusik",
     "year": 1982,
@@ -1922,6 +1951,7 @@
     "sprechrollen": []
   },
   {
+    "type": "episode",
     "id": "30",
     "episode": "Folge 30: und das Riff der Haie",
     "year": 1982,
@@ -1990,6 +2020,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "31",
     "episode": "Folge 31: und das Narbengesicht",
     "year": 1983,
@@ -2063,6 +2094,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "32",
     "episode": "Folge 32: und der Ameisenmensch",
     "year": 1983,
@@ -2132,6 +2164,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "33",
     "episode": "Folge 33: und die bedrohte Ranch",
     "year": 1983,
@@ -2200,6 +2233,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "34",
     "episode": "Folge 34: und der rote Pirat",
     "year": 1984,
@@ -2251,6 +2285,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "35",
     "episode": "Folge 35: und der Höhlenmensch",
     "year": 1984,
@@ -2331,6 +2366,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "36",
     "episode": "Folge 36: und der Super-Wal",
     "year": 1985,
@@ -2382,6 +2418,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "37",
     "episode": "Folge 37: und der heimliche Hehler",
     "year": 1985,
@@ -2441,6 +2478,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "38",
     "episode": "Folge 38: und der unsichtbare Gegner",
     "year": 1986,
@@ -2492,6 +2530,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "39",
     "episode": "Folge 39: und die Perlenvögel",
     "year": 1986,
@@ -2531,6 +2570,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "40",
     "episode": "Folge 40: und der Automarder",
     "year": 1986,
@@ -2610,6 +2650,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "41",
     "episode": "Folge 41: und das Volk der Winde",
     "year": 1987,
@@ -2669,6 +2710,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "42",
     "episode": "Folge 42: und der weinende Sarg",
     "year": 1987,
@@ -2744,6 +2786,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "43",
     "episode": "Folge 43: und der höllische Werwolf",
     "year": 1988,
@@ -2827,6 +2870,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "44",
     "episode": "Folge 44: und der gestohlene Preis",
     "year": 1988,
@@ -2887,6 +2931,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "45",
     "episode": "Folge 45: und das Gold der Wikinger",
     "year": 1989,
@@ -2953,6 +2998,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "46",
     "episode": "Folge 46: und der schrullige Millionär",
     "year": 1989,
@@ -3020,6 +3066,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "47",
     "episode": "Folge 47: und der giftige Gockel",
     "year": 1989,
@@ -3079,6 +3126,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "48",
     "episode": "Folge 48: und die gefährlichen Fässer",
     "year": 1989,
@@ -3138,6 +3186,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "49",
     "episode": "Folge 49: und die Comic-Diebe",
     "year": 1990,
@@ -3194,6 +3243,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "50",
     "episode": "Folge 50: und der verschwundene Filmstar",
     "year": 1991,
@@ -3249,6 +3299,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "51",
     "episode": "Folge 51: und der riskante Ritt",
     "year": 1991,
@@ -3292,6 +3343,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "52",
     "episode": "Folge 52: und die Musikpiraten",
     "year": 1991,
@@ -3367,6 +3419,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "53",
     "episode": "Folge 53: und die Automafia",
     "year": 1991,
@@ -3430,6 +3483,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "54",
     "episode": "Folge 54: Gefahr im Verzug",
     "year": 1992,
@@ -3494,6 +3548,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "55",
     "episode": "Folge 55: Gekaufte Spieler",
     "year": 1992,
@@ -3561,6 +3616,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "56",
     "episode": "Folge 56: Angriff der Computer-Viren",
     "year": 1992,
@@ -3628,6 +3684,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "57",
     "episode": "Folge 57: Tatort Zirkus",
     "year": 1994,
@@ -3687,6 +3744,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "58",
     "episode": "Folge 58: und der verrückte Maler",
     "year": 1994,
@@ -3751,6 +3809,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "59",
     "episode": "Folge 59: Giftiges Wasser",
     "year": 1994,
@@ -3814,6 +3873,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "60",
     "episode": "Folge 60: Dopingmixer",
     "year": 1994,
@@ -3882,6 +3942,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "61",
     "episode": "Folge 61: und die Rache des Tigers",
     "year": 1995,
@@ -3949,6 +4010,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "62",
     "episode": "Folge 62: Spuk im Hotel",
     "year": 1995,
@@ -4016,6 +4078,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "63",
     "episode": "Folge 63: Fußball-Gangster",
     "year": 1995,
@@ -4084,6 +4147,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "64",
     "episode": "Folge 64: Geisterstadt",
     "year": 1995,
@@ -4152,6 +4216,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "65",
     "episode": "Folge 65: Diamantenschmuggel",
     "year": 1995,
@@ -4227,6 +4292,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "66",
     "episode": "Folge 66: und die Schattenmänner",
     "year": 1995,
@@ -4286,6 +4352,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "67",
     "episode": "Folge 67: und das Geheimnis der Särge",
     "year": 1996,
@@ -4349,6 +4416,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "68",
     "episode": "Folge 68: und der Schatz im Bergsee",
     "year": 1996,
@@ -4392,6 +4460,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "69",
     "episode": "Folge 69: Späte Rache",
     "year": 1996,
@@ -4468,6 +4537,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "70",
     "episode": "Folge 70: Schüsse aus dem Dunkel",
     "year": 1996,
@@ -4535,6 +4605,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "71",
     "episode": "Folge 71: Die verschwundene Seglerin",
     "year": 1996,
@@ -4615,6 +4686,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "72",
     "episode": "Folge 72: Dreckiger Deal",
     "year": 1996,
@@ -4690,6 +4762,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "73",
     "episode": "Folge 73: Poltergeist",
     "year": 1997,
@@ -4749,6 +4822,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "74",
     "episode": "Folge 74: und das brennende Schwert",
     "year": 1997,
@@ -4825,6 +4899,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "75",
     "episode": "Folge 75: Die Spur des Raben",
     "year": 1997,
@@ -4880,6 +4955,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "76",
     "episode": "Folge 76: Stimmen aus dem Nichts",
     "year": 1997,
@@ -4943,6 +5019,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "77",
     "episode": "Folge 77: Pistenteufel",
     "year": 1997,
@@ -5015,6 +5092,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "78",
     "episode": "Folge 78: Das leere Grab",
     "year": 1998,
@@ -5083,6 +5161,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "79",
     "episode": "Folge 79: Im Bann des Voodoo",
     "year": 1998,
@@ -5157,6 +5236,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "80",
     "episode": "Folge 80: Geheimakte Ufo",
     "year": 1998,
@@ -5197,6 +5277,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "81",
     "episode": "Folge 81: Verdeckte Fouls",
     "year": 1998,
@@ -5260,6 +5341,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "82",
     "episode": "Folge 82: Die Karten des Bösen",
     "year": 1998,
@@ -5307,6 +5389,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "83",
     "episode": "Folge 83: Meuterei auf hoher See",
     "year": 1999,
@@ -5362,6 +5445,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "84",
     "episode": "Folge 84: Musik des Teufels",
     "year": 1999,
@@ -5409,6 +5493,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "85",
     "episode": "Folge 85: Feuerturm",
     "year": 1999,
@@ -5464,6 +5549,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "86",
     "episode": "Folge 86: Nacht in Angst",
     "year": 1999,
@@ -5519,6 +5605,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "87",
     "episode": "Folge 87: Wolfsgesicht",
     "year": 1999,
@@ -5582,6 +5669,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "88",
     "episode": "Folge 88: Vampir im Internet",
     "year": 1999,
@@ -5665,6 +5753,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "89",
     "episode": "Folge 89: Tödliche Spur",
     "year": 2000,
@@ -5720,6 +5809,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "90",
     "episode": "Folge 90: Der Feuerteufel",
     "year": 2000,
@@ -5759,6 +5849,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "91",
     "episode": "Folge 91: Labyrinth der Götter",
     "year": 2000,
@@ -5802,6 +5893,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "92",
     "episode": "Folge 92: Todesflug",
     "year": 2000,
@@ -5845,6 +5937,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "93",
     "episode": "Folge 93: und das Geisterschiff",
     "year": 2000,
@@ -5893,6 +5986,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "94",
     "episode": "Folge 94: Das schwarze Monster",
     "year": 2000,
@@ -5957,6 +6051,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "95",
     "episode": "Folge 95: Botschaft von Geisterhand",
     "year": 2001,
@@ -6008,6 +6103,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "96",
     "episode": "Folge 96: und der rote Rächer",
     "year": 2001,
@@ -6067,6 +6163,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "97",
     "episode": "Folge 97: Insektenstachel",
     "year": 2001,
@@ -6115,6 +6212,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "98",
     "episode": "Folge 98: Tal des Schreckens",
     "year": 2001,
@@ -6183,6 +6281,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "99",
     "episode": "Folge 99: Rufmord",
     "year": 2001,
@@ -6254,6 +6353,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "100",
     "episode": "Folge 100: Toteninsel",
     "year": 2001,
@@ -6325,6 +6425,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "101",
     "episode": "Folge 101: und das Hexen-Handy",
     "year": 2001,
@@ -6384,6 +6485,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "102",
     "episode": "Folge 102: Doppelte Täuschung",
     "year": 2002,
@@ -6431,6 +6533,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "103",
     "episode": "Folge 103: Das Erbe des Meisterdiebes",
     "year": 2002,
@@ -6487,6 +6590,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "104",
     "episode": "Folge 104: Gift per E-Mail",
     "year": 2002,
@@ -6542,6 +6646,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "105",
     "episode": "Folge 105: Der Nebelberg",
     "year": 2002,
@@ -6593,6 +6698,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "106",
     "episode": "Folge 106: Der Mann ohne Kopf",
     "year": 2002,
@@ -6674,6 +6780,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "107",
     "episode": "Folge 107: und der Schatz der Mönche",
     "year": 2003,
@@ -6733,6 +6840,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "108",
     "episode": "Folge 108: Die sieben Tore",
     "year": 2003,
@@ -6776,6 +6884,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "109",
     "episode": "Folge 109: Gefährliches Quiz",
     "year": 2003,
@@ -6839,6 +6948,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "110",
     "episode": "Folge 110: Panik im Park",
     "year": 2003,
@@ -6906,6 +7016,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "111",
     "episode": "Folge 111: Die Höhle des Grauens",
     "year": 2003,
@@ -6981,6 +7092,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "112",
     "episode": "Folge 112: Schlucht der Dämonen",
     "year": 2003,
@@ -7032,6 +7144,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "113",
     "episode": "Folge 113: Das Auge des Drachen",
     "year": 2003,
@@ -7083,6 +7196,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "114",
     "episode": "Folge 114: Die Villa der Toten",
     "year": 2004,
@@ -7138,6 +7252,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "115",
     "episode": "Folge 115: Auf tödlichem Kurs",
     "year": 2004,
@@ -7206,6 +7321,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "116",
     "episode": "Folge 116: Codename: Cobra",
     "year": 2004,
@@ -7261,6 +7377,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "117",
     "episode": "Folge 117: Der finstere Rivale",
     "year": 2004,
@@ -7325,6 +7442,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "118",
     "episode": "Folge 118: Das düstere Vermächtnis",
     "year": 2004,
@@ -7396,6 +7514,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "119",
     "episode": "Folge 119: Der geheime Schlüssel",
     "year": 2004,
@@ -7460,6 +7579,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "120",
     "episode": "Folge 120: Der schwarze Skorpion",
     "year": 2005,
@@ -7507,6 +7627,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "121",
     "episode": "Folge 121: Spur ins Nichts",
     "year": 2008,
@@ -7566,6 +7687,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "122",
     "episode": "Folge 122: und der Geisterzug",
     "year": 2008,
@@ -7629,6 +7751,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "123",
     "episode": "Folge 123: Fußballfieber",
     "year": 2008,
@@ -7676,6 +7799,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "124",
     "episode": "Folge 124: Geister-Canyon",
     "year": 2008,
@@ -7723,6 +7847,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "125",
     "episode": "Folge 125: Feuermond",
     "year": 2008,
@@ -7840,6 +7965,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "126",
     "episode": "Folge 126: Schrecken aus dem Moor",
     "year": 2008,
@@ -7895,6 +8021,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "127",
     "episode": "Folge 127: Schwarze Madonna",
     "year": 2008,
@@ -7962,6 +8089,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "128",
     "episode": "Folge 128: Schatten über Hollywood",
     "year": 2009,
@@ -8017,6 +8145,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "129",
     "episode": "Folge 129: SMS aus dem Grab",
     "year": 2009,
@@ -8100,6 +8229,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "130",
     "episode": "Folge 130: Der Fluch des Drachen",
     "year": 2009,
@@ -8168,6 +8298,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "131",
     "episode": "Folge 131: Haus des Schreckens",
     "year": 2009,
@@ -8231,6 +8362,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "132",
     "episode": "Folge 132: Spuk im Netz",
     "year": 2009,
@@ -8306,6 +8438,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "133",
     "episode": "Folge 133: Fels der Dämonen",
     "year": 2009,
@@ -8369,6 +8502,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "134",
     "episode": "Folge 134: Der tote Mönch",
     "year": 2009,
@@ -8424,6 +8558,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "135",
     "episode": "Folge 135: Fluch des Piraten",
     "year": 2009,
@@ -8475,6 +8610,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "136",
     "episode": "Folge 136: und das versunkene Dorf",
     "year": 2010,
@@ -8542,6 +8678,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "137",
     "episode": "Folge 137: Pfad der Angst",
     "year": 2010,
@@ -8593,6 +8730,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "138",
     "episode": "Folge 138: Die geheime Treppe",
     "year": 2010,
@@ -8636,6 +8774,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "139",
     "episode": "Folge 139: Das Geheimnis der Diva",
     "year": 2010,
@@ -8720,6 +8859,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "140",
     "episode": "Folge 140: Stadt der Vampire",
     "year": 2010,
@@ -8783,6 +8923,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "141",
     "episode": "Folge 141: und die Fußball-Falle",
     "year": 2010,
@@ -8859,6 +9000,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "142",
     "episode": "Folge 142: Tödliches Eis",
     "year": 2010,
@@ -8942,6 +9084,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "143",
     "episode": "Folge 143: und die Poker-Hölle",
     "year": 2010,
@@ -9001,6 +9144,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "144",
     "episode": "Folge 144: Zwillinge der Finsternis",
     "year": 2011,
@@ -9061,6 +9205,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "145",
     "episode": "Folge 145: und die Rache der Samurai",
     "year": 2011,
@@ -9120,6 +9265,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "146",
     "episode": "Folge 146: Der Biss der Bestie",
     "year": 2011,
@@ -9204,6 +9350,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "147",
     "episode": "Folge 147: Grusel auf Campbell Castle",
     "year": 2011,
@@ -9279,6 +9426,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "148",
     "episode": "Folge 148: und die feurige Flut",
     "year": 2011,
@@ -9338,6 +9486,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "149",
     "episode": "Folge 149: Der namenlose Gegner",
     "year": 2011,
@@ -9413,6 +9562,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "150",
     "episode": "Folge 150: Geisterbucht",
     "year": 2011,
@@ -9556,6 +9706,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "151",
     "episode": "Folge 151: Schwarze Sonne",
     "year": 2012,
@@ -9647,6 +9798,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "152",
     "episode": "Folge 152: Skateboardfieber",
     "year": 2012,
@@ -9734,6 +9886,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "153",
     "episode": "Folge 153: und das Fußballphantom",
     "year": 2012,
@@ -9817,6 +9970,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "154",
     "episode": "Folge 154: Botschaft aus der Unterwelt",
     "year": 2012,
@@ -9917,6 +10071,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "155",
     "episode": "Folge 155: und der Meister des Todes",
     "year": 2012,
@@ -9984,6 +10139,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "156",
     "episode": "Folge 156: Im Netz des Drachen",
     "year": 2012,
@@ -10051,6 +10207,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "157",
     "episode": "Folge 157: Im Zeichen der Schlangen",
     "year": 2012,
@@ -10119,6 +10276,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "158",
     "episode": "Folge 158: und der Feuergeist",
     "year": 2012,
@@ -10198,6 +10356,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "159",
     "episode": "Folge 159: Nacht der Tiger",
     "year": 2013,
@@ -10258,6 +10417,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "160",
     "episode": "Folge 160: Geheimnisvolle Botschaften",
     "year": 2013,
@@ -10329,6 +10489,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "161",
     "episode": "Folge 161: Die blutenden Bilder",
     "year": 2013,
@@ -10396,6 +10557,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "162",
     "episode": "Folge 162: und der schreiende Nebel",
     "year": 2013,
@@ -10459,6 +10621,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "163",
     "episode": "Folge 163: und der verschollene Pilot",
     "year": 2013,
@@ -10494,6 +10657,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "164",
     "episode": "Folge 164: Fußball-Teufel",
     "year": 2013,
@@ -10563,6 +10727,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "165",
     "episode": "Folge 165: Im Schatten des Giganten",
     "year": 2013,
@@ -10634,6 +10799,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "166",
     "episode": "Folge 166: und die brennende Stadt",
     "year": 2014,
@@ -10681,6 +10847,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "167",
     "episode": "Folge 167: und das blaue Biest",
     "year": 2014,
@@ -10769,6 +10936,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "168",
     "episode": "Folge 168: GPS-Gangster",
     "year": 2014,
@@ -10856,6 +11024,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "169",
     "episode": "Folge 169: Die Spur des Spielers",
     "year": 2014,
@@ -10932,6 +11101,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "170",
     "episode": "Folge 170: Straße des Grauens",
     "year": 2014,
@@ -11023,6 +11193,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "171",
     "episode": "Folge 171: und das Phantom aus dem Meer",
     "year": 2014,
@@ -11118,6 +11289,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "172",
     "episode": "Folge 172: und der Eisenmann",
     "year": 2014,
@@ -11185,6 +11357,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "173",
     "episode": "Folge 173: Dämon der Rache",
     "year": 2015,
@@ -11248,6 +11421,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "174",
     "episode": "Folge 174: und das Tuch der Toten",
     "year": 2015,
@@ -11307,6 +11481,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "175",
     "episode": "Folge 175: Schattenwelt",
     "year": 2015,
@@ -11454,6 +11629,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "176",
     "episode": "Folge 176: und der gestohlene Sieg",
     "year": 2015,
@@ -11517,6 +11693,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "177",
     "episode": "Folge 177: Der Geist des Goldgräbers",
     "year": 2015,
@@ -11580,6 +11757,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "178",
     "episode": "Folge 178: Der gefiederte Schrecken",
     "year": 2015,
@@ -11635,6 +11813,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "179",
     "episode": "Folge 179: Die Rache des Untoten",
     "year": 2016,
@@ -11710,6 +11889,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "180",
     "episode": "Folge 180: und die flüsternden Puppen",
     "year": 2016,
@@ -11773,6 +11953,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "181",
     "episode": "Folge 181: Das Kabinett des Zauberers",
     "year": 2016,
@@ -11852,6 +12033,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "182",
     "episode": "Folge 182: Im Haus des Henkers",
     "year": 2016,
@@ -11955,6 +12137,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "183",
     "episode": "Folge 183: und der letzte Song",
     "year": 2016,
@@ -12042,6 +12225,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "184",
     "episode": "Folge 184: und der Hexengarten",
     "year": 2016,
@@ -12125,6 +12309,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "185",
     "episode": "Folge 185: und der Mann ohne Augen",
     "year": 2017,
@@ -12200,6 +12385,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "186",
     "episode": "Folge 186: Insel des Vergessens",
     "year": 2017,
@@ -12275,6 +12461,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "187",
     "episode": "Folge 187: und das silberne Amulett",
     "year": 2017,
@@ -12354,6 +12541,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "188",
     "episode": "Folge 188: Signale aus dem Jenseits",
     "year": 2017,
@@ -12429,6 +12617,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "189",
     "episode": "Folge 189: und der unsichtbare Passagier",
     "year": 2017,
@@ -12500,6 +12689,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "190",
     "episode": "Folge 190: und die Kammer der Rätsel",
     "year": 2017,
@@ -12559,6 +12749,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "191",
     "episode": "Folge 191: Verbrechen im Nichts",
     "year": 2018,
@@ -12614,6 +12805,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "192",
     "episode": "Folge 192: Im Bann des Drachen",
     "year": 2018,
@@ -12681,6 +12873,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "193",
     "episode": "Folge 193: Schrecken aus der Tiefe",
     "year": 2018,
@@ -12768,6 +12961,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "194",
     "episode": "Folge 194: und die Zeitreisende",
     "year": 2018,
@@ -12851,6 +13045,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "195",
     "episode": "Folge 195: Im Reich der Ungeheuer",
     "year": 2018,
@@ -12910,6 +13105,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "196",
     "episode": "Folge 196: Geheimnis des Bauchredners",
     "year": 2018,
@@ -12973,6 +13169,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "197",
     "episode": "Folge 197: Im Auge des Sturms",
     "year": 2019,
@@ -13061,6 +13258,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "198",
     "episode": "Folge 198: Die Legende der Gaukler",
     "year": 2019,
@@ -13148,6 +13346,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "199",
     "episode": "Folge 199: und der grüne Kobold",
     "year": 2019,
@@ -13211,6 +13410,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "200",
     "episode": "Folge 200: Feuriges Auge",
     "year": 2019,
@@ -13342,6 +13542,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "201",
     "episode": "Folge 201: Höhenangst",
     "year": 2019,
@@ -13405,6 +13606,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "202",
     "episode": "Folge 202: Das weiße Grab",
     "year": 2019,
@@ -13456,6 +13658,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "203",
     "episode": "Folge 203: Tauchgang ins Ungewisse",
     "year": 2020,
@@ -13507,6 +13710,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "204",
     "episode": "Folge 204: Der dunkle Wächter",
     "year": 2020,
@@ -13562,6 +13766,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "205",
     "episode": "Folge 205: Das rätselhafte Erbe",
     "year": 2020,
@@ -13641,6 +13846,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "206",
     "episode": "Folge 206: und der Mottenmann",
     "year": 2020,
@@ -13696,6 +13902,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "207",
     "episode": "Folge 207: Die falschen Detektive",
     "year": 2020,
@@ -13763,6 +13970,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "208",
     "episode": "Folge 208: Kelch des Schicksals",
     "year": 2021,
@@ -13846,6 +14054,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "209",
     "episode": "Folge 209: Kreaturen der Nacht",
     "year": 2021,
@@ -13909,6 +14118,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "210",
     "episode": "Folge 210: und die schweigende Grotte",
     "year": 2021,
@@ -13964,6 +14174,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "211",
     "episode": "Folge 211: und der Jadekönig",
     "year": 2021,
@@ -14027,6 +14238,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "212",
     "episode": "Folge 212: und der weiße Leopard",
     "year": 2021,
@@ -14090,6 +14302,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "213",
     "episode": "Folge 213: Der Fluch der Medusa",
     "year": 2021,
@@ -14169,6 +14382,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "214",
     "episode": "Folge 214: und der Geisterbunker",
     "year": 2022,
@@ -14240,6 +14454,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "215",
     "episode": "Folge 215: und die verlorene Zeit",
     "year": 2022,
@@ -14307,6 +14522,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "216",
     "episode": "Folge 216: Die Schwingen des Unheils",
     "year": 2022,
@@ -14366,6 +14582,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "217",
     "episode": "Folge 217: und der Kristallschädel",
     "year": 2022,
@@ -14437,6 +14654,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "218",
     "episode": "Folge 218: Im Netz der Lügen",
     "year": 2022,
@@ -14508,6 +14726,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "219",
     "episode": "Folge 219: und die Teufelsklippe",
     "year": 2022,
@@ -14579,6 +14798,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "220",
     "episode": "Folge 220: Im Wald der Gefahren",
     "year": 2023,
@@ -14642,6 +14862,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "221",
     "episode": "Folge 221: Manuskript des Satans",
     "year": 2023,
@@ -14693,6 +14914,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "222",
     "episode": "Folge 222: und die Gesetzlosen",
     "year": 2023,
@@ -14764,6 +14986,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "223",
     "episode": "Folge 223: und der Knochenmann",
     "year": 2023,
@@ -14840,6 +15063,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "224",
     "episode": "Folge 224: Die Yacht des Verrats",
     "year": 2023,
@@ -14899,6 +15123,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "225",
     "episode": "Folge 225: und der Puppenmacher",
     "year": 2024,
@@ -14986,6 +15211,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "226",
     "episode": "Folge 226: Die Spur der Toten",
     "year": 2024,
@@ -15049,6 +15275,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "227",
     "episode": "Folge 227: Melodie der Rache",
     "year": 2024,
@@ -15112,6 +15339,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "228",
     "episode": "Folge 228: Der Ruf der Krähen",
     "year": 2024,
@@ -15159,6 +15387,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "229",
     "episode": "Folge 229: Drehbuch der Täuschung",
     "year": 2024,
@@ -15230,6 +15459,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "230",
     "episode": "Folge 230: Der Tag der Toten",
     "year": 2024,
@@ -15285,6 +15515,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "231",
     "episode": "Folge 231: und der Dreiäugige Schakal",
     "year": 2025,
@@ -15376,6 +15607,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "232",
     "episode": "Folge 232: Die Stadt aus Gold",
     "year": 2025,
@@ -15431,6 +15663,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "233",
     "episode": "Folge 233: Die Nacht der Gewitter",
     "year": 2025,
@@ -15510,6 +15743,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "234",
     "episode": "Folge 234: und der lebende Tresor",
     "year": 2025,
@@ -15573,6 +15807,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "235",
     "episode": "Folge 235: und das Fantasmofon",
     "year": 2025,
@@ -15636,6 +15871,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "236",
     "episode": "Folge 236: Im Bann des Barrakudas",
     "year": 2025,
@@ -15691,6 +15927,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "237",
     "episode": "Folge 237: und der rote Büffel",
     "year": 2026,
@@ -15758,6 +15995,7 @@
     ]
   },
   {
+    "type": "episode",
     "id": "238",
     "episode": "Folge 238: Falsche Schuld",
     "year": 2026,
@@ -15837,6 +16075,2538 @@
       {
         "rolle": "Hafenmeisterin Anne",
         "sprecher": "Christiane Leuchtmann"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-001",
+    "episode": "Master of Chess (Live & Unplugged)",
+    "year": 2002,
+    "coverImage": "covers/special-001.webp",
+    "autor": "Stefanie Burkart",
+    "veroeffentlichungsdatum": "2002-11-11",
+    "gesamtdauerMs": 6320493,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Helmut Krauss"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Ana",
+        "sprecher": "Frauke Poolman"
+      },
+      {
+        "rolle": "Gräfin",
+        "sprecher": "Frauke Poolman"
+      },
+      {
+        "rolle": "Virginia Burnett",
+        "sprecher": "Frauke Poolman"
+      },
+      {
+        "rolle": "Graf",
+        "sprecher": "Olaf Kreutzenbeck"
+      },
+      {
+        "rolle": "Moe",
+        "sprecher": "Olaf Kreutzenbeck"
+      },
+      {
+        "rolle": "Passfellow",
+        "sprecher": "Olaf Kreutzenbeck"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-002",
+    "episode": "und der Super-Papagei 2004",
+    "year": 2004,
+    "coverImage": "covers/special-002.webp",
+    "autor": "Robert Arthur",
+    "veroeffentlichungsdatum": "2004-10-04",
+    "gesamtdauerMs": 5400067,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Skinny Norris",
+        "sprecher": "Andreas von der Meden"
+      },
+      {
+        "rolle": "Mr. Claudius, Kunsthändler",
+        "sprecher": "Gerlach Fiedler"
+      },
+      {
+        "rolle": "Mrs. Claudius",
+        "sprecher": "Brigitte Böttrich"
+      },
+      {
+        "rolle": "Mr. Fentriss, Schriftsteller",
+        "sprecher": "Detlef Bierstedt"
+      },
+      {
+        "rolle": "Hugenay",
+        "sprecher": "Wolfgang Kubach"
+      },
+      {
+        "rolle": "Carlos",
+        "sprecher": "Stefan Brönneke"
+      },
+      {
+        "rolle": "Onkel Ramos",
+        "sprecher": "Detlef Bierstedt",
+        "pseudonym": "Dario Bertoli"
+      },
+      {
+        "rolle": "Morton",
+        "sprecher": "Andreas von der Meden"
+      },
+      {
+        "rolle": "Opa",
+        "sprecher": "Harry Rowohlt"
+      },
+      {
+        "rolle": "Miss Waggoner",
+        "sprecher": "Ursula Vogel"
+      },
+      {
+        "rolle": "Senora",
+        "sprecher": "Barbara Benuel"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-003",
+    "episode": "und der dreiTag",
+    "year": 2010,
+    "coverImage": "covers/special-003.webp",
+    "autor": "Hendrik Buchna, Tim Wenderoth, Ivar Leon Menger",
+    "veroeffentlichungsdatum": "2010-10-01",
+    "gesamtdauerMs": 13078093,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Officer Flann Doyle",
+        "sprecher": "Douglas Welbat"
+      },
+      {
+        "rolle": "Tanya Sullivan",
+        "sprecher": "Marion Elskis"
+      },
+      {
+        "rolle": "Sebastian Dawson",
+        "sprecher": "Bastian Pastewka"
+      },
+      {
+        "rolle": "Miss Tomkins",
+        "sprecher": "Stephanie Damare"
+      },
+      {
+        "rolle": "Mr. Foley",
+        "sprecher": "Dirk Bach"
+      },
+      {
+        "rolle": "John Gabbin",
+        "sprecher": "Tobias Schmidt"
+      },
+      {
+        "rolle": "Matthew Gabbin",
+        "sprecher": "Jürgen Thormann"
+      },
+      {
+        "rolle": "Georgina",
+        "sprecher": "Maud Ackermann"
+      },
+      {
+        "rolle": "Gil Renard",
+        "sprecher": "Udo Schenk"
+      },
+      {
+        "rolle": "Hedy Carlson",
+        "sprecher": "Luise Helm"
+      },
+      {
+        "rolle": "Steve",
+        "sprecher": "Sascha Draeger"
+      },
+      {
+        "rolle": "Jack",
+        "sprecher": "Hendrik Buchna"
+      },
+      {
+        "rolle": "Laury",
+        "sprecher": "Rhea Harder-Vennewald"
+      },
+      {
+        "rolle": "Gast 1",
+        "sprecher": "Christian Senger"
+      },
+      {
+        "rolle": "Fahrerin",
+        "sprecher": "Corinna Wodrich"
+      },
+      {
+        "rolle": "Radiosprecher",
+        "sprecher": "Tobias Meister"
+      },
+      {
+        "rolle": "Peter Foster",
+        "sprecher": "Gerrit Schmidt-Foß"
+      },
+      {
+        "rolle": "Mrs. Shaw",
+        "sprecher": "Isabella Grothe"
+      },
+      {
+        "rolle": "Annie Wilkes",
+        "sprecher": "Regina Lemnitz"
+      },
+      {
+        "rolle": "Mädchen 1",
+        "sprecher": "Katinka Körting"
+      },
+      {
+        "rolle": "Mädchen 2",
+        "sprecher": "Jacqueline Meybauer"
+      },
+      {
+        "rolle": "Alter Mann",
+        "sprecher": "Jörg Gillner"
+      },
+      {
+        "rolle": "Junger Mann",
+        "sprecher": "Patrick Bach"
+      },
+      {
+        "rolle": "Dick Perry",
+        "sprecher": "Ernst H. Hilbich"
+      },
+      {
+        "rolle": "Mr. Andrews",
+        "sprecher": "Henry König"
+      },
+      {
+        "rolle": "Miss Bennett",
+        "sprecher": "Renate Pichler"
+      },
+      {
+        "rolle": "Walter Bush",
+        "sprecher": "Rolf E. Schenker"
+      },
+      {
+        "rolle": "Ian Bush",
+        "sprecher": "Sky du Mont, Lukas T. Sperber"
+      },
+      {
+        "rolle": "Jimmy Sinclair",
+        "sprecher": "Siegfried W. Kernen, Nils Noller"
+      },
+      {
+        "rolle": "Charlie Parker",
+        "sprecher": "Oliver Böttcher, Laurence Kalaidjian"
+      },
+      {
+        "rolle": "Brianna Jackson",
+        "sprecher": "Hansi Jochmann, Natalie Demtrøder"
+      },
+      {
+        "rolle": "Chloe Smathers",
+        "sprecher": "Valerie Demtrøder"
+      },
+      {
+        "rolle": "Joseph Quick",
+        "sprecher": "Harry Rowohlt"
+      },
+      {
+        "rolle": "Mr. Raynes",
+        "sprecher": "Olaf Kreutzenbeck"
+      },
+      {
+        "rolle": "Jeff White",
+        "sprecher": "Horst Naumann"
+      },
+      {
+        "rolle": "Bedienung",
+        "sprecher": "Tim Wenderoth"
+      },
+      {
+        "rolle": "Gast 2",
+        "sprecher": "Andreas Otto"
+      },
+      {
+        "rolle": "Sekretärin",
+        "sprecher": "Corinna Wodrich"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-004",
+    "episode": "Brainwash: Gefangene Gedanken",
+    "year": 2011,
+    "coverImage": "covers/special-004.webp",
+    "autor": "Peter Lerangis",
+    "veroeffentlichungsdatum": "2011-04-08",
+    "gesamtdauerMs": 3675453,
+    "sprechrollen": [
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Ben",
+        "sprecher": "Fabian Harloff"
+      },
+      {
+        "rolle": "Silvia",
+        "sprecher": "Marion von Stengel"
+      },
+      {
+        "rolle": "Ralph",
+        "sprecher": "Wolfgang Kaven"
+      },
+      {
+        "rolle": "Spud",
+        "sprecher": "Rasmus Borowski"
+      },
+      {
+        "rolle": "O-Ian",
+        "sprecher": "Celine Fontanges"
+      },
+      {
+        "rolle": "Setch",
+        "sprecher": "Stefan Brönneke"
+      },
+      {
+        "rolle": "Hi-Top",
+        "sprecher": "Robin Brosch"
+      },
+      {
+        "rolle": "Car",
+        "sprecher": "Volker Hanisch"
+      },
+      {
+        "rolle": "Chip-Shape",
+        "sprecher": "Jens Wendland"
+      },
+      {
+        "rolle": "Carol",
+        "sprecher": "Alexandra Garcia"
+      },
+      {
+        "rolle": "Slide Terranova",
+        "sprecher": "Nicolas König"
+      },
+      {
+        "rolle": "P. \"Pejo\" Joseph McGaskill",
+        "sprecher": "Peter Kirchberger"
+      },
+      {
+        "rolle": "Sax Sandler",
+        "sprecher": "Christian Concilio"
+      },
+      {
+        "rolle": "Hausmeister",
+        "sprecher": "Edgar Bessen"
+      },
+      {
+        "rolle": "Bau-Kollege",
+        "sprecher": "Holger Umbreit"
+      },
+      {
+        "rolle": "Junge",
+        "sprecher": "André Minninger",
+        "pseudonym": "Michael Lampe"
+      },
+      {
+        "rolle": "Mädchen",
+        "sprecher": "Heikedine Körting",
+        "pseudonym": "Pamela Punti"
+      },
+      {
+        "rolle": "Weibl. Offstimme",
+        "sprecher": "Susanne Wulkow"
+      },
+      {
+        "rolle": "Werbestimme",
+        "sprecher": "Enie van de Meiklokjes"
+      },
+      {
+        "rolle": "Menge",
+        "sprecher": "Lauscherlounge-Zuschauer (www.dreifragezeichen.de/www/menge-brainwash)"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-005",
+    "episode": "House of Horrors: Haus der Angst",
+    "year": 2011,
+    "coverImage": "covers/special-005.webp",
+    "autor": "Megan & H. William Stine",
+    "veroeffentlichungsdatum": "2011-08-19",
+    "gesamtdauerMs": 7584200,
+    "sprechrollen": [
+      {
+        "rolle": "Off-Stimme",
+        "sprecher": "Claudia Stocksieker"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tony",
+        "sprecher": "Stefan Kaminski"
+      },
+      {
+        "rolle": "Joey",
+        "sprecher": "Tommaso Cacciapuoti"
+      },
+      {
+        "rolle": "Ansager in der Schlammringkampfarena",
+        "sprecher": "Christian Rudolf"
+      },
+      {
+        "rolle": "Margarine",
+        "sprecher": "Alma Clausen"
+      },
+      {
+        "rolle": "Lincolnfahrer",
+        "sprecher": "Mike Olsowski"
+      },
+      {
+        "rolle": "Freakshow-Jack",
+        "sprecher": "Peter Bänker"
+      },
+      {
+        "rolle": "Der unergründliche Mickey",
+        "sprecher": "Krystian Martinek"
+      },
+      {
+        "rolle": "Die bärtige Marilyn",
+        "sprecher": "Santiago Ziesmer"
+      },
+      {
+        "rolle": "Miss Luzzy",
+        "sprecher": "Katja Brügger"
+      },
+      {
+        "rolle": "Bubba Detroit",
+        "sprecher": "Klaus Dittmann"
+      },
+      {
+        "rolle": "Junge",
+        "sprecher": "Patrick Bach"
+      },
+      {
+        "rolle": "Burger-Verkäufer Arnie",
+        "sprecher": "Manou Lubowski"
+      },
+      {
+        "rolle": "Reporterin",
+        "sprecher": "Mara Bergmann"
+      },
+      {
+        "rolle": "Anna Millar",
+        "sprecher": "Christine Pappert"
+      },
+      {
+        "rolle": "Bombenattentäter Daniel",
+        "sprecher": "Tim Grobe"
+      },
+      {
+        "rolle": "Polizist",
+        "sprecher": "Wolfgang Kaven"
+      },
+      {
+        "rolle": "Lily",
+        "sprecher": "Verena Wolfien"
+      },
+      {
+        "rolle": "Max",
+        "sprecher": "Holger Umbreit"
+      },
+      {
+        "rolle": "Milli",
+        "sprecher": "Ulrike Knief"
+      },
+      {
+        "rolle": "Celeste Hummer",
+        "sprecher": "Maria Willer"
+      },
+      {
+        "rolle": "Anthem Hummer",
+        "sprecher": "Martin May"
+      },
+      {
+        "rolle": "Morton",
+        "sprecher": "Andreas von der Meden"
+      },
+      {
+        "rolle": "Bruce Millar",
+        "sprecher": "Ben Hecker"
+      },
+      {
+        "rolle": "Kommissar Reynolds",
+        "sprecher": "Wolfgang Draeger"
+      },
+      {
+        "rolle": "Albert Hitfield",
+        "sprecher": "Volker Bogdan"
+      },
+      {
+        "rolle": "TV-Sprecher",
+        "sprecher": "Friedel Bott"
+      },
+      {
+        "rolle": "Blacky",
+        "sprecher": "Heikedine Körting"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-006",
+    "episode": "High Strung: Unter Hochspannung",
+    "year": 2011,
+    "coverImage": "covers/special-006.webp",
+    "autor": "G. H. Stone",
+    "veroeffentlichungsdatum": "2011-11-11",
+    "gesamtdauerMs": 3170453,
+    "sprechrollen": [
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Doktor Ax Me",
+        "sprecher": "Krystian Martinek"
+      },
+      {
+        "rolle": "Stinky Rossiter",
+        "sprecher": "Dustin Semmelrogge"
+      },
+      {
+        "rolle": "Fear Crowther",
+        "sprecher": "Ingo Nommsen"
+      },
+      {
+        "rolle": "Mouth Crosby",
+        "sprecher": "Stefan Gabriel"
+      },
+      {
+        "rolle": "Mack Dolland",
+        "sprecher": "Mike Olsowski"
+      },
+      {
+        "rolle": "Eric Mukogawa",
+        "sprecher": "Marek Harloff"
+      },
+      {
+        "rolle": "Marilla",
+        "sprecher": "Saskia Mayerhoff"
+      },
+      {
+        "rolle": "Kelly",
+        "sprecher": "Juliane Szalay"
+      },
+      {
+        "rolle": "Rosie",
+        "sprecher": "Reinhilt Schneider"
+      },
+      {
+        "rolle": "Blacky",
+        "sprecher": "Heikedine Körting"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-007",
+    "episode": "und der 5. Advent",
+    "year": 2013,
+    "coverImage": "covers/special-007.webp",
+    "autor": "André Minninger",
+    "veroeffentlichungsdatum": "2013-10-04",
+    "gesamtdauerMs": 10281307,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Mrs. Lydia Candle",
+        "sprecher": "Monika John"
+      },
+      {
+        "rolle": "Jeremias Howard",
+        "sprecher": "Gosta Liptow"
+      },
+      {
+        "rolle": "Empfangsdame",
+        "sprecher": "Katja Brügger"
+      },
+      {
+        "rolle": "Radiosprecherin",
+        "sprecher": "Simona Pahl"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Patricia Handerson",
+        "sprecher": "Janina Richter"
+      },
+      {
+        "rolle": "Polizistin",
+        "sprecher": "Carolin Fortenbacher"
+      },
+      {
+        "rolle": "Schausteller",
+        "sprecher": "Eckart Dux"
+      },
+      {
+        "rolle": "Edward Candle",
+        "sprecher": "Robin Brosch"
+      },
+      {
+        "rolle": "Blacky",
+        "sprecher": "Heikedine Körting"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-008",
+    "episode": "Stille Nacht, düstere Nacht",
+    "year": 2016,
+    "coverImage": "covers/special-008.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2016-11-04",
+    "gesamtdauerMs": 9893400,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Mr. Nostigan",
+        "sprecher": "Volker Brandt"
+      },
+      {
+        "rolle": "Beastor",
+        "sprecher": "Michael Grimm"
+      },
+      {
+        "rolle": "Freeman",
+        "sprecher": "Helgo Liebig"
+      },
+      {
+        "rolle": "Skulldor",
+        "sprecher": "Herbert Tennigkeit"
+      },
+      {
+        "rolle": "Desmond Calbourne",
+        "sprecher": "Monty Arnold"
+      },
+      {
+        "rolle": "Frederic Barnes",
+        "sprecher": "Martin May"
+      },
+      {
+        "rolle": "Charlton Hogart",
+        "sprecher": "Christian Rode"
+      },
+      {
+        "rolle": "Santa Claus",
+        "sprecher": "Klaus Dittmann"
+      },
+      {
+        "rolle": "Mason Wachinsk",
+        "sprecher": "Achim Schülke"
+      },
+      {
+        "rolle": "Elfe",
+        "sprecher": "Linda Fölster"
+      },
+      {
+        "rolle": "Elfenbeinfrau",
+        "sprecher": "Heidi Berndt"
+      },
+      {
+        "rolle": "Milhouse",
+        "sprecher": "Hans-Joachim Dethlof"
+      },
+      {
+        "rolle": "Cafelyn McBryde",
+        "sprecher": "Marianne Bernhardt"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-009",
+    "episode": "O du finstere",
+    "year": 2020,
+    "coverImage": "covers/special-009.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2020-10-09",
+    "gesamtdauerMs": 9948853,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Rüdiger Schulzki"
+      },
+      {
+        "rolle": "Gianna",
+        "sprecher": "Celine Fontanges"
+      },
+      {
+        "rolle": "Lance",
+        "sprecher": "Armin Schlagwein"
+      },
+      {
+        "rolle": "Debra",
+        "sprecher": "Melanie Kastaun"
+      },
+      {
+        "rolle": "Audrey",
+        "sprecher": "Anja Topf"
+      },
+      {
+        "rolle": "Bellins",
+        "sprecher": "Joachim Kretzer"
+      },
+      {
+        "rolle": "Jerry",
+        "sprecher": "Matthias Keller"
+      },
+      {
+        "rolle": "Corey",
+        "sprecher": "Andreas Zaron"
+      },
+      {
+        "rolle": "Joe",
+        "sprecher": "André Beyer"
+      },
+      {
+        "rolle": "Mr. Allister Frain",
+        "sprecher": "Fabian Harloff"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-010",
+    "episode": "Eine schreckliche Bescherung",
+    "year": 2022,
+    "coverImage": "covers/special-010.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2022-10-14",
+    "gesamtdauerMs": 9154760,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Erik Schäffler"
+      },
+      {
+        "rolle": "Santa Claus",
+        "sprecher": "Claus Wilcke"
+      },
+      {
+        "rolle": "Fotograf",
+        "sprecher": "Stephan Schad"
+      },
+      {
+        "rolle": "Sandy",
+        "sprecher": "Angela Stresemann"
+      },
+      {
+        "rolle": "Mutter",
+        "sprecher": "Heikedine Körting",
+        "pseudonym": "Pamela Punti"
+      },
+      {
+        "rolle": "Mr. Puckle",
+        "sprecher": "Christian Rudolf"
+      },
+      {
+        "rolle": "Mrs. Hatchett",
+        "sprecher": "Petra Kleinert"
+      },
+      {
+        "rolle": "Matty",
+        "sprecher": "Joshua Rudolf Goralsky"
+      },
+      {
+        "rolle": "Security 1",
+        "sprecher": "Patrick Berg"
+      },
+      {
+        "rolle": "Security 2",
+        "sprecher": "Philipp Stumpp"
+      },
+      {
+        "rolle": "Security 3",
+        "sprecher": "Max König"
+      },
+      {
+        "rolle": "Security 4",
+        "sprecher": "Tony Curting"
+      },
+      {
+        "rolle": "Pater",
+        "sprecher": "Achim Schülke"
+      },
+      {
+        "rolle": "Engel",
+        "sprecher": "Theresa Underberg"
+      },
+      {
+        "rolle": "Polizist 1",
+        "sprecher": "Patrick Baehr"
+      },
+      {
+        "rolle": "Polizist 2",
+        "sprecher": "Alexander Mettin"
+      },
+      {
+        "rolle": "Polizist 3",
+        "sprecher": "Douglas Welbat"
+      },
+      {
+        "rolle": "Angestellte",
+        "sprecher": "Katrin Decker"
+      },
+      {
+        "rolle": "Larry",
+        "sprecher": "Jan Langer"
+      },
+      {
+        "rolle": "Luke Bigelow",
+        "sprecher": "Harald Effenberg"
+      },
+      {
+        "rolle": "Molly",
+        "sprecher": "Regine Lamster"
+      },
+      {
+        "rolle": "Emmett",
+        "sprecher": "Reinhold Kammerer"
+      },
+      {
+        "rolle": "Durchsage",
+        "sprecher": "Andrea Lüdke"
+      },
+      {
+        "rolle": "Krankenschwester",
+        "sprecher": "Scarlet Cavadenti Lubowski"
+      },
+      {
+        "rolle": "Mann",
+        "sprecher": "Helge Halvé"
+      },
+      {
+        "rolle": "Bandenchef",
+        "sprecher": "Lars Schmidtke"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-011",
+    "episode": "Böser die Glocken nie klingen",
+    "year": 2023,
+    "coverImage": "covers/special-011.webp",
+    "autor": "André Minninger",
+    "veroeffentlichungsdatum": "2023-11-03",
+    "gesamtdauerMs": 12210266,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Erik Schäffler"
+      },
+      {
+        "rolle": "Emily",
+        "sprecher": "Gerlinde Dillge"
+      },
+      {
+        "rolle": "Glenda",
+        "sprecher": "Saskia Haisch"
+      },
+      {
+        "rolle": "Mrs. Kirk",
+        "sprecher": "Suzanne von Borsody"
+      },
+      {
+        "rolle": "Desmond",
+        "sprecher": "Patrick Baehr"
+      },
+      {
+        "rolle": "Megan",
+        "sprecher": "Henrike Fehrs"
+      },
+      {
+        "rolle": "Samuel Leech",
+        "sprecher": "Achim Buch"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Kathy Hiller",
+        "sprecher": "Lucia-Angelina Mahler"
+      },
+      {
+        "rolle": "Violet Bell",
+        "sprecher": "Andrea Lüdke"
+      },
+      {
+        "rolle": "Jack",
+        "sprecher": "Manou Lubowski"
+      },
+      {
+        "rolle": "Daniel",
+        "sprecher": "Sebastian König"
+      },
+      {
+        "rolle": "Blacky",
+        "sprecher": "Heikedine Körting"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-012",
+    "episode": "Gruselige Weihnacht überall",
+    "year": 2025,
+    "coverImage": "covers/special-012.webp",
+    "autor": "Christoph Dittert",
+    "veroeffentlichungsdatum": "2025-11-07",
+    "gesamtdauerMs": 10889720,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Aaron Harper",
+        "sprecher": "Stephan Benson"
+      },
+      {
+        "rolle": "Michael Watkins",
+        "sprecher": "Romanus Fuhrmann"
+      },
+      {
+        "rolle": "Tschadraabalyn Jawuuchulan",
+        "sprecher": "Vixaysak Sihachak"
+      },
+      {
+        "rolle": "Ethan Coleman",
+        "sprecher": "Till Hagen"
+      },
+      {
+        "rolle": "Richardson",
+        "sprecher": "François Smesny"
+      },
+      {
+        "rolle": "Oliver Wilson",
+        "sprecher": "Achim Buch"
+      },
+      {
+        "rolle": "Jakub Krawczyk",
+        "sprecher": "Benjamin-Lew Klon"
+      },
+      {
+        "rolle": "Ewa Krawczyk",
+        "sprecher": "Violetta Ratajczyk"
+      },
+      {
+        "rolle": "Abigail Jensen",
+        "sprecher": "Astrid Kollex"
+      },
+      {
+        "rolle": "Barney",
+        "sprecher": "Christian Weibezahn"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Kellner",
+        "sprecher": "Till Huster"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-013",
+    "episode": "Das Grab der Inka-Mumie",
+    "year": 2017,
+    "coverImage": "covers/special-013.webp",
+    "autor": "Christoph Dittert",
+    "veroeffentlichungsdatum": "2017-03-24",
+    "gesamtdauerMs": 5382547,
+    "sprechrollen": [
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Nayra Paredes",
+        "sprecher": "Sonja Stein"
+      },
+      {
+        "rolle": "Andrés Paredes",
+        "sprecher": "Tim Kreuer"
+      },
+      {
+        "rolle": "Mr. Gabriel Paredes",
+        "sprecher": "Urs Affolter"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
+        "rolle": "Quentin Montgrove",
+        "sprecher": "Eberhard Haar"
+      },
+      {
+        "rolle": "Emma Miller",
+        "sprecher": "Kerstin Draeger"
+      },
+      {
+        "rolle": "Der Einzige Inka",
+        "sprecher": "Eckart Dux"
+      },
+      {
+        "rolle": "Kassiererin im Museum",
+        "sprecher": "Merete Brettschneider"
+      },
+      {
+        "rolle": "Ansagerin im Museum",
+        "sprecher": "Merete Brettschneider"
+      },
+      {
+        "rolle": "Eisdielen-Besitzer",
+        "sprecher": "Robert Missler"
+      },
+      {
+        "rolle": "Alte Frau",
+        "sprecher": "Katja Brügger"
+      },
+      {
+        "rolle": "Mann",
+        "sprecher": "André Gatzke"
+      },
+      {
+        "rolle": "Frau 1",
+        "sprecher": "Heikedine Körting"
+      },
+      {
+        "rolle": "Frau 2",
+        "sprecher": "Susan Jarling"
+      },
+      {
+        "rolle": "Frau 3",
+        "sprecher": "Hella von der Osten-Sacken"
+      },
+      {
+        "rolle": "Frau 4",
+        "sprecher": "Saskia Weckler"
+      },
+      {
+        "rolle": "Mädchen",
+        "sprecher": "Theresa Underberg"
+      },
+      {
+        "rolle": "Kind 1",
+        "sprecher": "Malon Stahlhuth"
+      },
+      {
+        "rolle": "Kind 2",
+        "sprecher": "Julia Fölster"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-014",
+    "episode": "und der Tornadojäger",
+    "year": 2017,
+    "coverImage": "covers/special-014.webp",
+    "autor": "Christoph Dittert",
+    "veroeffentlichungsdatum": "2017-06-23",
+    "gesamtdauerMs": 4300133,
+    "sprechrollen": [
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Dylan Harvey",
+        "sprecher": "Stephan Schad"
+      },
+      {
+        "rolle": "Mrs. Violet Conroy",
+        "sprecher": "Birte Kretschmer"
+      },
+      {
+        "rolle": "Mr. Alex Scott",
+        "sprecher": "Oliver Böttcher"
+      },
+      {
+        "rolle": "Myriel",
+        "sprecher": "Undine Ullmer"
+      },
+      {
+        "rolle": "Zimmermädchen",
+        "sprecher": "Theresa Underberg"
+      },
+      {
+        "rolle": "Zimmerjunge",
+        "sprecher": "Jannik Endemann"
+      },
+      {
+        "rolle": "Mutter im Stadtpark",
+        "sprecher": "Saskia Weckler"
+      },
+      {
+        "rolle": "Klein Peter",
+        "sprecher": "Malon Stahlhuth"
+      },
+      {
+        "rolle": "Kellnerin im Hotel",
+        "sprecher": "Alexandra Garcia"
+      },
+      {
+        "rolle": "Handwerker im Hotel 1",
+        "sprecher": "André Gatzke"
+      },
+      {
+        "rolle": "Handwerker im Hotel 2",
+        "sprecher": "Bent Schönemann"
+      },
+      {
+        "rolle": "Internetcafébesitzer",
+        "sprecher": "Tim Kreuer"
+      },
+      {
+        "rolle": "Vortragsbesucher, Parkbesucher, Frühstücksgäste, Nachbarn",
+        "sprecher": "Susan Jarling, Hilla Fitzen, Nina Minninger, Marine Endemann, Zelda Jahreis, Maud Ackermann, Heikedine Körting, Stephanie Damare, Ingeborg Christiansen, Micaëla Kreißler, Theresa Underberg, Kerstin Draeger, Lennardt Krüger, Kjell Wenzel, Norma Draeger, Florian Herkenrath, Jannik Endemann, Dirk Eichhorn, Stephan Benson"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-015",
+    "episode": "und das kalte Auge",
+    "year": 2017,
+    "coverImage": "covers/special-015.webp",
+    "autor": "Christoph Dittert",
+    "veroeffentlichungsdatum": "2017-08-25",
+    "gesamtdauerMs": 5066480,
+    "sprechrollen": [
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Zachary Collister",
+        "sprecher": "Stephan Benson"
+      },
+      {
+        "rolle": "Skinny Norris",
+        "sprecher": "Andreas von der Meden"
+      },
+      {
+        "rolle": "Mrs. Hilton",
+        "sprecher": "Katja Brügger"
+      },
+      {
+        "rolle": "Mr. Warren",
+        "sprecher": "Stephan Schwartz"
+      },
+      {
+        "rolle": "Luke Havering",
+        "sprecher": "Santiago Ziesmer"
+      },
+      {
+        "rolle": "Colin Havering",
+        "sprecher": "Santiago Ziesmer"
+      },
+      {
+        "rolle": "MacKenzie",
+        "sprecher": "Traudel Sperber"
+      },
+      {
+        "rolle": "Erial",
+        "sprecher": "Robert Missler"
+      },
+      {
+        "rolle": "Andy",
+        "sprecher": "Tim Grobe"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Francine",
+        "sprecher": "Merete Brettschneider"
+      },
+      {
+        "rolle": "Matrose",
+        "sprecher": "Eberhard Haar"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Mrs. Watson",
+        "sprecher": "Corinna Wodrich"
+      },
+      {
+        "rolle": "Betrunkener",
+        "sprecher": "Patrick Bach"
+      },
+      {
+        "rolle": "Kind 1",
+        "sprecher": "Malon Stahlhuth"
+      },
+      {
+        "rolle": "Kind 2",
+        "sprecher": "Julia Fölster"
+      },
+      {
+        "rolle": "Taxifahrer",
+        "sprecher": "Tilman Madaus"
+      },
+      {
+        "rolle": "Kartenspieler",
+        "sprecher": "Robin Brosch"
+      },
+      {
+        "rolle": "Tochter von Erial",
+        "sprecher": "Zelda Jahreis"
+      },
+      {
+        "rolle": "AB-Ansage-Stimme",
+        "sprecher": "Susan Jarling"
+      },
+      {
+        "rolle": "Reporter",
+        "sprecher": "Ivo Möller"
+      },
+      {
+        "rolle": "Journalistin",
+        "sprecher": "Birte Kretschmer"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-016",
+    "episode": "und die schwarze Katze",
+    "year": 2019,
+    "coverImage": "covers/special-016.webp",
+    "autor": "William Arden",
+    "veroeffentlichungsdatum": "2019-02-15",
+    "gesamtdauerMs": 5317587,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Andy Carson",
+        "sprecher": "Stefan Schwade"
+      },
+      {
+        "rolle": "Carson, Andys Vater",
+        "sprecher": "Hans Kahlert"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Gabbo",
+        "sprecher": "Manfred Reddemann"
+      },
+      {
+        "rolle": "Wachmann",
+        "sprecher": "Till Huster"
+      },
+      {
+        "rolle": "Iwan",
+        "sprecher": "Urs Affolter"
+      },
+      {
+        "rolle": "Kommissar Reynolds",
+        "sprecher": "Christian Redl"
+      },
+      {
+        "rolle": "Khan",
+        "sprecher": "Klaus Dittmann"
+      },
+      {
+        "rolle": "Schaustellerin",
+        "sprecher": "Ursula Sieg"
+      },
+      {
+        "rolle": "Vermieter",
+        "sprecher": "Stephan Benson"
+      },
+      {
+        "rolle": "Polizist 1",
+        "sprecher": "Jürgen Holdorf"
+      },
+      {
+        "rolle": "Polizist 2 (Prolog)",
+        "sprecher": "Daniel Welbat"
+      },
+      {
+        "rolle": "Polizist 3 (Prolog)",
+        "sprecher": "Matthias Krauße"
+      },
+      {
+        "rolle": "Losverkäufer",
+        "sprecher": "Joachim Kretzer"
+      },
+      {
+        "rolle": "Kassiererin",
+        "sprecher": "Birte Kretschmer"
+      },
+      {
+        "rolle": "Feuerschlucker",
+        "sprecher": "Robert Missler"
+      },
+      {
+        "rolle": "Jack",
+        "sprecher": "Timo Alexander Wenzel"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-017",
+    "episode": "und das versunkene Schiff",
+    "year": 2019,
+    "coverImage": "covers/special-017.webp",
+    "autor": "André Marx",
+    "veroeffentlichungsdatum": "2019-11-01",
+    "gesamtdauerMs": 6126040,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Amanda Ellis",
+        "sprecher": "Simona Pahl"
+      },
+      {
+        "rolle": "Jo",
+        "sprecher": "Birte Kretschmer"
+      },
+      {
+        "rolle": "Steve Young",
+        "sprecher": "Till Huster"
+      },
+      {
+        "rolle": "Ford Follows",
+        "sprecher": "Stephan Benson"
+      },
+      {
+        "rolle": "Eric Ellis",
+        "sprecher": "Horst Stark"
+      },
+      {
+        "rolle": "Ricardo Yarbrough",
+        "sprecher": "Stefan Brönneke"
+      },
+      {
+        "rolle": "Bibliothekarin",
+        "sprecher": "Rosemarie Wohlbauer"
+      },
+      {
+        "rolle": "Mr. Friedman",
+        "sprecher": "Douglas Welbat"
+      },
+      {
+        "rolle": "Mann in der Bibliothek",
+        "sprecher": "Erik Schäffler"
+      },
+      {
+        "rolle": "Sekretärin",
+        "sprecher": "Christiane Leuchtmann"
+      },
+      {
+        "rolle": "Jackson Cooper",
+        "sprecher": "Oliver Böttcher"
+      },
+      {
+        "rolle": "Mr. Miller",
+        "sprecher": "Pierre Brand"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-018",
+    "episode": "und der dreiäugige Totenkopf",
+    "year": 2020,
+    "coverImage": "covers/special-018.webp",
+    "autor": "Ivar Leon Menger, John Beckmann",
+    "veroeffentlichungsdatum": "2020-02-07",
+    "gesamtdauerMs": 5753347,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Rüdiger Schulzki"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Roger Kind",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Regisseur Kushing",
+        "sprecher": "Tim Grobe"
+      },
+      {
+        "rolle": "Melanie Shepard",
+        "sprecher": "Christiane Leuchtmann"
+      },
+      {
+        "rolle": "Laura",
+        "sprecher": "Henrike Fehrs"
+      },
+      {
+        "rolle": "Lara Bix",
+        "sprecher": "Ursula Sieg"
+      },
+      {
+        "rolle": "Jason Frost",
+        "sprecher": "Robert Missler"
+      },
+      {
+        "rolle": "Kellnerin",
+        "sprecher": "Simona Pahl"
+      },
+      {
+        "rolle": "Museumsdame",
+        "sprecher": "Rhea Harder-Vennewald"
+      },
+      {
+        "rolle": "Monsterpuppe",
+        "sprecher": "Kerstin Draeger"
+      },
+      {
+        "rolle": "Betty Frost",
+        "sprecher": "Rosemarie Wohlbauer"
+      },
+      {
+        "rolle": "Wachmann",
+        "sprecher": "Markus Schäfer"
+      },
+      {
+        "rolle": "Kameramann",
+        "sprecher": "Helge Halvé"
+      },
+      {
+        "rolle": "Tonmann",
+        "sprecher": "Timo Alexander Wenzel"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-019",
+    "episode": "und das Grab der Maya",
+    "year": 2020,
+    "coverImage": "covers/special-019.webp",
+    "autor": "André Marx",
+    "veroeffentlichungsdatum": "2020-11-20",
+    "gesamtdauerMs": 6770387,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Skinny Norris",
+        "sprecher": "Tim Kreuer"
+      },
+      {
+        "rolle": "Sheryl",
+        "sprecher": "Merete Brettschneider"
+      },
+      {
+        "rolle": "Professor Burnham",
+        "sprecher": "Jürgen Thormann"
+      },
+      {
+        "rolle": "Salvador Pérez",
+        "sprecher": "Matthias Klimsa"
+      },
+      {
+        "rolle": "Tuyucim Florentino Ixmatá",
+        "sprecher": "Mario Ramos"
+      },
+      {
+        "rolle": "Tuyucim",
+        "sprecher": "Nicolás Klimsa"
+      },
+      {
+        "rolle": "Maria Pérez",
+        "sprecher": "Caroline Kiesewetter"
+      },
+      {
+        "rolle": "Zachary",
+        "sprecher": "Roman Rossa"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Conrad Williams",
+        "sprecher": "Peter Weis"
+      },
+      {
+        "rolle": "Nachrichtensprecher",
+        "sprecher": "André Schünke"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-020",
+    "episode": "Das Dorf der Teufel",
+    "year": 2025,
+    "coverImage": "covers/special-020.webp",
+    "autor": "Ivar Leon Menger, John Beckmann",
+    "veroeffentlichungsdatum": "2025-10-10",
+    "gesamtdauerMs": 5314413,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Morton",
+        "sprecher": "Michael Prelle"
+      },
+      {
+        "rolle": "Mrs. Vanessa Jacobson",
+        "sprecher": "Anja Topf"
+      },
+      {
+        "rolle": "Mr. Daniel Jacobson",
+        "sprecher": "Joachim Kretzer"
+      },
+      {
+        "rolle": "Mrs. Bates",
+        "sprecher": "Sandra Keck"
+      },
+      {
+        "rolle": "Pete",
+        "sprecher": "Armin Schlagwein"
+      },
+      {
+        "rolle": "Frederik",
+        "sprecher": "Till Hagen"
+      },
+      {
+        "rolle": "Durchsage Flughafen",
+        "sprecher": "Celine Fontanges"
+      },
+      {
+        "rolle": "Brian",
+        "sprecher": "Uwe Lauschke"
+      },
+      {
+        "rolle": "Tim",
+        "sprecher": "Tim Wiese"
+      },
+      {
+        "rolle": "Tom",
+        "sprecher": "Frank Ulbricht"
+      },
+      {
+        "rolle": "Frau am Flughafen",
+        "sprecher": "Heikedine Körting",
+        "pseudonym": "Pamela Punti"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-021",
+    "episode": "und die singende Schlange",
+    "year": 2026,
+    "coverImage": "covers/special-021.webp",
+    "autor": "M. V. Carey",
+    "veroeffentlichungsdatum": "2026-03-13",
+    "gesamtdauerMs": 5419374,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Rüdiger Schulzki"
+      },
+      {
+        "rolle": "Allie Jamison",
+        "sprecher": "Katrin Fröhlich"
+      },
+      {
+        "rolle": "Marie",
+        "sprecher": "Susanne Wulkow"
+      },
+      {
+        "rolle": "Patricia Osborne",
+        "sprecher": "Barbara Focke"
+      },
+      {
+        "rolle": "Madelyn Enderby",
+        "sprecher": "Caroline Kiesewetter"
+      },
+      {
+        "rolle": "Noxworth",
+        "sprecher": "Mario Ramos"
+      },
+      {
+        "rolle": "Asmodi",
+        "sprecher": "Hanns-Jörg Krumpholz"
+      },
+      {
+        "rolle": "Wache",
+        "sprecher": "Wolfgang Kaven"
+      },
+      {
+        "rolle": "Morton",
+        "sprecher": "Michael Prelle"
+      },
+      {
+        "rolle": "Hendricks",
+        "sprecher": "André Beyer"
+      },
+      {
+        "rolle": "Landstreicher",
+        "sprecher": "Jürgen Thormann"
+      },
+      {
+        "rolle": "Mara",
+        "sprecher": "Katja Brügger"
+      },
+      {
+        "rolle": "Dr. Shaitan",
+        "sprecher": "Tim Grobe"
+      },
+      {
+        "rolle": "Barrister/Bentley",
+        "sprecher": "Douglas Welbat"
+      },
+      {
+        "rolle": "TV-Sprecher",
+        "sprecher": "Roman Rossa"
+      },
+      {
+        "rolle": "Mrs. Compton",
+        "sprecher": "Heidi Schaffrath"
+      },
+      {
+        "rolle": "Krankenschwester",
+        "sprecher": "Sarah Madeleine Tusk"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-001",
+    "episode": "und die Geisterlampe",
+    "year": 2012,
+    "coverImage": "covers/kurz-001.webp",
+    "autor": "Kari Erlhoff, Marco Sonnleitner, Hendrik Buchna",
+    "veroeffentlichungsdatum": "2012-09-28",
+    "gesamtdauerMs": 10299360,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Mr. Vancura",
+        "sprecher": "Lutz Herkenrath"
+      },
+      {
+        "rolle": "Mrs. Fox",
+        "sprecher": "Susan Jarling"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Mr. Shaw",
+        "sprecher": "Rasmus Borowski"
+      },
+      {
+        "rolle": "Shannon",
+        "sprecher": "Kerstin Draeger"
+      },
+      {
+        "rolle": "Mr. Mosley",
+        "sprecher": "Neil Malik Abdullah"
+      },
+      {
+        "rolle": "Cowboy",
+        "sprecher": "Achim Schülke"
+      },
+      {
+        "rolle": "Patricia",
+        "sprecher": "Rhea Harder-Vennewald"
+      },
+      {
+        "rolle": "Peter Shawn",
+        "sprecher": "Leonhard Mahlich"
+      },
+      {
+        "rolle": "Marty",
+        "sprecher": "Philipp Draeger"
+      },
+      {
+        "rolle": "Fred",
+        "sprecher": "Guido Bernadotte"
+      },
+      {
+        "rolle": "Mrs. Floyd",
+        "sprecher": "Gabriele Libbach"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Vincent Grimes",
+        "sprecher": "Konstantin Graudus"
+      },
+      {
+        "rolle": "Blacky",
+        "sprecher": "Heikedine Körting"
+      },
+      {
+        "rolle": "Juliet",
+        "sprecher": "Anne Moll"
+      },
+      {
+        "rolle": "Scott",
+        "sprecher": "Tommaso Cacciapuoti"
+      },
+      {
+        "rolle": "John",
+        "sprecher": "Sascha Draeger",
+        "pseudonym": "Martin Sichel"
+      },
+      {
+        "rolle": "Kelly",
+        "sprecher": "Juliane Szalay"
+      },
+      {
+        "rolle": "Norman",
+        "sprecher": "Eckart Dux"
+      },
+      {
+        "rolle": "Mr. Darrow",
+        "sprecher": "Joachim Kappl"
+      },
+      {
+        "rolle": "Frau",
+        "sprecher": "Anja Topf"
+      },
+      {
+        "rolle": "Mann 1",
+        "sprecher": "Thor W. Müller"
+      },
+      {
+        "rolle": "Mann 2",
+        "sprecher": "Helgo Liebig"
+      },
+      {
+        "rolle": "Mann 3",
+        "sprecher": "Rasmus Rakete"
+      },
+      {
+        "rolle": "Mann 4",
+        "sprecher": "Patrick Perales"
+      },
+      {
+        "rolle": "Mann 5",
+        "sprecher": "Patrick Bach"
+      },
+      {
+        "rolle": "Mann 6",
+        "sprecher": "Frank Meyer-Brockmann"
+      },
+      {
+        "rolle": "Mann 7",
+        "sprecher": "Roy Martens"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-002",
+    "episode": "Das Rätsel der Sieben",
+    "year": 2014,
+    "coverImage": "covers/kurz-002.webp",
+    "autor": "André Minninger, Kari Erlhoff, Hendrik Buchna, Marco Sonnleitner, Ben Nevis, Christoph Dittert, André Marx",
+    "veroeffentlichungsdatum": "2014-02-21",
+    "gesamtdauerMs": 9720654,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Emily White",
+        "sprecher": "Sabine Hahn"
+      },
+      {
+        "rolle": "Judy Fradkin",
+        "sprecher": "Ursula Heyer"
+      },
+      {
+        "rolle": "Aladin",
+        "sprecher": "Heidi Schaffrath"
+      },
+      {
+        "rolle": "Aschenputtel",
+        "sprecher": "Regina Lemnitz"
+      },
+      {
+        "rolle": "Prinzessin",
+        "sprecher": "Renate Pichler"
+      },
+      {
+        "rolle": "Rotkäppchen",
+        "sprecher": "Angela Stresemann"
+      },
+      {
+        "rolle": "Meerjungfrau",
+        "sprecher": "Heikedine Körting",
+        "pseudonym": "Pamela Punti"
+      },
+      {
+        "rolle": "Mr. Andrews",
+        "sprecher": "Henry König"
+      },
+      {
+        "rolle": "Mrs. Andrews",
+        "sprecher": "Konstanze Ullmer"
+      },
+      {
+        "rolle": "Arzt",
+        "sprecher": "Erik Schäffler"
+      },
+      {
+        "rolle": "Mrs. Wallace",
+        "sprecher": "Angela Stresemann"
+      },
+      {
+        "rolle": "Bobby",
+        "sprecher": "Merete Brettschneider"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
+        "rolle": "Croupier",
+        "sprecher": "Gosta Liptow"
+      },
+      {
+        "rolle": "Carl Hopkins, Physiker",
+        "sprecher": "Ben Hecker"
+      },
+      {
+        "rolle": "Miller, Schiffsdetektiv",
+        "sprecher": "Michael Grimm"
+      },
+      {
+        "rolle": "Kapitän Sherwood",
+        "sprecher": "Horst Naumann"
+      },
+      {
+        "rolle": "Theodore Quaid",
+        "sprecher": "Dietrich Adam"
+      },
+      {
+        "rolle": "Jamie Peterson, Barmann",
+        "sprecher": "Patrick Bach"
+      },
+      {
+        "rolle": "Handerson",
+        "sprecher": "Wolfgang Rositzka"
+      },
+      {
+        "rolle": "Diego",
+        "sprecher": "Stephan Benson"
+      },
+      {
+        "rolle": "Mercedes",
+        "sprecher": "Hella von der Osten-Sacken",
+        "pseudonym": "Wanda Osten"
+      },
+      {
+        "rolle": "Nayeli",
+        "sprecher": "Stefan Brönneke"
+      },
+      {
+        "rolle": "Barker",
+        "sprecher": "Ben Hecker"
+      },
+      {
+        "rolle": "Off-Sprecherin",
+        "sprecher": "Claudia Stocksieker"
+      },
+      {
+        "rolle": "Ian Carew",
+        "sprecher": "Sascha Draeger"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-003",
+    "episode": "und der Zeitgeist",
+    "year": 2016,
+    "coverImage": "covers/kurz-003.webp",
+    "autor": "Hendrik Buchna, Marco Sonnleitner, André Minninger, Ben Nevis, André Marx, Christoph Dittert, Kari Erlhoff",
+    "veroeffentlichungsdatum": "2016-03-04",
+    "gesamtdauerMs": 8221640,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Hüne",
+        "sprecher": "Johannes Semm"
+      },
+      {
+        "rolle": "Marvin Gray",
+        "sprecher": "Horst Stark"
+      },
+      {
+        "rolle": "Nancy McMonigal",
+        "sprecher": "Gerlinde Dillge"
+      },
+      {
+        "rolle": "Tom",
+        "sprecher": "Wolfgang Rositzka"
+      },
+      {
+        "rolle": "Rod",
+        "sprecher": "Herbert Tennigkeit"
+      },
+      {
+        "rolle": "Joe",
+        "sprecher": "Olaf Reichmann"
+      },
+      {
+        "rolle": "Ben",
+        "sprecher": "Stephan Chrzescinski"
+      },
+      {
+        "rolle": "Mariann",
+        "sprecher": "Simone Ritscher"
+      },
+      {
+        "rolle": "TV-Sprecher",
+        "sprecher": "Holger Wemhoff"
+      },
+      {
+        "rolle": "Malcolm Fever",
+        "sprecher": "Tilo Schmitz"
+      },
+      {
+        "rolle": "Lucy Hopkins",
+        "sprecher": "Topsy Küppers"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Professor Selby",
+        "sprecher": "Claus Wilcke"
+      },
+      {
+        "rolle": "Oberpriesterin",
+        "sprecher": "Elga Schütz"
+      },
+      {
+        "rolle": "Kevin",
+        "sprecher": "Patrick Mölleken"
+      },
+      {
+        "rolle": "Mann in Kutte",
+        "sprecher": "Rüdiger Hellmann"
+      },
+      {
+        "rolle": "Radio",
+        "sprecher": "Wilhelm Wieben"
+      },
+      {
+        "rolle": "Mr. Tilton",
+        "sprecher": "Christian Senger"
+      },
+      {
+        "rolle": "Mr. Walsh",
+        "sprecher": "Christian Rudolf"
+      },
+      {
+        "rolle": "Weise Frau",
+        "sprecher": "Dorothea Hagena"
+      },
+      {
+        "rolle": "Kelly",
+        "sprecher": "Juliane Szalay"
+      },
+      {
+        "rolle": "Patrick",
+        "sprecher": "Nicolas König"
+      },
+      {
+        "rolle": "Samuel",
+        "sprecher": "Johannes Semm"
+      },
+      {
+        "rolle": "Kenneth",
+        "sprecher": "Olaf Reichmann"
+      },
+      {
+        "rolle": "Liz Zapata",
+        "sprecher": "Merete Brettschneider"
+      },
+      {
+        "rolle": "Skinny Norris",
+        "sprecher": "Michael Harck"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-004",
+    "episode": "und der schwarze Tag",
+    "year": 2018,
+    "coverImage": "covers/kurz-004.webp",
+    "autor": "Ben Nevis, André Minninger, Christoph Dittert, Marco Sonnleitner, Kari Erlhoff, Hendrik Buchna",
+    "veroeffentlichungsdatum": "2018-10-28",
+    "gesamtdauerMs": 11729187,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Helen",
+        "sprecher": "Dorette Hugo",
+        "pseudonym": "Balancinha Blanc"
+      },
+      {
+        "rolle": "Ellen",
+        "sprecher": "Dorette Hugo"
+      },
+      {
+        "rolle": "Vater",
+        "sprecher": "Douglas Welbat"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Skinny Norris",
+        "sprecher": "Michael Harck"
+      },
+      {
+        "rolle": "Marc Kingstone",
+        "sprecher": "Rainer Brandt"
+      },
+      {
+        "rolle": "Aaron Kingstone",
+        "sprecher": "Tommi Piper"
+      },
+      {
+        "rolle": "Sarah",
+        "sprecher": "Christiane Leuchtmann"
+      },
+      {
+        "rolle": "Albert",
+        "sprecher": "Franzisko Löwe"
+      },
+      {
+        "rolle": "Kelly Madigan",
+        "sprecher": "Juliane Szalay"
+      },
+      {
+        "rolle": "Mrs. McGee",
+        "sprecher": "Alice Krimmel"
+      },
+      {
+        "rolle": "Toby",
+        "sprecher": "A. Stengelin"
+      },
+      {
+        "rolle": "Mrs. Wells",
+        "sprecher": "Heidi Schaffrath"
+      },
+      {
+        "rolle": "Junge",
+        "sprecher": "Linus Tauber"
+      },
+      {
+        "rolle": "Mädchen",
+        "sprecher": "Katinka Jaekel"
+      },
+      {
+        "rolle": "Ericsson",
+        "sprecher": "Detlef Tams"
+      },
+      {
+        "rolle": "Sprecher/Moderator",
+        "sprecher": "Oliver Böttcher"
+      },
+      {
+        "rolle": "Tarek Shabana",
+        "sprecher": "Werner Wilkening"
+      },
+      {
+        "rolle": "Tasha",
+        "sprecher": "Victoria Zöller"
+      },
+      {
+        "rolle": "Domino Laverna",
+        "sprecher": "Sabine Hahn"
+      },
+      {
+        "rolle": "Biff Rodgers, Reporter",
+        "sprecher": "Daniel Schütter"
+      },
+      {
+        "rolle": "Lesley Dimple",
+        "sprecher": "Ann Montenbruck"
+      },
+      {
+        "rolle": "Zeus Zenon Johnson",
+        "sprecher": "Michael Prelle"
+      },
+      {
+        "rolle": "Computer",
+        "sprecher": "Peter Bayer"
+      },
+      {
+        "rolle": "Off-Sprecher",
+        "sprecher": "Frank Roder"
+      },
+      {
+        "rolle": "Sprecher",
+        "sprecher": "Andreas Birnbaum"
+      },
+      {
+        "rolle": "Blacky",
+        "sprecher": "Heikedine Körting",
+        "pseudonym": "Pamela Punti"
+      },
+      {
+        "rolle": "Kassiererin",
+        "sprecher": "Angela Stresemann"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
       }
     ]
   }

@@ -108,7 +108,11 @@ async function main() {
   // Try fetch specials
   try {
     const specialsRoot = await fetchJson('https://dreimetadaten.de/data/Spezial.json');
-    const specials = Array.isArray(specialsRoot?.serie) ? specialsRoot.serie : [];
+    const specials = Array.isArray(specialsRoot?.spezial)
+      ? specialsRoot.spezial
+      : Array.isArray(specialsRoot?.serie)
+      ? specialsRoot.serie
+      : [];
     let sIndex = 1;
     for (const entry of specials) {
       const title = typeof entry.titel === 'string' ? entry.titel.trim() : '';
@@ -153,7 +157,11 @@ async function main() {
   // Try fetch Kurzgeschichten
   try {
     const kurzRoot = await fetchJson('https://dreimetadaten.de/data/Kurzgeschichten.json');
-    const kurzes = Array.isArray(kurzRoot?.serie) ? kurzRoot.serie : [];
+    const kurzes = Array.isArray(kurzRoot?.kurzgeschichten)
+      ? kurzRoot.kurzgeschichten
+      : Array.isArray(kurzRoot?.serie)
+      ? kurzRoot.serie
+      : [];
     let kIndex = 1;
     for (const entry of kurzes) {
       const title = typeof entry.titel === 'string' ? entry.titel.trim() : '';
