@@ -34,6 +34,7 @@ type Radioplay = {
   wiederhoerenswert: number;
   story: number;
   charakterdynamik: number;
+  mostHatedCharacter: string;
   fallquality: number;
   gruselfaktor: number;
   klassiker: boolean;
@@ -82,6 +83,7 @@ function buildDefaultRadioplays(): Radioplay[] {
     wiedergaben: 0,
     nostalgie: 0,
     lieblingscharakter: '',
+    mostHatedCharacter: '',
     atmosphaere: 0,
     wiederhoerenswert: 0,
     story: 0,
@@ -106,6 +108,7 @@ function buildMiniRadioplays(): Radioplay[] {
     wiedergaben: 0,
     nostalgie: 0,
     lieblingscharakter: '',
+    mostHatedCharacter: '',
     atmosphaere: 0,
     wiederhoerenswert: 0,
     story: 0,
@@ -156,6 +159,7 @@ function hasHeardEvidence(play: Radioplay): boolean {
     || play.gruselfaktor > 0
     || play.zuerstGehoertAm
     || play.lieblingscharakter.trim()
+    || play.mostHatedCharacter?.trim()
     || play.beschreibungDerFolge.trim()
     || Object.values(play.ratingNotizen).some((note) => note.trim().length > 0),
   );
@@ -221,6 +225,9 @@ function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radiopl
     wiedergaben: typeof raw.wiedergaben === 'number' ? raw.wiedergaben : 0,
     nostalgie: typeof raw.nostalgie === 'number' ? raw.nostalgie : 0,
     lieblingscharakter: typeof raw.lieblingscharakter === 'string' ? raw.lieblingscharakter : '',
+    mostHatedCharacter: typeof (raw as { mostHatedCharacter?: unknown }).mostHatedCharacter === 'string'
+      ? (raw as { mostHatedCharacter: string }).mostHatedCharacter
+      : '',
     atmosphaere: hydrateStarValue(raw.atmosphaere),
     wiederhoerenswert: hydrateStarValue(raw.wiederhoerenswert),
     story: typeof raw.story === 'number'
@@ -300,6 +307,7 @@ function loadRadioplays(): Radioplay[] {
           wiedergaben: 0,
           nostalgie: 0,
           lieblingscharakter: '',
+          mostHatedCharacter: '',
           atmosphaere: 0,
           wiederhoerenswert: 0,
           story: 0,
@@ -604,6 +612,10 @@ export default function App() {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, lieblingscharakter } : play)));
   };
 
+  const updateMostHatedCharacter = (id: string, mostHatedCharacter: string) => {
+    setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, mostHatedCharacter } : play)));
+  };
+
   const updateRatingNotiz = (id: string, field: RatingNoteKey, value: string) => {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id
       ? { ...play, ratingNotizen: { ...play.ratingNotizen, [field]: value } }
@@ -690,6 +702,7 @@ export default function App() {
     wiedergaben: 0,
     nostalgie: 0,
     lieblingscharakter: '',
+    mostHatedCharacter: '',
     atmosphaere: 0,
     wiederhoerenswert: 0,
     story: 0,
@@ -1045,11 +1058,23 @@ export default function App() {
               <div className="first-heard-row">
                 <label className="field">
                   <span>Zuerst gehört am</span>
-                  <input
-                    type="date"
-                    value={selected.zuerstGehoertAm}
-                    onChange={(event) => updateZuerstGehoertAm(selected.id, event.target.value)}
-                  />
+                  <div className="date-input-row">
+                    <input
+                      type="date"
+                      value={selected.zuerstGehoertAm}
+                      onChange={(event) => updateZuerstGehoertAm(selected.id, event.target.value)}
+                    />
+                    {selected.zuerstGehoertAm ? (
+                      <button
+                        type="button"
+                        className="clear-date-button"
+                        onClick={() => updateZuerstGehoertAm(selected.id, '')}
+                        aria-label="Datum löschen"
+                      >
+                        Kein Datum
+                      </button>
+                    ) : null}
+                  </div>
                 </label>
 
                 <label className="field field-small-number">
@@ -1073,12 +1098,24 @@ export default function App() {
                   placeholder="z. B. Peter Shaw"
                   list="charakter-suggestions"
                 />
-                <datalist id="charakter-suggestions">
-                  {selectedEpisodeCharacters.map((c) => (
-                    <option key={c} value={c} />
-                  ))}
-                </datalist>
               </label>
+
+              <label className="field">
+                <span>Most hated Charakter</span>
+                <input
+                  type="text"
+                  value={selected.mostHatedCharacter}
+                  onChange={(event) => updateMostHatedCharacter(selected.id, event.target.value)}
+                  placeholder="z. B. Skinny Norris"
+                  list="charakter-suggestions"
+                />
+              </label>
+
+              <datalist id="charakter-suggestions">
+                {selectedEpisodeCharacters.map((c) => (
+                  <option key={c} value={c} />
+                ))}
+              </datalist>
 
               {ratingCategories.map((category) => (
                 <label className="field" key={category.key}>
@@ -1199,7 +1236,7 @@ export default function App() {
                 <span>
                   <button
                     type="button"
-                    className="toggle-icon-button toggle-icon-button-bobcast"
+                    className="toggle-icon-button"
                     onClick={() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert)}
                     aria-pressed={selected.bobcastGehoert}
                     aria-label="Bobcast gehört umschalten"
