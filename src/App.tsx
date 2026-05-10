@@ -863,22 +863,30 @@ export default function App() {
       const serialized = JSON.stringify(backup, null, 2);
       const fileName = createBackupFileName();
 
-      const shareFile = new File([serialized], fileName, { type: 'application/json' });
-      const canShareFiles = typeof navigator.canShare === 'function' && navigator.canShare({ files: [shareFile] });
+      // Use reliable download approach (works on all platforms)
+      triggerBackupDownload(serialized, fileName);
 
-      if (typeof navigator.share === 'function' && canShareFiles) {
-        await navigator.share({
-          title: 'Bobs Archiv Backup',
-          text: 'Backup deiner lokalen Archivdaten',
-          files: [shareFile],
-        });
-      } else {
-        triggerBackupDownload(serialized, fileName);
+      // Optionally try web share API if available (non-blocking)
+      if (typeof navigator.share === 'function' && navigator.canShare !== undefined) {
+        // Web Share API doesn't reliably support files on all platforms,
+        // so we just share text as fallback if needed
+        try {
+          await navigator.share({
+            title: 'Bobs Archiv Backup',
+            text: `Backup vom ${new Date().toLocaleDateString('de-DE')}`,
+          });
+        } catch (shareError) {
+          // Share cancelled or failed, but that's ok since we already downloaded
+          if ((shareError as Error).name !== 'AbortError') {
+            console.debug('Share API not available or cancelled');
+          }
+        }
       }
 
       setBackupMessageTone('info');
       setBackupMessage('Backup exportiert. Datei sicher aufheben (z. B. iCloud, Google Drive oder Dateien-App).');
-    } catch {
+    } catch (error) {
+      console.error('Export backup error:', error);
       setBackupMessageTone('error');
       setBackupMessage('Backup konnte nicht exportiert werden. Bitte erneut versuchen.');
     }
