@@ -1199,7 +1199,7 @@ export default function App() {
                 <span>
                   <button
                     type="button"
-                    className="toggle-icon-button"
+                    className="toggle-icon-button toggle-icon-button-bobcast"
                     onClick={() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert)}
                     aria-pressed={selected.bobcastGehoert}
                     aria-label="Bobcast gehört umschalten"
