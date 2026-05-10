@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ChangeEvent, type SyntheticEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ChangeEvent, type SyntheticEvent } from 'react';
 import episodeCatalog from './dreimetadaten-series.json';
 import { miniEpisodeSeeds } from './mini-episodes';
 
@@ -144,6 +144,25 @@ function hasGeneralRating(play: Radioplay): boolean {
     || play.charakterdynamik > 0
     || play.nostalgie !== 0
   );
+}
+
+function hasHeardEvidence(play: Radioplay): boolean {
+  return Boolean(
+    play.atmosphaere > 0
+    || play.wiederhoerenswert > 0
+    || play.story > 0
+    || play.charakterdynamik > 0
+    || play.nostalgie > 0
+    || play.gruselfaktor > 0
+    || play.zuerstGehoertAm
+    || play.lieblingscharakter.trim()
+    || play.beschreibungDerFolge.trim()
+    || Object.values(play.ratingNotizen).some((note) => note.trim().length > 0),
+  );
+}
+
+function isHeardEpisode(play: Radioplay): boolean {
+  return play.wiedergaben > 0 || hasHeardEvidence(play);
 }
 
 const ratingStarValues = [1, 2, 3, 4, 5] as const;
@@ -488,6 +507,18 @@ export default function App() {
     [rankedEpisodes],
   );
 
+  const heardEpisodes = useMemo(
+    () => radioplays.filter((play) => isHeardEpisode(play)),
+    [radioplays],
+  );
+
+  const heardEpisodesCount = heardEpisodes.length;
+  const heardEpisodesShare = radioplays.length > 0 ? (heardEpisodesCount / radioplays.length) * 100 : 0;
+  const heardEpisodesRemaining = Math.max(0, radioplays.length - heardEpisodesCount);
+  const heardChartStyle = {
+    '--heard-share': `${Math.min(100, Math.max(0, heardEpisodesShare)).toFixed(1)}%`,
+  } as CSSProperties;
+
   const scaryRankedEpisodes = useMemo(
     () => radioplays
       .filter((play) => play.gruselfaktor > 0)
@@ -498,8 +529,8 @@ export default function App() {
 
   const wiedergabenRankedEpisodes = useMemo(
     () => radioplays
-      .filter((play) => play.wiedergaben > 0)
-      .map((play) => ({ play, score: play.wiedergaben }))
+      .filter((play) => isHeardEpisode(play))
+      .map((play) => ({ play, score: Math.max(play.wiedergaben, 1) }))
       .sort((a, b) => b.score - a.score),
     [radioplays],
   );
@@ -523,6 +554,23 @@ export default function App() {
       autoResizeTextarea(textarea);
     });
   }, [selected]);
+
+  useEffect(() => {
+    setRadioplays((current: Radioplay[]) => {
+      let changed = false;
+
+      const next = current.map((play: Radioplay) => {
+        if (hasHeardEvidence(play) && play.wiedergaben === 0) {
+          changed = true;
+          return { ...play, wiedergaben: 1 };
+        }
+
+        return play;
+      });
+
+      return changed ? next : current;
+    });
+  }, [radioplays]);
 
   const updateCategory = (id: string, category: RatingCategory, value: number) => {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, [category]: value } : play)));
@@ -1177,6 +1225,32 @@ export default function App() {
           <div className="panel stats-panel">
             <div className="panel-header">
               <h2>Statistik</h2>
+            </div>
+
+            <div className="heard-summary">
+              <div className="heard-chart-card">
+                <div
+                  className="heard-chart"
+                  style={heardChartStyle}
+                  role="img"
+                  aria-label={`Bereits gehört: ${heardEpisodesCount} von ${radioplays.length} Folgen`}
+                >
+                  <div className="heard-chart-center">
+                    <span className="heard-chart-number">{heardEpisodesCount}</span>
+                    <span className="heard-chart-text">gehört</span>
+                  </div>
+                </div>
+
+                <div className="heard-chart-copy">
+                  <h3>Bereits gehört</h3>
+                  <p>
+                    {radioplays.length > 0
+                      ? `${heardEpisodesCount} von ${radioplays.length} Folgen (${heardEpisodesShare.toFixed(0)}%)`
+                      : 'Noch keine Folgen vorhanden'}
+                  </p>
+                  <p>{heardEpisodesRemaining} Folgen noch offen</p>
+                </div>
+              </div>
             </div>
 
             <h3 className="beste-folgen-title">Beste Folgen</h3>

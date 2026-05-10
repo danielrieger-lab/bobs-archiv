@@ -244,6 +244,85 @@ h1 {
   gap: 16px;
 }
 
+.heard-summary {
+  display: grid;
+  gap: 12px;
+}
+
+.heard-chart-card {
+  display: grid;
+  grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.74));
+}
+
+.heard-chart {
+  --heard-share: 0%;
+  position: relative;
+  width: 150px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(#00ADEC var(--heard-share), rgba(148, 163, 184, 0.18) 0 100%);
+}
+
+.heard-chart::after {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.heard-chart-center {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  text-align: center;
+}
+
+.heard-chart-number {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.heard-chart-text {
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.heard-chart-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.heard-chart-copy h3,
+.heard-chart-copy p {
+  margin: 0;
+}
+
+.heard-chart-copy h3 {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.heard-chart-copy p {
+  color: #cbd5e1;
+}
+
 .cards {
   display: grid;
   gap: 12px;
@@ -655,6 +734,16 @@ input[type='range'] {
   color: #fff;
   font-weight: 600;
 }
+
+  .heard-chart-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .heard-chart {
+    width: 132px;
+  }
 
 .ranking-score {
   color: #cbd5e1;
