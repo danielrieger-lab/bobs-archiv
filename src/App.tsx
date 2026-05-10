@@ -1205,7 +1205,7 @@ export default function App() {
                     aria-label="Bobcast gehört umschalten"
                   >
                     <img
-                      className="rating-icon"
+                      className="rating-icon bobcast-icon"
                       src={ratingIconPath(selected.bobcastGehoert ? 'p2' : 'p')}
                       alt=""
                       aria-hidden="true"
