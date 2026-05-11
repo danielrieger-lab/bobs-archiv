@@ -468,13 +468,13 @@ h1 {
   width: 24px;
   height: 24px;
   display: block;
-  -webkit-filter: brightness(0) invert(1);
-  filter: brightness(0) invert(1);
+  -webkit-filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
+  filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
 }
 
 .bobcast-icon {
-  -webkit-filter: none;
-  filter: none;
+  -webkit-filter: saturate(1.35) brightness(1.12) contrast(1.18) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
+  filter: saturate(1.35) brightness(1.12) contrast(1.18) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
 }
 
 .toggle-icon-button {
