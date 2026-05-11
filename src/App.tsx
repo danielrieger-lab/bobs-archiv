@@ -438,27 +438,7 @@ export default function App() {
     return Array.from(set).sort((a, b) => a.localeCompare(b, 'de'));
   }, [selectedMetadata]);
 
-  const touchGuardRef = useRef<number>(0);
-  const TOUCH_GUARD_MS = 700;
 
-  const runGuarded = (fn: () => void, isTouch: boolean) => {
-    try {
-      if (isTouch) {
-        touchGuardRef.current = Date.now();
-        fn();
-        return;
-      }
-
-      if (Date.now() - touchGuardRef.current < TOUCH_GUARD_MS) {
-        // ignore click because touch already handled
-        return;
-      }
-
-      fn();
-    } catch {
-      // ignore
-    }
-  };
 
   // last check persisted in localStorage under 'bobs-archiv-last-berlin-check'
   const [newEpisodesAvailable, setNewEpisodesAvailable] = useState<number>(0);
@@ -1242,8 +1222,7 @@ export default function App() {
                     <button
                         type="button"
                         className="toggle-icon-button"
-                        onClick={() => runGuarded(() => updateToggle(selected.id, 'klassiker', !selected.klassiker), false)}
-                        onTouchEnd={() => runGuarded(() => updateToggle(selected.id, 'klassiker', !selected.klassiker), true)}
+                        onClick={() => updateToggle(selected.id, 'klassiker', !selected.klassiker)}
                         aria-pressed={selected.klassiker}
                         aria-label="Klassiker umschalten"
                       >
@@ -1263,8 +1242,7 @@ export default function App() {
                     <button
                         type="button"
                         className="toggle-icon-button"
-                        onClick={() => runGuarded(() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert), false)}
-                        onTouchEnd={() => runGuarded(() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert), true)}
+                        onClick={() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert)}
                         aria-pressed={selected.bobcastGehoert}
                         aria-label="Bobcast gehört umschalten"
                       >
