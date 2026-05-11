@@ -485,6 +485,8 @@ h1 {
   margin: 0 6px 0 0;
   line-height: 0;
   vertical-align: middle;
+  position: relative;
+  z-index: 2;
 }
 
 .first-heard-row {
@@ -536,6 +538,8 @@ textarea {
   background: rgba(148, 163, 184, 0.12);
   color: #e5e7eb;
   white-space: nowrap;
+  position: relative;
+  z-index: 2;
 }
 
 input[type='range'] {

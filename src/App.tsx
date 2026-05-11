@@ -438,6 +438,28 @@ export default function App() {
     return Array.from(set).sort((a, b) => a.localeCompare(b, 'de'));
   }, [selectedMetadata]);
 
+  const touchGuardRef = useRef<number>(0);
+  const TOUCH_GUARD_MS = 700;
+
+  const runGuarded = (fn: () => void, isTouch: boolean) => {
+    try {
+      if (isTouch) {
+        touchGuardRef.current = Date.now();
+        fn();
+        return;
+      }
+
+      if (Date.now() - touchGuardRef.current < TOUCH_GUARD_MS) {
+        // ignore click because touch already handled
+        return;
+      }
+
+      fn();
+    } catch {
+      // ignore
+    }
+  };
+
   // last check persisted in localStorage under 'bobs-archiv-last-berlin-check'
   const [newEpisodesAvailable, setNewEpisodesAvailable] = useState<number>(0);
   const [newEpisodesPreview, setNewEpisodesPreview] = useState<Array<{ nummer?: string; titel?: string }>>([]);
@@ -589,6 +611,7 @@ export default function App() {
   };
 
   const updateToggle = (id: string, field: 'klassiker' | 'bobcastGehoert', checked: boolean) => {
+    console.debug('updateToggle', { id, field, checked });
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, [field]: checked } : play)));
   };
 
@@ -597,6 +620,7 @@ export default function App() {
   };
 
   const updateZuerstGehoertAm = (id: string, zuerstGehoertAm: string) => {
+    console.debug('updateZuerstGehoertAm', { id, zuerstGehoertAm });
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, zuerstGehoertAm } : play)));
   };
 
@@ -1069,6 +1093,7 @@ export default function App() {
                         type="button"
                         className="clear-date-button"
                         onClick={() => updateZuerstGehoertAm(selected.id, '')}
+                        onTouchEnd={() => updateZuerstGehoertAm(selected.id, '')}
                         aria-label="Datum löschen"
                       >
                         Kein Datum
@@ -1214,13 +1239,14 @@ export default function App() {
 
               <label className="field">
                 <span>
-                  <button
-                    type="button"
-                    className="toggle-icon-button"
-                    onClick={() => updateToggle(selected.id, 'klassiker', !selected.klassiker)}
-                    aria-pressed={selected.klassiker}
-                    aria-label="Klassiker umschalten"
-                  >
+                    <button
+                        type="button"
+                        className="toggle-icon-button"
+                        onClick={() => runGuarded(() => updateToggle(selected.id, 'klassiker', !selected.klassiker), false)}
+                        onTouchEnd={() => runGuarded(() => updateToggle(selected.id, 'klassiker', !selected.klassiker), true)}
+                        aria-pressed={selected.klassiker}
+                        aria-label="Klassiker umschalten"
+                      >
                     <img
                       className="rating-icon"
                       src={ratingIconPath(selected.klassiker ? 's2' : 's')}
@@ -1234,13 +1260,14 @@ export default function App() {
 
               <label className="field">
                 <span>
-                  <button
-                    type="button"
-                    className="toggle-icon-button"
-                    onClick={() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert)}
-                    aria-pressed={selected.bobcastGehoert}
-                    aria-label="Bobcast gehört umschalten"
-                  >
+                    <button
+                        type="button"
+                        className="toggle-icon-button"
+                        onClick={() => runGuarded(() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert), false)}
+                        onTouchEnd={() => runGuarded(() => updateToggle(selected.id, 'bobcastGehoert', !selected.bobcastGehoert), true)}
+                        aria-pressed={selected.bobcastGehoert}
+                        aria-label="Bobcast gehört umschalten"
+                      >
                     <img
                       className="rating-icon bobcast-icon"
                       src={ratingIconPath(selected.bobcastGehoert ? 'p2' : 'p')}
