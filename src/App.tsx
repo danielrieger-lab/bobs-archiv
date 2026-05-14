@@ -452,8 +452,8 @@ export default function App() {
     const entries = Object.entries(counts);
     entries.sort((a, b) => b[1] - a[1]);
 
-    const topFive = entries.slice(0, 5);
-    const bottomFive = entries.slice(Math.max(entries.length - 5, 0)).sort((a, b) => a[1] - b[1]);
+    const topFive = entries.filter(([, score]) => score > 0).slice(0, 5);
+    const bottomFive = entries.filter(([, score]) => score < 0).slice(0, 5).sort((a, b) => a[1] - b[1]);
 
     return { topFive, bottomFive };
   }, [radioplays]);
