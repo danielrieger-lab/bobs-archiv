@@ -349,6 +349,15 @@ function formatDuration(durationMs: number): string {
   return `${totalMinutes} min`;
 }
 
+function formatDurationLong(durationMs: number): string {
+  const totalMinutes = Math.max(0, Math.floor(durationMs / 60000));
+  const days = Math.floor(totalMinutes / (24 * 60));
+  const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
+  const minutes = totalMinutes % 60;
+
+  return `${days}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
 function getEpisodeMetadata(episodeId: string): EpisodeCatalogEntry | undefined {
   return episodeMetadataEntries.find((entry) => entry.id === episodeId);
 }
@@ -548,6 +557,16 @@ export default function App() {
   const heardChartStyle = {
     '--heard-share': `${Math.min(100, Math.max(0, heardEpisodesShare)).toFixed(1)}%`,
   } as CSSProperties;
+
+  const totalHeardTimeMs = useMemo(() => {
+    return heardEpisodes.reduce((total, play) => {
+      const metadata = getEpisodeMetadata(play.id);
+      if (metadata) {
+        return total + (metadata.gesamtdauerMs * play.wiedergaben);
+      }
+      return total;
+    }, 0);
+  }, [heardEpisodes]);
 
   const scaryRankedEpisodes = useMemo(
     () => radioplays
@@ -1314,6 +1333,12 @@ export default function App() {
                 </div>
               </div>
 
+              <div className="heard-chart-card">
+                <div className="heard-chart-copy">
+                  <h3>Ingesamt gehörte Zeit</h3>
+                  <p className="total-time-display">{formatDurationLong(totalHeardTimeMs)}</p>
+                </div>
+              </div>
             </div>
 
             <h3 className="beste-folgen-title">Beste Folgen</h3>
