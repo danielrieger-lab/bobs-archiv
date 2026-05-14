@@ -1314,30 +1314,6 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="heard-chart-copy">
-                <h3>Charakter-Rankings</h3>
-                <div className="rollenwertung-grid">
-                  <div>
-                    <h4>Lieblingscharaktere</h4>
-                    {rollenwertung.topFive.length === 0 && <p>Keine Nennungen</p>}
-                    <ol>
-                      {rollenwertung.topFive.map(([name, score]) => (
-                        <li key={`top-${name}`}>{name} ({score > 0 ? `+${score}` : score})</li>
-                      ))}
-                    </ol>
-                  </div>
-
-                  <div>
-                    <h4>Most hated Charaktere</h4>
-                    {rollenwertung.bottomFive.length === 0 && <p>Keine Nennungen</p>}
-                    <ol>
-                      {rollenwertung.bottomFive.map(([name, score]) => (
-                        <li key={`bot-${name}`}>{name} ({score > 0 ? `+${score}` : score})</li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <h3 className="beste-folgen-title">Beste Folgen</h3>
@@ -1435,6 +1411,48 @@ export default function App() {
                   </>
                 ) : (
                   <p className="top-flop-empty">Noch keine Bewertung</p>
+                )}
+              </div>
+            </div>
+
+            <div className="scary-section">
+              <h3 className="scary-title">Lieblingscharaktere</h3>
+
+              <div className="ranking-list">
+                {rollenwertung.topFive.length === 0 ? (
+                  <p className="no-data-message">Keine Nennungen</p>
+                ) : (
+                  rollenwertung.topFive.map(([name, score], index) => (
+                    <div
+                      key={`top-char-${name}`}
+                      className="ranking-item-character"
+                    >
+                      <span className="ranking-position">#{index + 1}</span>
+                      <span className="ranking-title">{name}</span>
+                      <span className="ranking-score">{score > 0 ? `+${score}` : score}</span>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            <div className="scary-section">
+              <h3 className="scary-title">Most hated Charaktere</h3>
+
+              <div className="ranking-list">
+                {rollenwertung.bottomFive.length === 0 ? (
+                  <p className="no-data-message">Keine Nennungen</p>
+                ) : (
+                  rollenwertung.bottomFive.map(([name, score], index) => (
+                    <div
+                      key={`bot-char-${name}`}
+                      className="ranking-item-character"
+                    >
+                      <span className="ranking-position">#{index + 1}</span>
+                      <span className="ranking-title">{name}</span>
+                      <span className="ranking-score">{score > 0 ? `+${score}` : score}</span>
+                    </div>
+                  ))
                 )}
               </div>
             </div>
