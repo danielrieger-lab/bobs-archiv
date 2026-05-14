@@ -323,6 +323,28 @@ h1 {
   color: #cbd5e1;
 }
 
+.rollenwertung-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.rollenwertung-grid h4 {
+  margin: 0 0 6px 0;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.rollenwertung-grid ol {
+  margin: 0;
+  padding-left: 18px;
+  color: #cbd5e1;
+}
+
+.rollenwertung-grid li {
+  margin: 2px 0;
+}
+
 .cards {
   display: grid;
   gap: 12px;
@@ -475,6 +497,11 @@ h1 {
 .bobcast-icon {
   -webkit-filter: saturate(1.35) brightness(1.12) contrast(1.18) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
   filter: saturate(1.35) brightness(1.12) contrast(1.18) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
+}
+
+.klassiker-icon-active {
+  -webkit-filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
+  filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
 }
 
 .toggle-icon-button {

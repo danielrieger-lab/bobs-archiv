@@ -438,6 +438,26 @@ export default function App() {
     return Array.from(set).sort((a, b) => a.localeCompare(b, 'de'));
   }, [selectedMetadata]);
 
+  const rollenwertung = useMemo(() => {
+    const counts: Record<string, number> = {};
+
+    radioplays.forEach((play) => {
+      const like = (play.lieblingscharakter || '').trim();
+      if (like) counts[like] = (counts[like] || 0) + 1;
+
+      const hate = (play.mostHatedCharacter || '').trim();
+      if (hate) counts[hate] = (counts[hate] || 0) - 1;
+    });
+
+    const entries = Object.entries(counts);
+    entries.sort((a, b) => b[1] - a[1]);
+
+    const topFive = entries.slice(0, 5);
+    const bottomFive = entries.slice(Math.max(entries.length - 5, 0)).sort((a, b) => a[1] - b[1]);
+
+    return { topFive, bottomFive };
+  }, [radioplays]);
+
 
 
   // last check persisted in localStorage under 'bobs-archiv-last-berlin-check'
@@ -1227,7 +1247,7 @@ export default function App() {
                         aria-label="Klassiker umschalten"
                       >
                     <img
-                      className="rating-icon"
+                      className={`rating-icon klassiker-icon ${selected.klassiker ? 'klassiker-icon-active' : ''}`}
                       src={ratingIconPath(selected.klassiker ? 's2' : 's')}
                       alt=""
                       aria-hidden="true"
@@ -1291,6 +1311,31 @@ export default function App() {
                       : 'Noch keine Folgen vorhanden'}
                   </p>
                   <p>{heardEpisodesRemaining} Folgen noch offen</p>
+                </div>
+              </div>
+
+              <div className="heard-chart-copy">
+                <h3>Charakter-Rankings</h3>
+                <div className="rollenwertung-grid">
+                  <div>
+                    <h4>Lieblingscharaktere</h4>
+                    {rollenwertung.topFive.length === 0 && <p>Keine Nennungen</p>}
+                    <ol>
+                      {rollenwertung.topFive.map(([name, score]) => (
+                        <li key={`top-${name}`}>{name} ({score > 0 ? `+${score}` : score})</li>
+                      ))}
+                    </ol>
+                  </div>
+
+                  <div>
+                    <h4>Most hated Charaktere</h4>
+                    {rollenwertung.bottomFive.length === 0 && <p>Keine Nennungen</p>}
+                    <ol>
+                      {rollenwertung.bottomFive.map(([name, score]) => (
+                        <li key={`bot-${name}`}>{name} ({score > 0 ? `+${score}` : score})</li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
               </div>
             </div>
