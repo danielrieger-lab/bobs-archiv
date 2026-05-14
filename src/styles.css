@@ -506,8 +506,7 @@ h1 {
 }
 
 .klassiker-icon-active {
-  -webkit-filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
-  filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
 }
 
 .toggle-icon-button {
