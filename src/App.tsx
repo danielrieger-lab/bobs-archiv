@@ -56,6 +56,20 @@ type MergeImportPreview = {
   unchanged: number;
 };
 
+type BingoCard = {
+  id: string;
+  title: string;
+  fields: string[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+type BingoCardDraft = {
+  id: string | null;
+  title: string;
+  fields: string[];
+};
+
 function createEmptyRatingNotizen(): Record<RatingNoteKey, string> {
   return {
     atmosphaere: '',
@@ -71,7 +85,72 @@ const STORAGE_CANONICAL_KEY = 'bobs-archiv-fallometer-ratings';
 const STORAGE_KEY = 'bobs-archiv-fallometer-ratings-v1';
 const STORAGE_BACKUP_KEY = 'bobs-archiv-fallometer-ratings-backup-v1';
 const STORAGE_WRITE_KEYS = [STORAGE_CANONICAL_KEY, STORAGE_KEY, STORAGE_BACKUP_KEY] as const;
+const STORAGE_BINGO_KEY = 'bobs-archiv-fallometer-bingo-cards-v1';
 const BASE_URL = import.meta.env.BASE_URL;
+
+const BINGO_GRID_SIZE = 16;
+
+function createEmptyBingoFields(): string[] {
+  return Array.from({ length: BINGO_GRID_SIZE }, () => '');
+}
+
+function createEmptyBingoDraft(): BingoCardDraft {
+  return {
+    id: null,
+    title: '',
+    fields: createEmptyBingoFields(),
+  };
+}
+
+function sanitizeBingoFields(fields: unknown): string[] {
+  if (!Array.isArray(fields)) {
+    return createEmptyBingoFields();
+  }
+
+  const nextFields = fields.slice(0, BINGO_GRID_SIZE).map((field) => (typeof field === 'string' ? field : ''));
+  while (nextFields.length < BINGO_GRID_SIZE) {
+    nextFields.push('');
+  }
+  return nextFields;
+}
+
+function createBingoCardId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+
+  return `bingo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function loadBingoCards(): BingoCard[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_BINGO_KEY);
+    if (!raw) return [];
+
+    const parsed = JSON.parse(raw) as unknown;
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed
+      .filter((item): item is Partial<BingoCard> => typeof item === 'object' && item !== null)
+      .map((item, index) => {
+        const title = typeof item.title === 'string' ? item.title.trim() : '';
+        const createdAt = typeof item.createdAt === 'string' ? item.createdAt : new Date().toISOString();
+        const updatedAt = typeof item.updatedAt === 'string' ? item.updatedAt : createdAt;
+        const id = typeof item.id === 'string' && item.id ? item.id : `bingo-${index + 1}`;
+
+        return {
+          id,
+          title: title || `Bingo ${index + 1}`,
+          fields: sanitizeBingoFields((item as { fields?: unknown }).fields),
+          createdAt,
+          updatedAt,
+        } satisfies BingoCard;
+      });
+  } catch {
+    return [];
+  }
+}
+
 function buildDefaultRadioplays(): Radioplay[] {
   return (episodeCatalog as unknown as EpisodeCatalogEntry[]).map((entry) => ({
     id: entry.id,
@@ -401,6 +480,7 @@ export default function App() {
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
   const [backupMessage, setBackupMessage] = useState('');
   const [backupMessageTone, setBackupMessageTone] = useState<'info' | 'error'>('info');
+  const [isBingoOpen, setIsBingoOpen] = useState(false);
   const replaceImportFileRef = useRef<HTMLInputElement | null>(null);
   const mergeImportFileRef = useRef<HTMLInputElement | null>(null);
   const selected = useMemo(
@@ -659,10 +739,122 @@ export default function App() {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id ? { ...play, mostHatedCharacter } : play)));
   };
 
+  const [bingoCards, setBingoCards] = useState<BingoCard[]>(loadBingoCards);
+  const [bingoDraft, setBingoDraft] = useState<BingoCardDraft>(createEmptyBingoDraft);
+  const [bingoActiveId, setBingoActiveId] = useState('');
+  const [bingoMarks, setBingoMarks] = useState<boolean[]>(() => Array.from({ length: BINGO_GRID_SIZE }, () => false));
+  const [bingoMessage, setBingoMessage] = useState('');
+
+  const bingoActiveCard = useMemo(
+    () => bingoCards.find((card) => card.id === bingoActiveId),
+    [bingoActiveId, bingoCards],
+  );
+  const bingoGridIndexes = useMemo(() => Array.from({ length: BINGO_GRID_SIZE }, (_, index) => index), []);
+  const bingoMarkedCount = bingoMarks.filter(Boolean).length;
+  const bingoHasWon = bingoMarkedCount === BINGO_GRID_SIZE;
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_BINGO_KEY, JSON.stringify(bingoCards));
+    } catch {
+      // keep app running even if iOS storage quota/availability fails
+    }
+  }, [bingoCards]);
+
+  useEffect(() => {
+    if (!bingoActiveCard) {
+      setBingoMarks(Array.from({ length: BINGO_GRID_SIZE }, () => false));
+    }
+  }, [bingoActiveCard]);
+
   const updateRatingNotiz = (id: string, field: RatingNoteKey, value: string) => {
     setRadioplays((current: Radioplay[]) => current.map((play: Radioplay) => (play.id === id
       ? { ...play, ratingNotizen: { ...play.ratingNotizen, [field]: value } }
       : play)));
+  };
+  const updateBingoDraftField = (index: number, value: string) => {
+    setBingoDraft((current) => {
+      const fields = current.fields.slice();
+      fields[index] = value;
+      return { ...current, fields };
+    });
+  };
+  const beginNewBingoCard = () => {
+    setBingoDraft(createEmptyBingoDraft());
+    setBingoMessage('');
+  };
+  const beginEditBingoCard = (card: BingoCard) => {
+    setBingoDraft({
+      id: card.id,
+      title: card.title,
+      fields: card.fields.slice(),
+    });
+    setBingoMessage('');
+    setIsBingoOpen(true);
+  };
+  const saveBingoCard = () => {
+    const title = bingoDraft.title.trim();
+    const fields = bingoDraft.fields.map((field) => field.trim());
+
+    if (!title) {
+      setBingoMessage('Bitte gib deiner Bingocard einen Titel.');
+      return;
+    }
+
+    if (!fields.some((field) => field.length > 0)) {
+      setBingoMessage('Bitte fuelle mindestens ein Feld aus.');
+      return;
+    }
+
+    const now = new Date().toISOString();
+    const nextCard: BingoCard = {
+      id: bingoDraft.id ?? createBingoCardId(),
+      title,
+      fields,
+      createdAt: bingoDraft.id
+        ? bingoCards.find((card) => card.id === bingoDraft.id)?.createdAt ?? now
+        : now,
+      updatedAt: now,
+    };
+
+    setBingoCards((current) => {
+      const existingIndex = current.findIndex((card) => card.id === nextCard.id);
+      if (existingIndex >= 0) {
+        return current.map((card) => (card.id === nextCard.id ? nextCard : card));
+      }
+
+      return [nextCard, ...current];
+    });
+
+    setBingoDraft(createEmptyBingoDraft());
+    setBingoMessage('Bingocard gespeichert. Du kannst sie jetzt in der Liste spielen.');
+  };
+
+  const startBingoGame = (card: BingoCard) => {
+    setBingoActiveId(card.id);
+    setBingoMarks(Array.from({ length: BINGO_GRID_SIZE }, () => false));
+    setBingoMessage(`"${card.title}" ist jetzt zum Spielen geöffnet.`);
+    setIsBingoOpen(true);
+  };
+
+  const toggleBingoCell = (index: number) => {
+    setBingoMarks((current) => current.map((mark, markIndex) => (markIndex === index ? !mark : mark)));
+  };
+
+  const resetBingoGame = () => {
+    setBingoMarks(Array.from({ length: BINGO_GRID_SIZE }, () => false));
+    setBingoMessage('Bingo-Feld wurde zurückgesetzt.');
+  };
+
+  const deleteBingoCard = (cardId: string) => {
+    setBingoCards((current) => current.filter((card) => card.id !== cardId));
+    if (bingoDraft.id === cardId) {
+      setBingoDraft(createEmptyBingoDraft());
+    }
+    if (bingoActiveId === cardId) {
+      setBingoActiveId('');
+    }
+    setBingoMessage('Bingocard gelöscht.');
   };
 
   const createBackupFileName = () => {
@@ -887,6 +1079,9 @@ export default function App() {
     }
   };
 
+  const isArchiveOpen = !selected && !isStatsOpen && !isBingoOpen;
+  const isDetailOpen = Boolean(selected) && !isStatsOpen && !isBingoOpen;
+
   return (
     <main className="app-shell">
       <section className="hero">
@@ -910,8 +1105,147 @@ export default function App() {
         </div>
       ) : null}
 
-      <section className={`layout ${selected && !isStatsOpen ? 'with-details' : ''}`}>
-        {!selected && !isStatsOpen ? (
+      <section className={`layout ${isBingoOpen ? 'with-bingo' : isDetailOpen ? 'with-details' : ''}`}>
+        {isBingoOpen ? (
+          <div className="panel bingo-panel">
+            <div className="panel-header bingo-header">
+              <div>
+                <h2>Bingo</h2>
+                <span>Neue Karten anlegen, speichern und direkt spielen.</span>
+              </div>
+              <button
+                type="button"
+                className="back-button"
+                onClick={() => {
+                  setIsBingoOpen(false);
+                  setBingoMessage('');
+                }}
+              >
+                ← Zurück
+              </button>
+            </div>
+
+            <div className="bingo-layout-grid">
+              <section className="bingo-editor">
+                <h3>{bingoDraft.id ? 'Bingocard bearbeiten' : 'Neue Bingocard'}</h3>
+
+                <label className="field bingo-title-field">
+                  <span>Titel</span>
+                  <input
+                    type="text"
+                    value={bingoDraft.title}
+                    onChange={(event) => setBingoDraft((current) => ({ ...current, title: event.target.value }))}
+                    placeholder="z. B. Grusel-Bingo"
+                  />
+                </label>
+
+                <div className="bingo-grid-editor">
+                  {bingoGridIndexes.map((index) => (
+                    <label key={index} className="bingo-cell-editor">
+                      <span>Feld {index + 1}</span>
+                      <textarea
+                        rows={2}
+                        value={bingoDraft.fields[index] ?? ''}
+                        onChange={(event) => updateBingoDraftField(index, event.target.value)}
+                        placeholder="Text..."
+                      />
+                    </label>
+                  ))}
+                </div>
+
+                <div className="bingo-actions">
+                  <button type="button" className="backup-button" onClick={saveBingoCard}>
+                    Speichern
+                  </button>
+                  <button type="button" className="backup-button backup-button-secondary" onClick={beginNewBingoCard}>
+                    Neu
+                  </button>
+                </div>
+
+                {bingoMessage ? (
+                  <p className={`backup-message ${bingoHasWon ? 'bingo-win-message' : ''}`}>
+                    {bingoMessage}
+                  </p>
+                ) : null}
+              </section>
+
+              <section className="bingo-library">
+                <h3>Gespeicherte Karten</h3>
+
+                {bingoCards.length ? (
+                  <div className="bingo-card-list">
+                    {bingoCards.map((card) => (
+                      <article key={card.id} className={`bingo-card-item ${bingoActiveId === card.id ? 'active' : ''}`}>
+                        <div className="bingo-card-meta">
+                          <strong>{card.title}</strong>
+                          <span>{card.fields.filter((field) => field.trim().length > 0).length}/16 Felder</span>
+                        </div>
+
+                        <div className="bingo-card-actions">
+                          <button type="button" className="backup-button" onClick={() => startBingoGame(card)}>
+                            Spielen
+                          </button>
+                          <button type="button" className="backup-button backup-button-secondary" onClick={() => beginEditBingoCard(card)}>
+                            Bearbeiten
+                          </button>
+                          <button type="button" className="backup-button backup-button-secondary" onClick={() => deleteBingoCard(card.id)}>
+                            Löschen
+                          </button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="empty-state">Noch keine Bingocards gespeichert.</p>
+                )}
+              </section>
+
+              <section className="bingo-player">
+                <div className="panel-header bingo-player-header">
+                  <div>
+                    <h3>{bingoActiveCard ? bingoActiveCard.title : 'Spielmodus'}</h3>
+                    <p>{bingoActiveCard ? `${bingoMarkedCount}/16 markiert` : 'Wähle eine gespeicherte Karte zum Spielen.'}</p>
+                  </div>
+                  <button
+                    type="button"
+                    className="backup-button backup-button-secondary"
+                    onClick={resetBingoGame}
+                    disabled={!bingoActiveCard}
+                  >
+                    Zurücksetzen
+                  </button>
+                </div>
+
+                {bingoActiveCard ? (
+                  <>
+                    <div className="bingo-play-grid">
+                      {bingoGridIndexes.map((index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          className={`bingo-play-cell ${bingoMarks[index] ? 'marked' : ''}`}
+                          onClick={() => toggleBingoCell(index)}
+                        >
+                          <span>{bingoActiveCard.fields[index] || `Feld ${index + 1}`}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    {bingoHasWon ? (
+                      <p className="bingo-win-banner">Bingo! Alle Felder sind markiert.</p>
+                    ) : (
+                      <p className="backup-message">Markiere Felder, sobald sie passieren.</p>
+                    )}
+                  </>
+                ) : (
+                  <p className="empty-state">Noch keine Karte zum Spielen ausgewählt.</p>
+                )}
+              </section>
+            </div>
+          </div>
+        ) : null}
+
+        {isArchiveOpen ? (
           <div className="panel list-panel">
             <div className="panel-header">
               <div>
@@ -960,6 +1294,7 @@ export default function App() {
                   onClick={() => {
                     setSelectedId(play.id);
                     setIsStatsOpen(false);
+                    setIsBingoOpen(false);
                   }}
                   aria-label={play.episode}
                 >
@@ -1028,7 +1363,7 @@ export default function App() {
           </div>
         ) : null}
 
-        {selected && !isStatsOpen ? (
+        {selected && !isStatsOpen && !isBingoOpen ? (
           <div className="panel detail-panel">
             <>
               {(() => {
@@ -1040,6 +1375,7 @@ export default function App() {
               <button className="back-button" onClick={() => {
                 setSelectedId('');
                 setIsStatsOpen(false);
+                setIsBingoOpen(false);
               }}>
                 ← Zurück zum Archiv
               </button>
@@ -1302,7 +1638,7 @@ export default function App() {
           </div>
         ) : null}
 
-        {isStatsOpen ? (
+        {isStatsOpen && !isBingoOpen ? (
           <div className="panel stats-panel">
             <div className="panel-header">
               <h2>Statistik</h2>
@@ -1372,6 +1708,7 @@ export default function App() {
                           onClick={() => {
                             setSelectedId(item.play.id);
                             setIsStatsOpen(false);
+                            setIsBingoOpen(false);
                           }}
                           aria-label={`${item.play.episode} öffnen`}
                         >
@@ -1493,6 +1830,7 @@ export default function App() {
                       setSelectedId(item.play.id);
                       setIsStatsOpen(false);
                       setIsRankingListOpen(false);
+                      setIsBingoOpen(false);
                     }}
                     aria-label={`${item.play.episode} öffnen`}
                   >
@@ -1518,6 +1856,7 @@ export default function App() {
                       setSelectedId(item.play.id);
                       setIsStatsOpen(false);
                       setIsRankingListOpen(false);
+                      setIsBingoOpen(false);
                     }}
                     aria-label={`${item.play.episode} öffnen`}
                   >
@@ -1543,6 +1882,7 @@ export default function App() {
                       setSelectedId(item.play.id);
                       setIsStatsOpen(false);
                       setIsRankingListOpen(false);
+                      setIsBingoOpen(false);
                     }}
                     aria-label={`${item.play.episode} öffnen`}
                   >
@@ -1564,6 +1904,7 @@ export default function App() {
           setSelectedId('');
           setIsStatsOpen(false);
           setIsRankingListOpen(false);
+          setIsBingoOpen(false);
         }} aria-label="Archiv öffnen">
           <svg className="beam-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h13A1.5 1.5 0 0 1 20 8.5v8A1.5 1.5 0 0 1 18.5 18h-13A1.5 1.5 0 0 1 4 16.5z" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -1574,10 +1915,32 @@ export default function App() {
 
         <div className="beam-divider" aria-hidden="true" />
 
+        <button
+          className="beam-button beam-button-center"
+          type="button"
+          aria-label="Bingo öffnen"
+          onClick={() => {
+            setIsBingoOpen(true);
+            setSelectedId('');
+            setIsStatsOpen(false);
+            setIsRankingListOpen(false);
+          }}
+        >
+          <svg className="beam-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 5h6v6H4z" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M14 5h6v6h-6z" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M4 15h6v4H4z" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M14 15h6v4h-6z" fill="none" stroke="currentColor" stroke-width="1.8" />
+          </svg>
+        </button>
+
+        <div className="beam-divider" aria-hidden="true" />
+
         <button className="beam-button beam-button-right" type="button" aria-label="Trophy" onClick={() => {
           setIsStatsOpen(true);
           setSelectedId('');
           setIsRankingListOpen(false);
+          setIsBingoOpen(false);
         }}>
           <svg className="beam-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M8 5h8v3a4 4 0 0 1-8 0z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
