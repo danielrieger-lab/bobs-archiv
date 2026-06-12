@@ -10877,6 +10877,10 @@
         "sprecher": "Stefan Schwade"
       },
       {
+        "rolle": "Alyssa",
+        "sprecher": "Sonja Stein"
+      },
+      {
         "rolle": "Mrs. Hampton",
         "sprecher": "Celine Fontanges"
       },
@@ -16075,6 +16079,74 @@
       {
         "rolle": "Hafenmeisterin Anne",
         "sprecher": "Christiane Leuchtmann"
+      }
+    ]
+  },
+  {
+    "type": "episode",
+    "id": "239",
+    "episode": "Folge 239: Das Geheimnis der sieben Palmen",
+    "year": 2026,
+    "coverImage": "covers/folge-239.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2026-05-22",
+    "gesamtdauerMs": 4751600,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Joseph Lehmann",
+        "sprecher": "Claus Wilcke"
+      },
+      {
+        "rolle": "Felix Lehmann",
+        "sprecher": "Olaf Kreutzenbeck"
+      },
+      {
+        "rolle": "Officer Brandon",
+        "sprecher": "Achim Schülke"
+      },
+      {
+        "rolle": "Imma",
+        "sprecher": "Anika Baumann"
+      },
+      {
+        "rolle": "Lorenzo",
+        "sprecher": "Mathias Renneisen"
+      },
+      {
+        "rolle": "Dr. Paul Hayden",
+        "sprecher": "Michael Bideller"
+      },
+      {
+        "rolle": "Wendell Larimer",
+        "sprecher": "Axel Stosberg"
+      },
+      {
+        "rolle": "Annabelle Fox",
+        "sprecher": "Sofie Junker"
+      },
+      {
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Axel Field",
+        "sprecher": "Stephan A. Tölle"
       }
     ]
   },
