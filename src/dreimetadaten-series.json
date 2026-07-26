@@ -16151,6 +16151,78 @@
     ]
   },
   {
+    "type": "episode",
+    "id": "240",
+    "episode": "Folge 240: und die schwarze Rose",
+    "year": 2026,
+    "coverImage": "covers/folge-240.webp",
+    "autor": "Ben Nevis",
+    "veroeffentlichungsdatum": "2026-07-24",
+    "gesamtdauerMs": 4169293,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Linh Huong",
+        "sprecher": "Neele Pettig"
+      },
+      {
+        "rolle": "Ken Keaton",
+        "sprecher": "Konstantin Graudus"
+      },
+      {
+        "rolle": "O'Brien",
+        "sprecher": "Christian Rudolf"
+      },
+      {
+        "rolle": "Tessa Palmer",
+        "sprecher": "Andrea Lüdke"
+      },
+      {
+        "rolle": "Marco Ribcev",
+        "sprecher": "Joachim Kretzer"
+      },
+      {
+        "rolle": "Officer Jones",
+        "sprecher": "Oliver Böttcher"
+      },
+      {
+        "rolle": "Officer Parker",
+        "sprecher": "Achim Schülke"
+      },
+      {
+        "rolle": "Audrey",
+        "sprecher": "Neda Rahmanian"
+      },
+      {
+        "rolle": "Mr. Bloom",
+        "sprecher": "Christoph M. Ohrt"
+      },
+      {
+        "rolle": "Mrs. Bloom",
+        "sprecher": "Julia Jäger"
+      }
+    ]
+  },
+  {
     "type": "special",
     "id": "S-001",
     "episode": "Master of Chess (Live & Unplugged)",
