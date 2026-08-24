@@ -1758,7 +1758,7 @@ export default function App() {
               </div>
             </div>
 
-            <h3 className="beste-folgen-title">Beste Folgen</h3>
+            <h3 className="beste-folgen-title">Spezialgelagerte Sonderfälle</h3>
 
             <div
               className="podium podium-clickable"
