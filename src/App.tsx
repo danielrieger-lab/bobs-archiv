@@ -1951,7 +1951,7 @@ export default function App() {
             </div>
 
             <div className="scary-section">
-              <h3 className="scary-title">meist gehörte Folgen</h3>
+              <h3 className="scary-title">On Repeat</h3>
 
               <div className="ranking-list">
                 {wiedergabenRankedEpisodes.slice(0, 5).map((item, index) => (
