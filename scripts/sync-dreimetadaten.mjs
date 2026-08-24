@@ -36,7 +36,7 @@ async function downloadAndConvertCover(sourceUrls, outputPath) {
 
       const buffer = Buffer.from(await response.arrayBuffer());
       await sharp(buffer)
-        .resize(400, 400, { fit: 'cover' })
+        .resize(400, 400, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 1 } })
         .webp({ quality: 80 })
         .toFile(outputPath);
       return;

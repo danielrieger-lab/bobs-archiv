@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "sync:dreimetadaten": "node scripts/sync-dreimetadaten.mjs",
+    "reload-covers": "node scripts/reload-covers.mjs",
     "covers:optimize": "node scripts/optimize-covers.mjs"
   },
   "dependencies": {
