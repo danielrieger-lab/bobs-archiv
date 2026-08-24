@@ -60,7 +60,8 @@ async function main() {
 
   for (const entry of serie) {
     if (entry?.unvollständig) {
-      break;
+      // skip incomplete entries rather than stopping the whole import
+      continue;
     }
 
     if (!entry?.nummer) {
