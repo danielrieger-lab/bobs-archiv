@@ -653,6 +653,13 @@ h1 {
 }
 
 .bobcast-icon {
+  /* default: render bobcast icon monochrome like other rating icons */
+  -webkit-filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
+  filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
+}
+
+.bobcast-icon-active {
+  /* when active, apply a subtle color/highlight similar to previous design */
   -webkit-filter: saturate(1.35) brightness(1.12) contrast(1.18) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
   filter: saturate(1.35) brightness(1.12) contrast(1.18) drop-shadow(0 0 1px rgba(0, 0, 0, 0.45));
 }

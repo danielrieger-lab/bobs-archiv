@@ -1703,7 +1703,7 @@ export default function App() {
                         aria-label="Bobcast gehört umschalten"
                       >
                     <img
-                      className="rating-icon bobcast-icon"
+                      className={`rating-icon bobcast-icon${selected.bobcastGehoert ? ' bobcast-icon-active' : ''}`}
                       src={ratingIconPath(selected.bobcastGehoert ? 'p2' : 'p')}
                       alt=""
                       aria-hidden="true"
