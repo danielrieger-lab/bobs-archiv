@@ -958,6 +958,16 @@ input[type='range'] {
   font-weight: 600;
 }
 
+/* Left-align episode number and title, keep cover and score aligned */
+.ranking-position {
+  justify-self: start;
+}
+
+.ranking-title {
+  justify-self: start;
+  text-align: left;
+}
+
   .heard-chart-card {
     grid-template-columns: 1fr;
     justify-items: center;
@@ -988,6 +998,7 @@ input[type='range'] {
 .scary-section {
   display: grid;
   gap: 12px;
+  margin-bottom: 20px;
   margin-top: 40px;
 }
 

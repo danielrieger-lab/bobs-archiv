@@ -1816,7 +1816,7 @@ export default function App() {
                       </>
                     )}
                     <div className="podium-step">
-                      <p className="podium-rank">#{rank}</p>
+                      <p className="podium-rank">{rank}</p>
                     </div>
                   </div>
                 );
@@ -1878,7 +1878,7 @@ export default function App() {
                       key={`top-char-${name}`}
                       className="ranking-item-character"
                     >
-                      <span className="ranking-position">#{index + 1}</span>
+                      <span className="ranking-position">{index + 1}</span>
                       <span className="ranking-title">{name}</span>
                       <span className="ranking-score">{score > 0 ? `+${score}` : score}</span>
                     </div>
@@ -1899,7 +1899,7 @@ export default function App() {
                       key={`bot-char-${name}`}
                       className="ranking-item-character"
                     >
-                      <span className="ranking-position">#{index + 1}</span>
+                      <span className="ranking-position">{index + 1}</span>
                       <span className="ranking-title">{name}</span>
                       <span className="ranking-score">{score > 0 ? `+${score}` : score}</span>
                     </div>
@@ -1923,7 +1923,7 @@ export default function App() {
                     }}
                     aria-label={`${item.play.episode} öffnen`}
                   >
-                    <span className="ranking-position">#{index + 1}</span>
+                    <span className="ranking-position">{index + 1}</span>
                     <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
                     <span className="ranking-title">{item.play.episode}</span>
                     <span className="ranking-score">{item.rating.toFixed(1)}/5</span>
@@ -1949,7 +1949,7 @@ export default function App() {
                     }}
                     aria-label={`${item.play.episode} öffnen`}
                   >
-                    <span className="ranking-position">#{index + 1}</span>
+                    <span className="ranking-position">{index + 1}</span>
                     <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
                     <span className="ranking-title">{item.play.episode}</span>
                     <span className="ranking-score">{item.score}/5</span>
@@ -1975,7 +1975,7 @@ export default function App() {
                     }}
                     aria-label={`${item.play.episode} öffnen`}
                   >
-                    <span className="ranking-position">#{index + 1}</span>
+                    <span className="ranking-position">{index + 1}</span>
                     <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
                     <span className="ranking-title">{item.play.episode}</span>
                     <span className="ranking-score">{item.nostalgie}/5</span>
