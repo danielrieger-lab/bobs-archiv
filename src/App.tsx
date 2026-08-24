@@ -757,6 +757,29 @@ export default function App() {
       .sort((a, b) => b.score - a.score),
     [radioplays],
   );
+
+  const authorsRatingList = useMemo(() => {
+    const map = new Map();
+    for (const play of radioplays) {
+      const meta = getEpisodeMetadata(play.id);
+      const author = meta?.autor?.trim() || '';
+      if (!author) continue;
+      const r = authorsRating(play);
+      if (!Number.isFinite(r) || r <= 0) continue;
+      const cur = map.get(author) || { sum: 0, count: 0 };
+      cur.sum += r;
+      cur.count += 1;
+      map.set(author, cur);
+    }
+
+    const list = Array.from(map.entries()).map(([autor, { sum, count }]) => ({
+      autor,
+      mean: sum / count,
+      count,
+    }));
+
+    return list.sort((a, b) => b.mean - a.mean || b.count - a.count);
+  }, [radioplays]);
   useEffect(() => {
     try {
       const serialized = JSON.stringify(radioplays);
@@ -2012,6 +2035,24 @@ export default function App() {
                     <span className="ranking-score">{item.score}</span>
                   </button>
                 ))}
+              </div>
+            </div>
+
+            <div className="scary-section">
+              <h3 className="scary-title">Autoren-Rating</h3>
+
+              <div className="ranking-list">
+                {authorsRatingList.length === 0 ? (
+                  <p className="no-data-message">Keine Nennungen</p>
+                ) : (
+                  authorsRatingList.map((item, index) => (
+                    <div key={`autor-${item.autor}`} className="ranking-item-character">
+                      <span className="ranking-position">{index + 1}</span>
+                      <span className="ranking-title">{item.autor}</span>
+                      <span className="ranking-score">{item.mean.toFixed(2)}</span>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
 
