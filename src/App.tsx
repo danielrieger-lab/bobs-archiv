@@ -218,6 +218,11 @@ function overallRating(play: Radioplay): number {
   return sum / 5;
 }
 
+function authorsRating(play: Radioplay): number {
+  const sum = play.atmosphaere + play.wiederhoerenswert + play.story + play.charakterdynamik;
+  return sum / 20;
+}
+
 function hasGeneralRating(play: Radioplay): boolean {
   return (
     play.atmosphaere > 0
@@ -688,7 +693,7 @@ export default function App() {
   const topRatedEpisodes = useMemo(
     () => radioplays
       .filter((play) => hasGeneralRating(play))
-      .map((play) => ({ play, rating: overallRating(play) }))
+      .map((play) => ({ play, rating: overallRating(play), autorenRating: authorsRating(play) }))
       .sort((a, b) => b.rating - a.rating)
       .slice(0, 3),
     [radioplays],
@@ -696,7 +701,7 @@ export default function App() {
   const rankedEpisodes = useMemo(
     () => radioplays
       .filter((play) => hasGeneralRating(play))
-      .map((play) => ({ play, rating: overallRating(play) }))
+      .map((play) => ({ play, rating: overallRating(play), autorenRating: authorsRating(play) }))
       .sort((a, b) => b.rating - a.rating),
     [radioplays],
   );
@@ -740,7 +745,7 @@ export default function App() {
   const nostalgieRankedEpisodes = useMemo(
     () => radioplays
       .filter((play) => play.nostalgie > 0)
-      .map((play) => ({ play, nostalgie: play.nostalgie, rating: overallRating(play) }))
+      .map((play) => ({ play, nostalgie: play.nostalgie, rating: overallRating(play), autorenRating: authorsRating(play) }))
       .sort((a, b) => (b.nostalgie - a.nostalgie) || (b.rating - a.rating)),
     [radioplays],
   );
