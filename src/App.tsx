@@ -2001,7 +2001,7 @@ export default function App() {
                     }}
                     aria-label={`${item.play.episode} öffnen`}
                   >
-                    <span className="ranking-position">#{index + 1}</span>
+                    <span className="ranking-position">{index + 1}</span>
                     <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
                     <span className="ranking-title">{item.play.episode}</span>
                     <span className="ranking-score">{item.score}</span>
