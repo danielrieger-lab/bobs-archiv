@@ -737,6 +737,14 @@ export default function App() {
     [radioplays],
   );
 
+  const nostalgieRankedEpisodes = useMemo(
+    () => radioplays
+      .filter((play) => play.nostalgie > 0)
+      .map((play) => ({ play, nostalgie: play.nostalgie, rating: overallRating(play) }))
+      .sort((a, b) => (b.nostalgie - a.nostalgie) || (b.rating - a.rating)),
+    [radioplays],
+  );
+
   const wiedergabenRankedEpisodes = useMemo(
     () => radioplays
       .filter((play) => isHeardEpisode(play))
@@ -1945,6 +1953,32 @@ export default function App() {
                     <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
                     <span className="ranking-title">{item.play.episode}</span>
                     <span className="ranking-score">{item.score}/5</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="scary-section">
+              <h3 className="scary-title">Kassetten Crush</h3>
+
+              <div className="ranking-list">
+                {nostalgieRankedEpisodes.slice(0, 5).map((item, index) => (
+                  <button
+                    key={`nost-top5-${item.play.id}`}
+                    type="button"
+                    className="ranking-item"
+                    onClick={() => {
+                      setSelectedId(item.play.id);
+                      setIsStatsOpen(false);
+                      setIsRankingListOpen(false);
+                      setIsBingoOpen(false);
+                    }}
+                    aria-label={`${item.play.episode} öffnen`}
+                  >
+                    <span className="ranking-position">#{index + 1}</span>
+                    <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
+                    <span className="ranking-title">{item.play.episode}</span>
+                    <span className="ranking-score">{item.nostalgie}/5</span>
                   </button>
                 ))}
               </div>
