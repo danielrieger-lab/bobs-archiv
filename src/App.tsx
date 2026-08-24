@@ -585,6 +585,87 @@ export default function App() {
             const standardCount = serie.filter((e: any) => !e.unvollständig && e.nummer).length || serie.length;
             const localStandardCount = (episodeMetadataEntries as EpisodeCatalogEntry[]).filter((e) => (e.type ?? 'episode') === 'episode').length;
             if (standardCount > localStandardCount) {
+              // compute which episodes are new compared to the bundled catalog
+              const existingIds = new Set((episodeMetadataEntries as EpisodeCatalogEntry[])
+                .filter((e) => (e.type ?? 'episode') === 'episode')
+                .map((e) => String(Number(e.id))));
+
+              const newItems = serie
+                .filter((e: any) => e && e.nummer && !e.unvollständig)
+                .map((e: any) => ({ nummer: String(Number(e.nummer)), titel: typeof e.titel === 'string' ? e.titel.trim() : '', autor: typeof e.autor === 'string' ? e.autor.trim() : '', veroeffentlichungsdatum: typeof e.veroeffentlichungsdatum === 'string' ? e.veroeffentlichungsdatum : '', gesamtdauerMs: Number.isFinite(Number(e.gesamtdauer)) ? Number(e.gesamtdauer) : 0 }))
+                .filter((it: any) => !existingIds.has(it.nummer));
+
+              if (newItems.length > 0) {
+                // persist minimal entries to localStorage so they appear in the app without affecting existing ratings
+                try {
+                  const storedRaw = STORAGE_WRITE_KEYS.map((k) => localStorage.getItem(k)).find((v) => v) || '[]';
+                  const parsed = JSON.parse(storedRaw) || [];
+
+                  const additions: Array<Partial<Radioplay>> = newItems.map((it: any) => ({
+                    id: String(it.nummer),
+                    title: 'Die Drei ???',
+                    episode: `Folge ${it.nummer}: ${it.titel}`,
+                    year: it.veroeffentlichungsdatum ? new Date(it.veroeffentlichungsdatum).getFullYear() : 0,
+                    coverImage: `covers/folge-${String(it.nummer).padStart(3, '0')}.webp`,
+                    zuerstGehoertAm: '',
+                    wiedergaben: 0,
+                    nostalgie: 0,
+                    lieblingscharakter: '',
+                    mostHatedCharacter: '',
+                    atmosphaere: 0,
+                    wiederhoerenswert: 0,
+                    story: 0,
+                    charakterdynamik: 0,
+                    fallquality: 0,
+                    gruselfaktor: 0,
+                    klassiker: false,
+                    bobcastGehoert: false,
+                    beschreibungDerFolge: '',
+                    ratingNotizen: createEmptyRatingNotizen(),
+                  }));
+
+                  // only add ids that are not already present in parsed
+                  const parsedIds = new Set(parsed.filter((p: any) => p && p.id).map((p: any) => String(p.id)));
+                  const toAppend = additions.filter((a) => !parsedIds.has(String(a.id)));
+                  if (toAppend.length > 0) {
+                    const next = [...parsed, ...toAppend];
+                    const asString = JSON.stringify(next);
+                    // write back to canonical key so loadRadioplays picks it up consistently
+                    try { localStorage.setItem(STORAGE_CANONICAL_KEY, asString); } catch {}
+                    try { localStorage.setItem(STORAGE_KEY, asString); } catch {}
+                    try { localStorage.setItem(STORAGE_BACKUP_KEY, asString); } catch {}
+
+                    // hydrate and append to runtime state without overwriting existing ratings
+                    const hydrated = toAppend.map((item) => hydrateRadioplay(item as Partial<Radioplay>, {
+                      id: String(item.id),
+                      title: typeof item.title === 'string' ? item.title : 'Die Drei ???',
+                      episode: typeof item.episode === 'string' ? item.episode : `Folge ${item.id}`,
+                      year: typeof item.year === 'number' ? item.year : 0,
+                      coverImage: typeof item.coverImage === 'string' ? item.coverImage : undefined,
+                      zuerstGehoertAm: '',
+                      wiedergaben: 0,
+                      nostalgie: 0,
+                      lieblingscharakter: '',
+                      mostHatedCharacter: '',
+                      atmosphaere: 0,
+                      wiederhoerenswert: 0,
+                      story: 0,
+                      charakterdynamik: 0,
+                      fallquality: 0,
+                      gruselfaktor: 0,
+                      klassiker: false,
+                      bobcastGehoert: false,
+                      beschreibungDerFolge: '',
+                      ratingNotizen: createEmptyRatingNotizen(),
+                    } as Radioplay));
+
+                    setRadioplays((cur) => [...cur, ...hydrated]);
+                  }
+                } catch {
+                  // ignore storage errors
+                }
+              }
+
               setNewEpisodesAvailable(standardCount - localStandardCount);
               setNewEpisodesPreview(serie.slice(Math.max(0, serie.length - 10)).map((it: any) => ({ nummer: it.nummer, titel: it.titel })));
             }
