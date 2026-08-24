@@ -409,11 +409,11 @@ function loadRadioplays(): Radioplay[] {
 }
 
 function ratingLabel(rating: number): string {
-  if (rating >= 5) return 'Legendär';
+  if (rating >= 4.75) return 'Spezialgelagerter Sonderfall';
   if (rating >= 4) return 'Stark';
   if (rating >= 3) return 'Solide';
-  if (rating >= 2) return 'Schwach';
-  return 'Katastrophe';
+  if (rating >= 2) return 'Mäßig';
+  return 'Kathastrophe';
 }
 
 function formatDuration(durationMs: number): string {
