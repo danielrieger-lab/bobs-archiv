@@ -482,6 +482,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState('');
   const [isStatsOpen, setIsStatsOpen] = useState(false);
   const [archiveSearch, setArchiveSearch] = useState('');
+  const [showUnresolved, setShowUnresolved] = useState(false);
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
   const [backupMessage, setBackupMessage] = useState('');
   const [backupMessageTone, setBackupMessageTone] = useState<'info' | 'error'>('info');
@@ -495,19 +496,27 @@ export default function App() {
   const selectedMetadata = useMemo(() => (selected ? getEpisodeMetadata(selected.id) : undefined), [selected]);
   const normalizedArchiveSearch = archiveSearch.trim().toLowerCase();
   const filteredRadioplays = useMemo(() => {
-    if (!normalizedArchiveSearch) return radioplays;
+    let list = radioplays;
 
-    return radioplays.filter((play) => {
-      const episodeNumber = `folge ${play.id}`;
-      const episodeName = episodeNameFromLabel(play.episode).toLowerCase();
-      const episodeLabel = play.episode.toLowerCase();
-      return (
-        episodeLabel.includes(normalizedArchiveSearch)
-        || episodeNumber.includes(normalizedArchiveSearch)
-        || episodeName.includes(normalizedArchiveSearch)
-      );
-    });
-  }, [normalizedArchiveSearch, radioplays]);
+    if (normalizedArchiveSearch) {
+      list = list.filter((play) => {
+        const episodeNumber = `folge ${play.id}`;
+        const episodeName = episodeNameFromLabel(play.episode).toLowerCase();
+        const episodeLabel = play.episode.toLowerCase();
+        return (
+          episodeLabel.includes(normalizedArchiveSearch)
+          || episodeNumber.includes(normalizedArchiveSearch)
+          || episodeName.includes(normalizedArchiveSearch)
+        );
+      });
+    }
+
+    if (showUnresolved) {
+      list = list.filter((play) => !hasGeneralRating(play));
+    }
+
+    return list;
+  }, [normalizedArchiveSearch, radioplays, showUnresolved]);
   const archiveSuggestions = useMemo(() => {
     if (!normalizedArchiveSearch) return [];
 
@@ -1402,6 +1411,16 @@ export default function App() {
                 ))}
               </div>
             ) : null}
+
+            <div className="archive-controls">
+              <button
+                type="button"
+                className={`filter-button ${showUnresolved ? 'active' : ''}`}
+                onClick={() => setShowUnresolved((s) => !s)}
+              >
+                ungelöste Fälle
+              </button>
+            </div>
 
             <div className="cards">
               {filteredRadioplays.map((play) => (

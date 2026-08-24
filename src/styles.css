@@ -165,6 +165,25 @@ h1 {
 .archive-suggestion {
   border: 1px solid rgba(0, 173, 236, 0.24);
   background: rgba(0, 173, 236, 0.12);
+
+.archive-controls {
+  margin-top: 8px;
+}
+
+.filter-button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.filter-button.active {
+  background: rgba(0, 173, 236, 0.12);
+  border-color: #00ADEC;
+  color: #00ADEC;
+}
   color: #fff;
   border-radius: 999px;
   padding: 8px 12px;
