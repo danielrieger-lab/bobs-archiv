@@ -1,5 +1,5 @@
 // Bump this value to force clients to install a fresh service worker
-const CACHE_NAME = 'bobs-fallometer-v11';
+const CACHE_NAME = 'bobs-fallometer-v10';
 const APP_BASE_PATH = self.location.pathname.replace(/[^/]+$/, '');
 const toAppPath = (path) => `${APP_BASE_PATH}${path}`;
 const INDEX_URL = toAppPath('index.html');
