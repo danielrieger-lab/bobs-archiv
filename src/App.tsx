@@ -1808,7 +1808,10 @@ export default function App() {
               <div className="heard-chart-card">
                 <div className="heard-chart-copy">
                   <h3>Ingesamt gehörte Zeit</h3>
-                  <p className="total-time-display">{formatDurationLong(totalHeardTimeMs)}</p>
+                  <div className="total-time-display">
+                    <span className="total-time-value">{formatDurationLong(totalHeardTimeMs)}</span>
+                    <span className="total-time-unit">(Tage:Stunden:Minuten)</span>
+                  </div>
                 </div>
               </div>
             </div>
