@@ -152,7 +152,9 @@ function loadBingoCards(): BingoCard[] {
 }
 
 function buildDefaultRadioplays(): Radioplay[] {
-  return (episodeCatalog as unknown as EpisodeCatalogEntry[]).map((entry) => ({
+  return (episodeCatalog as unknown as EpisodeCatalogEntry[])
+    .filter((entry) => entry.type !== 'kurz')
+    .map((entry) => ({
     id: entry.id,
     title: 'Die Drei ???',
     episode: entry.episode,
@@ -173,7 +175,7 @@ function buildDefaultRadioplays(): Radioplay[] {
     bobcastGehoert: false,
     beschreibungDerFolge: '',
     ratingNotizen: createEmptyRatingNotizen(),
-  }));
+    }));
 }
 
 function buildMiniRadioplays(): Radioplay[] {
@@ -279,7 +281,11 @@ function hydrateStarValue(rawValue: unknown): number {
 }
 
 function normalizeEpisodeLabel(value: string): string {
-  return value.replace(/^(Folge\s*\d+|K\d+)\s*::\s*/i, '$1: ').replace(/\s{2,}/g, ' ').trim();
+  return value
+    .replace(/^(Folge\s*\d+|K\d+)\s*::\s*/i, '$1: ')
+    .replace(/^K\d+\s*:\s*/i, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
 }
 
 function episodeNameFromLabel(value: string): string {

@@ -55,6 +55,7 @@ async function main() {
   const serie = Array.isArray(root?.serie) ? root.serie : [];
   const completeEpisodes = [];
   const coverJobs = [];
+  const coverFiles = new Set();
   const specialEpisodes = [];
   const kurzgeschichten = [];
 
@@ -165,38 +166,51 @@ async function main() {
       : [];
     let kIndex = 1;
     for (const entry of kurzes) {
-      const title = typeof entry.titel === 'string' ? entry.titel.trim() : '';
-      const autor = typeof entry.autor === 'string' ? entry.autor.trim() : '';
-      const releasedAt = typeof entry.veröffentlichungsdatum === 'string' ? entry.veröffentlichungsdatum : '';
-      const durationMs = Number(entry.gesamtdauer);
-      const coverUrl = typeof entry?.links?.cover === 'string' ? entry.links.cover : '';
-      const artworkUrl = typeof entry?.links?.artwork === 'string' ? entry.links.artwork : '';
-      const fileName = `kurz-${String(kIndex).padStart(3, '0')}.webp`;
-      const coverImage = `covers/${fileName}`;
+      const collectionSlugs = ['geisterlampe', 'raetsel-der-sieben', 'zeitgeist', 'schwarze-tag'];
+      const collectionSlug = collectionSlugs[kIndex - 1] ?? `sammlung-${kIndex}`;
+      const parts = Array.isArray(entry.teile) ? entry.teile : [];
 
-      if (coverUrl || artworkUrl) {
-        coverJobs.push(
-          downloadAndConvertCover([coverUrl, artworkUrl], path.join(coversDir, fileName))
-        );
+      for (const part of parts) {
+        const title = typeof part.titel === 'string' ? part.titel.trim() : '';
+        const autor = typeof part.autor === 'string' ? part.autor.trim() : '';
+        const releasedAt = typeof part.veröffentlichungsdatum === 'string'
+          ? part.veröffentlichungsdatum
+          : typeof entry.veröffentlichungsdatum === 'string' ? entry.veröffentlichungsdatum : '';
+        const durationMs = Number(part.gesamtdauer);
+        const sourceId = part?.ids?.dreimetadaten;
+        const id = Number.isFinite(Number(sourceId)) ? `K-${sourceId}` : `K-${String(kIndex).padStart(3, '0')}`;
+        const fileName = `kurzgeschichten-${collectionSlug}.webp`;
+        const coverImage = `covers/${fileName}`;
+
+        if (!coverFiles.has(fileName)) {
+          const coverUrl = typeof entry?.links?.cover === 'string' ? entry.links.cover : '';
+          const artworkUrl = typeof entry?.links?.artwork === 'string' ? entry.links.artwork : '';
+          if (coverUrl || artworkUrl) {
+            coverFiles.add(fileName);
+            coverJobs.push(
+              downloadAndConvertCover([coverUrl, artworkUrl], path.join(coversDir, fileName))
+            );
+          }
+        }
+
+        kurzgeschichten.push({
+          type: 'kurz',
+          id,
+          episode: title,
+          year: releasedAt ? new Date(releasedAt).getFullYear() : 0,
+          coverImage,
+          autor,
+          veroeffentlichungsdatum: releasedAt,
+          gesamtdauerMs: Number.isFinite(durationMs) ? durationMs : 0,
+          sprechrollen: Array.isArray(part.sprechrollen)
+            ? part.sprechrollen.map((role) => ({
+                rolle: typeof role?.rolle === 'string' ? role.rolle : '',
+                sprecher: typeof role?.sprecher === 'string' ? role.sprecher : '',
+                ...(typeof role?.pseudonym === 'string' && role.pseudonym ? { pseudonym: role.pseudonym } : {}),
+              }))
+            : [],
+        });
       }
-
-      kurzgeschichten.push({
-        type: 'kurz',
-        id: `K-${String(kIndex).padStart(3, '0')}`,
-        episode: title,
-        year: releasedAt ? new Date(releasedAt).getFullYear() : 0,
-        coverImage,
-        autor,
-        veroeffentlichungsdatum: releasedAt,
-        gesamtdauerMs: Number.isFinite(durationMs) ? durationMs : 0,
-        sprechrollen: Array.isArray(entry.sprechrollen)
-          ? entry.sprechrollen.map((role) => ({
-              rolle: typeof role?.rolle === 'string' ? role.rolle : '',
-              sprecher: typeof role?.sprecher === 'string' ? role.sprecher : '',
-              ...(typeof role?.pseudonym === 'string' && role.pseudonym ? { pseudonym: role.pseudonym } : {}),
-            }))
-          : [],
-      });
 
       kIndex += 1;
     }
