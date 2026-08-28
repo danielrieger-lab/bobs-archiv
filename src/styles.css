@@ -959,6 +959,26 @@ input[type='range'] {
   gap: 10px;
 }
 
+.all-ratings-section {
+  display: grid;
+  gap: 10px;
+}
+
+.stats-list-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(15, 23, 42, 0.6);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+}
+
 .ranking-item {
   display: grid;
   grid-template-columns: auto auto 1fr auto;

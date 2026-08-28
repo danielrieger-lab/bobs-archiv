@@ -490,6 +490,7 @@ export default function App() {
   const [archiveSearch, setArchiveSearch] = useState('');
   const [showUnresolved, setShowUnresolved] = useState(false);
   const [isRankingListOpen, setIsRankingListOpen] = useState(false);
+  const [isAllRatingsOpen, setIsAllRatingsOpen] = useState(false);
   const [backupMessage, setBackupMessage] = useState('');
   const [backupMessageTone, setBackupMessageTone] = useState<'info' | 'error'>('info');
   const [isBingoOpen, setIsBingoOpen] = useState(false);
@@ -1877,6 +1878,47 @@ export default function App() {
                   </div>
                 );
               })}
+            </div>
+
+            <div className="all-ratings-section">
+              <button
+                type="button"
+                className="stats-list-toggle"
+                onClick={() => setIsAllRatingsOpen((current) => !current)}
+                aria-expanded={isAllRatingsOpen}
+              >
+                <span>Alle Bewertungen</span>
+                <span aria-hidden="true">{isAllRatingsOpen ? '−' : '+'}</span>
+              </button>
+
+              {isAllRatingsOpen ? (
+                <div className="ranking-list">
+                  {rankedEpisodes.length === 0 ? (
+                    <p className="no-data-message">Noch keine Bewertungen</p>
+                  ) : (
+                    rankedEpisodes.map((item, index) => (
+                      <button
+                        key={`all-rated-${item.play.id}`}
+                        type="button"
+                        className="ranking-item"
+                        onClick={() => {
+                          setSelectedId(item.play.id);
+                          setIsStatsOpen(false);
+                          setIsAllRatingsOpen(false);
+                          setIsRankingListOpen(false);
+                          setIsBingoOpen(false);
+                        }}
+                        aria-label={`${item.play.episode} öffnen`}
+                      >
+                        <span className="ranking-position">{index + 1}</span>
+                        <img className="ranking-cover" src={getCoverSource(item.play)} alt={`${item.play.episode} Cover`} onError={handleCoverError} />
+                        <span className="ranking-title">{item.play.episode}</span>
+                        <span className="ranking-score">{item.rating.toFixed(1)}/5</span>
+                      </button>
+                    ))
+                  )}
+                </div>
+              ) : null}
             </div>
 
             <div className="top-flop-grid">
