@@ -18189,13 +18189,13 @@
   },
   {
     "type": "kurz",
-    "id": "K-001",
+    "id": "K-187",
     "episode": "und die Geisterlampe",
-    "year": 2012,
-    "coverImage": "covers/kurz-001.webp",
-    "autor": "Kari Erlhoff, Marco Sonnleitner, Hendrik Buchna",
-    "veroeffentlichungsdatum": "2012-09-28",
-    "gesamtdauerMs": 10299360,
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Kari Erlhoff",
+    "veroeffentlichungsdatum": "2011-12-02",
+    "gesamtdauerMs": 1109933,
     "sprechrollen": [
       {
         "rolle": "Erzähler",
@@ -18238,8 +18238,68 @@
         "sprecher": "Neil Malik Abdullah"
       },
       {
+        "rolle": "Mann 1",
+        "sprecher": "Thor W. Müller"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-188",
+    "episode": "Dunkle Vergangenheit",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2011-12-04",
+    "gesamtdauerMs": 687480,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
         "rolle": "Cowboy",
         "sprecher": "Achim Schülke"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-189",
+    "episode": "Entführt",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2011-12-06",
+    "gesamtdauerMs": 852774,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Patricia",
@@ -18250,6 +18310,54 @@
         "sprecher": "Leonhard Mahlich"
       },
       {
+        "rolle": "Mann 2",
+        "sprecher": "Helgo Liebig"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-190",
+    "episode": "Verschwörung auf der Eagle Ranch",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2011-12-08",
+    "gesamtdauerMs": 1367653,
+    "sprechrollen": [
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-191",
+    "episode": "SOS",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2011-12-10",
+    "gesamtdauerMs": 661640,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
         "rolle": "Marty",
         "sprecher": "Philipp Draeger"
       },
@@ -18258,8 +18366,88 @@
         "sprecher": "Guido Bernadotte"
       },
       {
+        "rolle": "Mann 3",
+        "sprecher": "Rasmus Rakete"
+      },
+      {
+        "rolle": "Mann 4",
+        "sprecher": "Patrick Perales"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-192",
+    "episode": "Der graue Dämon",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2011-12-12",
+    "gesamtdauerMs": 556307,
+    "sprechrollen": [
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-193",
+    "episode": "Das Lehrstück",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Kari Erlhoff",
+    "veroeffentlichungsdatum": "2011-12-14",
+    "gesamtdauerMs": 749413,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
         "rolle": "Mrs. Floyd",
         "sprecher": "Gabriele Libbach"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-194",
+    "episode": "Das Rätsel der schwarzen Nadel",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2011-12-16",
+    "gesamtdauerMs": 711680,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Tante Mathilda",
@@ -18268,6 +18456,38 @@
       {
         "rolle": "Vincent Grimes",
         "sprecher": "Konstantin Graudus"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-195",
+    "episode": "Der verschwundene Superstar",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Kari Erlhoff",
+    "veroeffentlichungsdatum": "2011-12-18",
+    "gesamtdauerMs": 1055280,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
       },
       {
         "rolle": "Blacky",
@@ -18285,6 +18505,50 @@
         "rolle": "John",
         "sprecher": "Sascha Draeger",
         "pseudonym": "Martin Sichel"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-196",
+    "episode": "Manches verlernt man nie",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2011-12-20",
+    "gesamtdauerMs": 955600,
+    "sprechrollen": [
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-197",
+    "episode": "Psychomoon",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Kari Erlhoff",
+    "veroeffentlichungsdatum": "2011-12-22",
+    "gesamtdauerMs": 670160,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Kelly",
@@ -18295,28 +18559,44 @@
         "sprecher": "Eckart Dux"
       },
       {
-        "rolle": "Mr. Darrow",
-        "sprecher": "Joachim Kappl"
-      },
-      {
         "rolle": "Frau",
         "sprecher": "Anja Topf"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-198",
+    "episode": "Jagd auf den Weihnachtsmann",
+    "year": 2011,
+    "coverImage": "covers/kurzgeschichten-geisterlampe.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2011-12-24",
+    "gesamtdauerMs": 921440,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
       },
       {
-        "rolle": "Mann 1",
-        "sprecher": "Thor W. Müller"
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
       },
       {
-        "rolle": "Mann 2",
-        "sprecher": "Helgo Liebig"
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
       },
       {
-        "rolle": "Mann 3",
-        "sprecher": "Rasmus Rakete"
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
-        "rolle": "Mann 4",
-        "sprecher": "Patrick Perales"
+        "rolle": "Inspektor Cotta",
+        "sprecher": "Holger Mahlich"
+      },
+      {
+        "rolle": "Mr. Darrow",
+        "sprecher": "Joachim Kappl"
       },
       {
         "rolle": "Mann 5",
@@ -18334,13 +18614,13 @@
   },
   {
     "type": "kurz",
-    "id": "K-002",
-    "episode": "Das Rätsel der Sieben",
+    "id": "K-211",
+    "episode": "Der siebte Gast",
     "year": 2014,
-    "coverImage": "covers/kurz-002.webp",
-    "autor": "André Minninger, Kari Erlhoff, Hendrik Buchna, Marco Sonnleitner, Ben Nevis, Christoph Dittert, André Marx",
+    "coverImage": "covers/kurzgeschichten-raetsel-der-sieben.webp",
+    "autor": "André Minninger",
     "veroeffentlichungsdatum": "2014-02-21",
-    "gesamtdauerMs": 9720654,
+    "gesamtdauerMs": 1596747,
     "sprechrollen": [
       {
         "rolle": "Erzähler",
@@ -18386,6 +18666,34 @@
         "rolle": "Meerjungfrau",
         "sprecher": "Heikedine Körting",
         "pseudonym": "Pamela Punti"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-212",
+    "episode": "Bis um sieben zurück",
+    "year": 2014,
+    "coverImage": "covers/kurzgeschichten-raetsel-der-sieben.webp",
+    "autor": "Kari Erlhoff",
+    "veroeffentlichungsdatum": "2014-02-21",
+    "gesamtdauerMs": 1477173,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Mr. Andrews",
@@ -18406,6 +18714,34 @@
       {
         "rolle": "Bobby",
         "sprecher": "Merete Brettschneider"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-213",
+    "episode": "Bobs schwerste Stunde",
+    "year": 2014,
+    "coverImage": "covers/kurzgeschichten-raetsel-der-sieben.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2014-02-21",
+    "gesamtdauerMs": 1574187,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Tante Mathilda",
@@ -18415,6 +18751,34 @@
         "rolle": "Onkel Titus",
         "sprecher": "Andreas E. Beurmann",
         "pseudonym": "Hans Meinhardt"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-214",
+    "episode": "Die rote Sieben",
+    "year": 2014,
+    "coverImage": "covers/kurzgeschichten-raetsel-der-sieben.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2014-02-21",
+    "gesamtdauerMs": 1174080,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Croupier",
@@ -18439,6 +18803,43 @@
       {
         "rolle": "Jamie Peterson, Barmann",
         "sprecher": "Patrick Bach"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-215",
+    "episode": "Schutzgeld",
+    "year": 2014,
+    "coverImage": "covers/kurzgeschichten-raetsel-der-sieben.webp",
+    "autor": "Ben Nevis",
+    "veroeffentlichungsdatum": "2014-02-21",
+    "gesamtdauerMs": 1389800,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
       },
       {
         "rolle": "Handerson",
@@ -18452,6 +18853,34 @@
         "rolle": "Mercedes",
         "sprecher": "Hella von der Osten-Sacken",
         "pseudonym": "Wanda Osten"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-216",
+    "episode": "Die siebte Frau des Leuchters",
+    "year": 2014,
+    "coverImage": "covers/kurzgeschichten-raetsel-der-sieben.webp",
+    "autor": "Christoph Dittert",
+    "veroeffentlichungsdatum": "2014-02-21",
+    "gesamtdauerMs": 1409027,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Nayeli",
@@ -18462,8 +18891,50 @@
         "sprecher": "Ben Hecker"
       },
       {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
+      },
+      {
         "rolle": "Off-Sprecherin",
         "sprecher": "Claudia Stocksieker"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-217",
+    "episode": "Die verschwundene Torte",
+    "year": 2014,
+    "coverImage": "covers/kurzgeschichten-raetsel-der-sieben.webp",
+    "autor": "André Marx",
+    "veroeffentlichungsdatum": "2014-02-21",
+    "gesamtdauerMs": 1099640,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Tante Mathilda",
+        "sprecher": "Karin Lieneweg"
+      },
+      {
+        "rolle": "Onkel Titus",
+        "sprecher": "Andreas E. Beurmann",
+        "pseudonym": "Hans Meinhardt"
       },
       {
         "rolle": "Ian Carew",
@@ -18473,13 +18944,13 @@
   },
   {
     "type": "kurz",
-    "id": "K-003",
-    "episode": "und der Zeitgeist",
+    "id": "K-235",
+    "episode": "Immer und immer wieder",
     "year": 2016,
-    "coverImage": "covers/kurz-003.webp",
-    "autor": "Hendrik Buchna, Marco Sonnleitner, André Minninger, Ben Nevis, André Marx, Christoph Dittert, Kari Erlhoff",
+    "coverImage": "covers/kurzgeschichten-zeitgeist.webp",
+    "autor": "Hendrik Buchna",
     "veroeffentlichungsdatum": "2016-03-04",
-    "gesamtdauerMs": 8221640,
+    "gesamtdauerMs": 950800,
     "sprechrollen": [
       {
         "rolle": "Erzähler",
@@ -18504,6 +18975,34 @@
       {
         "rolle": "Marvin Gray",
         "sprecher": "Horst Stark"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-236",
+    "episode": "Der Raub der Zehntausend",
+    "year": 2016,
+    "coverImage": "covers/kurzgeschichten-zeitgeist.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2016-03-04",
+    "gesamtdauerMs": 1198507,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Nancy McMonigal",
@@ -18532,6 +19031,34 @@
       {
         "rolle": "TV-Sprecher",
         "sprecher": "Holger Wemhoff"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-237",
+    "episode": "Der verschwundene Zeitgeist",
+    "year": 2016,
+    "coverImage": "covers/kurzgeschichten-zeitgeist.webp",
+    "autor": "André Minninger",
+    "veroeffentlichungsdatum": "2016-03-04",
+    "gesamtdauerMs": 1502960,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Malcolm Fever",
@@ -18540,6 +19067,34 @@
       {
         "rolle": "Lucy Hopkins",
         "sprecher": "Topsy Küppers"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-238",
+    "episode": "Leaving Nineteen Sixty-four",
+    "year": 2016,
+    "coverImage": "covers/kurzgeschichten-zeitgeist.webp",
+    "autor": "Ben Nevis",
+    "veroeffentlichungsdatum": "2016-03-04",
+    "gesamtdauerMs": 1748867,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Onkel Titus",
@@ -18569,6 +19124,34 @@
       {
         "rolle": "Radio",
         "sprecher": "Wilhelm Wieben"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-239",
+    "episode": "Rückwärtsgang",
+    "year": 2016,
+    "coverImage": "covers/kurzgeschichten-zeitgeist.webp",
+    "autor": "André Marx",
+    "veroeffentlichungsdatum": "2016-03-04",
+    "gesamtdauerMs": 1136386,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Mr. Tilton",
@@ -18577,6 +19160,34 @@
       {
         "rolle": "Mr. Walsh",
         "sprecher": "Christian Rudolf"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-240",
+    "episode": "Zeit der Opfer, Zeit der Wunder",
+    "year": 2016,
+    "coverImage": "covers/kurzgeschichten-zeitgeist.webp",
+    "autor": "Christoph Dittert, Kari Erlhoff",
+    "veroeffentlichungsdatum": "2016-03-04",
+    "gesamtdauerMs": 1684120,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Thomas Fritsch"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Weise Frau",
@@ -18610,13 +19221,37 @@
   },
   {
     "type": "kurz",
-    "id": "K-004",
-    "episode": "und der schwarze Tag",
+    "id": "K-261",
+    "episode": "Das schwarze Verlies",
     "year": 2018,
-    "coverImage": "covers/kurz-004.webp",
-    "autor": "Ben Nevis, André Minninger, Christoph Dittert, Marco Sonnleitner, Kari Erlhoff, Hendrik Buchna",
+    "coverImage": "covers/kurzgeschichten-schwarze-tag.webp",
+    "autor": "Ben Nevis",
     "veroeffentlichungsdatum": "2018-10-28",
-    "gesamtdauerMs": 11729187,
+    "gesamtdauerMs": 2240920,
+    "sprechrollen": [
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-262",
+    "episode": "Schwarze Seelen",
+    "year": 2018,
+    "coverImage": "covers/kurzgeschichten-schwarze-tag.webp",
+    "autor": "André Minninger",
+    "veroeffentlichungsdatum": "2018-10-28",
+    "gesamtdauerMs": 1855920,
     "sprechrollen": [
       {
         "rolle": "Erzähler",
@@ -18646,6 +19281,34 @@
       {
         "rolle": "Vater",
         "sprecher": "Douglas Welbat"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-263",
+    "episode": "Ein schwarzer Tag für Mr. Kingstone",
+    "year": 2018,
+    "coverImage": "covers/kurzgeschichten-schwarze-tag.webp",
+    "autor": "Christoph Dittert",
+    "veroeffentlichungsdatum": "2018-10-28",
+    "gesamtdauerMs": 1889653,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Tante Mathilda",
@@ -18670,6 +19333,34 @@
       {
         "rolle": "Albert",
         "sprecher": "Franzisko Löwe"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-264",
+    "episode": "Wer hat Angst vorm Schwarzen Mann",
+    "year": 2018,
+    "coverImage": "covers/kurzgeschichten-schwarze-tag.webp",
+    "autor": "Marco Sonnleitner",
+    "veroeffentlichungsdatum": "2018-10-28",
+    "gesamtdauerMs": 1767387,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Kelly Madigan",
@@ -18706,6 +19397,34 @@
       {
         "rolle": "Tarek Shabana",
         "sprecher": "Werner Wilkening"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-265",
+    "episode": "Die schwarze PhantOma",
+    "year": 2018,
+    "coverImage": "covers/kurzgeschichten-schwarze-tag.webp",
+    "autor": "Kari Erlhoff",
+    "veroeffentlichungsdatum": "2018-10-28",
+    "gesamtdauerMs": 2256800,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Tasha",
@@ -18738,6 +19457,34 @@
       {
         "rolle": "Sprecher",
         "sprecher": "Andreas Birnbaum"
+      }
+    ]
+  },
+  {
+    "type": "kurz",
+    "id": "K-266",
+    "episode": "Das schwarze Nest",
+    "year": 2018,
+    "coverImage": "covers/kurzgeschichten-schwarze-tag.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2018-10-28",
+    "gesamtdauerMs": 1718507,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
       },
       {
         "rolle": "Blacky",
