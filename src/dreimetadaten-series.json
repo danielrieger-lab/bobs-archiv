@@ -16223,6 +16223,70 @@
     ]
   },
   {
+    "type": "episode",
+    "id": "241",
+    "episode": "Folge 241: Meister des Lichts",
+    "year": 2026,
+    "coverImage": "covers/folge-241.webp",
+    "autor": "Christoph Dittert",
+    "veroeffentlichungsdatum": "2026-09-18",
+    "gesamtdauerMs": 4740213,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "John Shadwell",
+        "sprecher": "Nicolas König"
+      },
+      {
+        "rolle": "Eron Vess",
+        "sprecher": "Lars Schmidtke"
+      },
+      {
+        "rolle": "Suzanna Outley",
+        "sprecher": "Maria Fuchs"
+      },
+      {
+        "rolle": "Barbeau",
+        "sprecher": "Wolfgang Sommer"
+      },
+      {
+        "rolle": "Nelson Snyder",
+        "sprecher": "Kai Henrik Möller"
+      },
+      {
+        "rolle": "Sensationsreporter",
+        "sprecher": "Joachim Kretzer"
+      },
+      {
+        "rolle": "Frau 1",
+        "sprecher": "Claudia Schermutzki"
+      },
+      {
+        "rolle": "Frau 2",
+        "sprecher": "Christiane Leuchtmann"
+      },
+      {
+        "rolle": "Mann",
+        "sprecher": "Volker Wackermann"
+      }
+    ]
+  },
+  {
     "type": "special",
     "id": "S-001",
     "episode": "Master of Chess (Live & Unplugged)",
