@@ -3061,7 +3061,7 @@
       },
       {
         "rolle": "Ramon Navarro",
-        "sprecher": "Norbert Lange"
+        "sprecher": "Norbert Langer"
       }
     ]
   },
@@ -3165,7 +3165,7 @@
       },
       {
         "rolle": "Häuptling Turner",
-        "sprecher": "Norbert Lange"
+        "sprecher": "Norbert Langer"
       },
       {
         "rolle": "Schamane",
@@ -17438,9 +17438,101 @@
   {
     "type": "special",
     "id": "S-013",
+    "episode": "O Geisterbaum",
+    "year": 2026,
+    "coverImage": "covers/special-013.webp",
+    "autor": "Hendrik Buchna",
+    "veroeffentlichungsdatum": "2026-11-13",
+    "gesamtdauerMs": 11878840,
+    "sprechrollen": [
+      {
+        "rolle": "Erzähler",
+        "sprecher": "Axel Milberg"
+      },
+      {
+        "rolle": "Justus Jonas, Erster Detektiv",
+        "sprecher": "Oliver Rohrbeck"
+      },
+      {
+        "rolle": "Peter Shaw, Zweiter Detektiv",
+        "sprecher": "Jens Wawrczeck"
+      },
+      {
+        "rolle": "Bob Andrews, Recherchen und Archiv",
+        "sprecher": "Andreas Fröhlich"
+      },
+      {
+        "rolle": "Santa Claus",
+        "sprecher": "Michael Prelle"
+      },
+      {
+        "rolle": "Carol",
+        "sprecher": "Julia Jäger"
+      },
+      {
+        "rolle": "Tara Wilcox",
+        "sprecher": "Anna Carlsson"
+      },
+      {
+        "rolle": "Jim Rattles",
+        "sprecher": "Norbert Langer"
+      },
+      {
+        "rolle": "Nigel Crossfield",
+        "sprecher": "Volker Wackermann"
+      },
+      {
+        "rolle": "Stella Cummings",
+        "sprecher": "Claudia Schermutzki"
+      },
+      {
+        "rolle": "Damion Scott",
+        "sprecher": "Wolfgang Sommer"
+      },
+      {
+        "rolle": "Warren",
+        "sprecher": "Peter Lontzek"
+      },
+      {
+        "rolle": "Wichtel",
+        "sprecher": "Patrick Bach"
+      },
+      {
+        "rolle": "Betty",
+        "sprecher": "Christiane Leuchtmann"
+      },
+      {
+        "rolle": "Komponist",
+        "sprecher": "Joachim Kretzer"
+      },
+      {
+        "rolle": "Filmdiva",
+        "sprecher": "Philine Peters-Arnolds"
+      },
+      {
+        "rolle": "Elf",
+        "sprecher": "Lutz Mackensy"
+      },
+      {
+        "rolle": "Larry",
+        "sprecher": "Manou Lubowski"
+      },
+      {
+        "rolle": "Schneemann",
+        "sprecher": "Christian Rudolf"
+      },
+      {
+        "rolle": "Spukstimme",
+        "sprecher": "Jan Sosniok"
+      }
+    ]
+  },
+  {
+    "type": "special",
+    "id": "S-014",
     "episode": "Das Grab der Inka-Mumie",
     "year": 2017,
-    "coverImage": "covers/special-013.webp",
+    "coverImage": "covers/special-014.webp",
     "autor": "Christoph Dittert",
     "veroeffentlichungsdatum": "2017-03-24",
     "gesamtdauerMs": 5382547,
@@ -17542,10 +17634,10 @@
   },
   {
     "type": "special",
-    "id": "S-014",
+    "id": "S-015",
     "episode": "und der Tornadojäger",
     "year": 2017,
-    "coverImage": "covers/special-014.webp",
+    "coverImage": "covers/special-015.webp",
     "autor": "Christoph Dittert",
     "veroeffentlichungsdatum": "2017-06-23",
     "gesamtdauerMs": 4300133,
@@ -17618,10 +17710,10 @@
   },
   {
     "type": "special",
-    "id": "S-015",
+    "id": "S-016",
     "episode": "und das kalte Auge",
     "year": 2017,
-    "coverImage": "covers/special-015.webp",
+    "coverImage": "covers/special-016.webp",
     "autor": "Christoph Dittert",
     "veroeffentlichungsdatum": "2017-08-25",
     "gesamtdauerMs": 5066480,
@@ -17739,10 +17831,10 @@
   },
   {
     "type": "special",
-    "id": "S-016",
+    "id": "S-017",
     "episode": "und die schwarze Katze",
     "year": 2019,
-    "coverImage": "covers/special-016.webp",
+    "coverImage": "covers/special-017.webp",
     "autor": "William Arden",
     "veroeffentlichungsdatum": "2019-02-15",
     "gesamtdauerMs": 5317587,
@@ -17840,10 +17932,10 @@
   },
   {
     "type": "special",
-    "id": "S-017",
+    "id": "S-018",
     "episode": "und das versunkene Schiff",
     "year": 2019,
-    "coverImage": "covers/special-017.webp",
+    "coverImage": "covers/special-018.webp",
     "autor": "André Marx",
     "veroeffentlichungsdatum": "2019-11-01",
     "gesamtdauerMs": 6126040,
@@ -17916,10 +18008,10 @@
   },
   {
     "type": "special",
-    "id": "S-018",
+    "id": "S-019",
     "episode": "und der dreiäugige Totenkopf",
     "year": 2020,
-    "coverImage": "covers/special-018.webp",
+    "coverImage": "covers/special-019.webp",
     "autor": "Ivar Leon Menger, John Beckmann",
     "veroeffentlichungsdatum": "2020-02-07",
     "gesamtdauerMs": 5753347,
@@ -18008,10 +18100,10 @@
   },
   {
     "type": "special",
-    "id": "S-019",
+    "id": "S-020",
     "episode": "und das Grab der Maya",
     "year": 2020,
-    "coverImage": "covers/special-019.webp",
+    "coverImage": "covers/special-020.webp",
     "autor": "André Marx",
     "veroeffentlichungsdatum": "2020-11-20",
     "gesamtdauerMs": 6770387,
@@ -18080,10 +18172,10 @@
   },
   {
     "type": "special",
-    "id": "S-020",
+    "id": "S-021",
     "episode": "Das Dorf der Teufel",
     "year": 2025,
-    "coverImage": "covers/special-020.webp",
+    "coverImage": "covers/special-021.webp",
     "autor": "Ivar Leon Menger, John Beckmann",
     "veroeffentlichungsdatum": "2025-10-10",
     "gesamtdauerMs": 5314413,
@@ -18153,10 +18245,10 @@
   },
   {
     "type": "special",
-    "id": "S-021",
+    "id": "S-022",
     "episode": "und die singende Schlange",
     "year": 2026,
-    "coverImage": "covers/special-021.webp",
+    "coverImage": "covers/special-022.webp",
     "autor": "M. V. Carey",
     "veroeffentlichungsdatum": "2026-03-13",
     "gesamtdauerMs": 5419374,
