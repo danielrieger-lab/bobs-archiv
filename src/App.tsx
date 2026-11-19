@@ -684,29 +684,55 @@ export default function App() {
             const serie = Array.isArray(payload?.serie) ? payload.serie : [];
             const standardCount = serie.filter((e: any) => !e.unvollständig && e.nummer).length || serie.length;
             const localStandardCount = (episodeMetadataEntries as EpisodeCatalogEntry[]).filter((e) => (e.type ?? 'episode') === 'episode').length;
-            if (standardCount > localStandardCount) {
+            let specials: any[] = [];
+            try {
+              const specialsResponse = await fetch('https://dreimetadaten.de/data/Spezial.json', { cache: 'no-store' });
+              if (specialsResponse.ok) {
+                const specialsPayload = await specialsResponse.json();
+                specials = Array.isArray(specialsPayload?.spezial)
+                  ? specialsPayload.spezial
+                  : Array.isArray(specialsPayload?.serie)
+                    ? specialsPayload.serie
+                    : [];
+              }
+            } catch {
+              // Keep the bundled catalog and local ratings when the specials feed is unavailable.
+            }
+
+            if (standardCount > localStandardCount || specials.length > 0) {
               // compute which episodes are new compared to the bundled catalog
               const existingIds = new Set((episodeMetadataEntries as EpisodeCatalogEntry[])
-                .filter((e) => (e.type ?? 'episode') === 'episode')
-                .map((e) => String(Number(e.id))));
+                .map((e) => String(e.id)));
 
               const newItems = serie
                 .filter((e: any) => e && e.nummer && !e.unvollständig)
                 .map((e: any) => ({ nummer: String(Number(e.nummer)), titel: typeof e.titel === 'string' ? e.titel.trim() : '', autor: typeof e.autor === 'string' ? e.autor.trim() : '', veroeffentlichungsdatum: typeof e.veroeffentlichungsdatum === 'string' ? e.veroeffentlichungsdatum : '', gesamtdauerMs: Number.isFinite(Number(e.gesamtdauer)) ? Number(e.gesamtdauer) : 0 }))
                 .filter((it: any) => !existingIds.has(it.nummer));
+              const specialItems = specials
+                .map((e: any, index: number) => ({
+                  nummer: `S-${String(index + 1).padStart(3, '0')}`,
+                  titel: typeof e.titel === 'string' ? e.titel.trim() : '',
+                  veroeffentlichungsdatum: typeof e.veroeffentlichungsdatum === 'string' ? e.veroeffentlichungsdatum : '',
+                  gesamtdauerMs: Number.isFinite(Number(e.gesamtdauer)) ? Number(e.gesamtdauer) : 0,
+                  isSpecial: true,
+                }))
+                .filter((it: any) => it.titel && !existingIds.has(it.nummer));
 
-              if (newItems.length > 0) {
+              const allNewItems = [...newItems, ...specialItems];
+              if (allNewItems.length > 0) {
                 // persist minimal entries to localStorage so they appear in the app without affecting existing ratings
                 try {
                   const storedRaw = STORAGE_WRITE_KEYS.map((k) => localStorage.getItem(k)).find((v) => v) || '[]';
                   const parsed = JSON.parse(storedRaw) || [];
 
-                  const additions: Array<Partial<Radioplay>> = newItems.map((it: any) => ({
+                  const additions: Array<Partial<Radioplay>> = allNewItems.map((it: any) => ({
                     id: String(it.nummer),
                     title: 'Die Drei ???',
-                    episode: `Folge ${it.nummer}: ${it.titel}`,
+                    episode: it.isSpecial ? it.titel : `Folge ${it.nummer}: ${it.titel}`,
                     year: it.veroeffentlichungsdatum ? new Date(it.veroeffentlichungsdatum).getFullYear() : 0,
-                    coverImage: `covers/folge-${String(it.nummer).padStart(3, '0')}.webp`,
+                    coverImage: it.isSpecial
+                      ? `covers/special-${String(it.nummer.replace('S-', '')).padStart(3, '0')}.webp`
+                      : `covers/folge-${String(it.nummer).padStart(3, '0')}.webp`,
                     zuerstGehoertAm: '',
                     wiedergaben: 0,
                     nostalgie: 0,
@@ -809,8 +835,11 @@ export default function App() {
                 }
               }
 
-              setNewEpisodesAvailable(standardCount - localStandardCount);
-              setNewEpisodesPreview(serie.slice(Math.max(0, serie.length - 10)).map((it: any) => ({ nummer: it.nummer, titel: it.titel })));
+              setNewEpisodesAvailable(allNewItems.length);
+              setNewEpisodesPreview(allNewItems.slice(-10).map((it: any) => ({
+                nummer: it.nummer,
+                titel: it.titel,
+              })));
             }
 
             localStorage.setItem('bobs-archiv-last-berlin-check', dateKey);

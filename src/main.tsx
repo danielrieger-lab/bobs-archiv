@@ -26,8 +26,13 @@ if ('serviceWorker' in navigator) {
         // Ignore service worker registration failures in development.
       });
 
+    let previousController = navigator.serviceWorker.controller;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      window.location.reload();
+      if (previousController && !sessionStorage.getItem('bobs-archiv-reloaded-after-sw-update')) {
+        sessionStorage.setItem('bobs-archiv-reloaded-after-sw-update', '1');
+        window.location.reload();
+      }
+      previousController = navigator.serviceWorker.controller;
     });
   });
 }

@@ -116,8 +116,13 @@ async function main() {
       ? specialsRoot.serie
       : [];
     let sIndex = 1;
+    const seenSpecialTitles = new Set();
     for (const entry of specials) {
       const title = typeof entry.titel === 'string' ? entry.titel.trim() : '';
+      if (!title || seenSpecialTitles.has(title)) {
+        continue;
+      }
+      seenSpecialTitles.add(title);
       const autor = typeof entry.autor === 'string' ? entry.autor.trim() : '';
       const releasedAt = typeof entry.veröffentlichungsdatum === 'string' ? entry.veröffentlichungsdatum : '';
       const durationMs = Number(entry.gesamtdauer);
