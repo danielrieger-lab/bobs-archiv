@@ -492,7 +492,16 @@ function loadRadioplays(): Radioplay[] {
         return hydrateRadioplay(item, fallback);
       });
 
-    return [...mergedDefaults, ...customEpisodes];
+    const reconciled = [...mergedDefaults, ...customEpisodes];
+    const reconciledRaw = JSON.stringify(reconciled);
+    if (storedPayload.raw !== reconciledRaw) {
+      try {
+        STORAGE_WRITE_KEYS.forEach((key) => localStorage.setItem(key, reconciledRaw));
+      } catch {
+        // Keep app running even if iOS storage quota/availability fails.
+      }
+    }
+    return reconciled;
   } catch {
     return defaultRadioplays;
   }

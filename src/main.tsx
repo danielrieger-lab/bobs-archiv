@@ -28,8 +28,7 @@ if ('serviceWorker' in navigator) {
 
     let previousController = navigator.serviceWorker.controller;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (previousController && !sessionStorage.getItem('bobs-archiv-reloaded-after-sw-update')) {
-        sessionStorage.setItem('bobs-archiv-reloaded-after-sw-update', '1');
+      if (previousController) {
         window.location.reload();
       }
       previousController = navigator.serviceWorker.controller;
