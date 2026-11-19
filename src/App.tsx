@@ -164,7 +164,7 @@ function buildDefaultRadioplays(): Radioplay[] {
     .map((entry) => ({
     id: entry.id,
     title: 'Die Drei ???',
-    episode: entry.episode,
+    episode: entry.id.startsWith('S-') ? `S-${entry.id.slice(2)}: ${entry.episode}` : entry.episode,
     year: entry.year,
     coverImage: entry.coverImage,
     zuerstGehoertAm: '',
@@ -289,7 +289,7 @@ function hydrateStarValue(rawValue: unknown): number {
 
 function normalizeEpisodeLabel(value: string): string {
   return value
-    .replace(/^(Folge\s*\d+|K\d+)\s*::\s*/i, '$1: ')
+    .replace(/^(Folge\s*\d+|K\d+|S-\d+)\s*::\s*/i, '$1: ')
     .replace(/^K\d+\s*:\s*/i, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
@@ -297,14 +297,15 @@ function normalizeEpisodeLabel(value: string): string {
 
 function episodeNameFromLabel(value: string): string {
   const normalized = normalizeEpisodeLabel(value);
-  const match = normalized.match(/^(?:Folge\s*\d+|K\d+)\s*:\s*(.+)$/i);
+  const match = normalized.match(/^(?:Folge\s*\d+|K\d+|S-\d+)\s*:\s*(.+)$/i);
   return match?.[1]?.trim() ?? normalized;
 }
 
 function episodeNumberFromLabel(value: string): string {
   const normalized = normalizeEpisodeLabel(value);
-  const match = normalized.match(/^((?:Folge\s*\d+)|(?:K\d+))\s*:/i);
-  return match?.[1] ?? '';
+  const match = normalized.match(/^((?:Folge\s*\d+)|(?:K\d+)|(?:S-\d+))\s*:/i);
+  if (match) return match[1];
+  return '';
 }
 
 function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radioplay {
@@ -351,10 +352,26 @@ function mergeDuplicateRadioplays(plays: Array<Partial<Radioplay>>): Array<Parti
   const mergedById = new Map<string, Partial<Radioplay>>();
 
   for (const play of plays) {
-    if (typeof play.id !== 'string') continue;
-    const existing = mergedById.get(play.id);
+    let id = typeof play.id === 'string' ? play.id : '';
+    if (
+      id !== 'S-013'
+      && typeof play.episode === 'string'
+      && (episodeNameFromLabel(play.episode).toLowerCase() === 'o geisterbaum'
+        || play.episode.trim().toLowerCase() === 'o geisterbaum')
+    ) {
+      id = 'S-013';
+    }
+    if (!id) continue;
+    const normalizedPlay = id === 'S-013'
+      ? {
+          ...play,
+          id,
+          episode: 'O Geisterbaum',
+        }
+      : { ...play, id };
+    const existing = mergedById.get(id);
     if (!existing) {
-      mergedById.set(play.id, { ...play });
+      mergedById.set(id, normalizedPlay);
       continue;
     }
 
@@ -378,11 +395,13 @@ function mergeDuplicateRadioplays(plays: Array<Partial<Radioplay>>): Array<Parti
         typeof play[key] === 'number' ? play[key] : 0,
       );
 
-    mergedById.set(play.id, {
+    mergedById.set(id, {
       ...existing,
       title: mergeText('title'),
-      episode: mergeText('episode'),
-      coverImage: mergeText('coverImage'),
+      episode: id === 'S-013' ? 'S-013: O Geisterbaum' : mergeText('episode'),
+      coverImage: id === 'S-013'
+        ? 'covers/special-013.webp'
+        : mergeText('coverImage'),
       zuerstGehoertAm: mergeText('zuerstGehoertAm'),
       wiedergaben: mergeMaxNumber('wiedergaben'),
       nostalgie: mergeMaxNumber('nostalgie'),
@@ -595,7 +614,9 @@ export default function App() {
 
     if (normalizedArchiveSearch) {
       list = list.filter((play) => {
-        const episodeNumber = `folge ${play.id}`;
+        const episodeNumber = play.id.startsWith('S-')
+          ? `spezialfolge ${play.id} ${play.id.toLowerCase().replace('s-', 'spezialfolge ')}`
+          : `folge ${play.id}`;
         const episodeName = episodeNameFromLabel(play.episode).toLowerCase();
         const episodeLabel = play.episode.toLowerCase();
         return (
