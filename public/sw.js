@@ -1,5 +1,5 @@
 // Bump this value to force clients to install a fresh service worker
-const CACHE_NAME = 'bobs-fallometer-v10';
+const CACHE_NAME = 'bobs-fallometer-v11';
 const APP_BASE_PATH = self.location.pathname.replace(/[^/]+$/, '');
 const toAppPath = (path) => `${APP_BASE_PATH}${path}`;
 const INDEX_URL = toAppPath('index.html');
@@ -56,23 +56,21 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith(
-    caches.match(event.request).then(async (cached) => {
+    fetch(event.request).then(async (networkResponse) => {
+      if (networkResponse.ok) {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(event.request, networkResponse.clone());
+      }
+      return networkResponse;
+    }).catch(async () => {
+      const cached = await caches.match(event.request);
       if (cached) return cached;
 
-      try {
-        const networkResponse = await fetch(event.request);
-        if (networkResponse.ok) {
-          const cache = await caches.open(CACHE_NAME);
-          cache.put(event.request, networkResponse.clone());
-        }
-        return networkResponse;
-      } catch {
-        if (event.request.destination === 'image') {
-          const fallbackImage = await caches.match(LOGO_URL);
-          if (fallbackImage) return fallbackImage;
-        }
-        return new Response('Offline', { status: 503, statusText: 'Offline' });
+      if (event.request.destination === 'image') {
+        const fallbackImage = await caches.match(LOGO_URL);
+        if (fallbackImage) return fallbackImage;
       }
+      return new Response('Offline', { status: 503, statusText: 'Offline' });
     }),
   );
 });
