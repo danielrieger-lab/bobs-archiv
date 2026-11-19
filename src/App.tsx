@@ -645,42 +645,85 @@ export default function App() {
                     ratingNotizen: createEmptyRatingNotizen(),
                   }));
 
-                  // only add ids that are not already present in parsed
-                  const parsedIds = new Set(parsed.filter((p: any) => p && p.id).map((p: any) => String(p.id)));
-                  const toAppend = additions.filter((a) => !parsedIds.has(String(a.id)));
-                  if (toAppend.length > 0) {
-                    const next = [...parsed, ...toAppend];
+                  const existingById = new Map<string, Partial<Radioplay>>(
+                    parsed
+                      .filter((p: any) => p && typeof p.id === 'string')
+                      .map((p: any) => [String(p.id), p]),
+                  );
+
+                  const toAppend: Array<Partial<Radioplay>> = [];
+                  const toUpdate = additions.map((addition) => {
+                    const id = String(addition.id);
+                    const existing = existingById.get(id);
+                    if (!existing) {
+                      toAppend.push(addition);
+                      return addition;
+                    }
+
+                    // Update catalog metadata only. Existing local ratings and notes remain untouched.
+                    return {
+                      ...existing,
+                      id,
+                      title: typeof addition.title === 'string' ? addition.title : existing.title,
+                      episode: typeof addition.episode === 'string' ? addition.episode : existing.episode,
+                      year: typeof addition.year === 'number' ? addition.year : existing.year,
+                      coverImage: typeof addition.coverImage === 'string' ? addition.coverImage : existing.coverImage,
+                    };
+                  });
+
+                  if (toAppend.length > 0 || toUpdate.length > 0) {
+                    const updatedIds = new Set(toUpdate.map((item) => String(item.id)));
+                    const next = [
+                      ...parsed.map((item: any) => updatedIds.has(String(item.id))
+                        ? toUpdate.find((updated) => String(updated.id) === String(item.id)) ?? item
+                        : item),
+                      ...toAppend,
+                    ];
                     const asString = JSON.stringify(next);
                     // write back to canonical key so loadRadioplays picks it up consistently
                     try { localStorage.setItem(STORAGE_CANONICAL_KEY, asString); } catch {}
                     try { localStorage.setItem(STORAGE_KEY, asString); } catch {}
                     try { localStorage.setItem(STORAGE_BACKUP_KEY, asString); } catch {}
 
-                    // hydrate and append to runtime state without overwriting existing ratings
-                    const hydrated = toAppend.map((item) => hydrateRadioplay(item as Partial<Radioplay>, {
-                      id: String(item.id),
-                      title: typeof item.title === 'string' ? item.title : 'Die Drei ???',
-                      episode: typeof item.episode === 'string' ? item.episode : `Folge ${item.id}`,
-                      year: typeof item.year === 'number' ? item.year : 0,
-                      coverImage: typeof item.coverImage === 'string' ? item.coverImage : undefined,
-                      zuerstGehoertAm: '',
-                      wiedergaben: 0,
-                      nostalgie: 0,
-                      lieblingscharakter: '',
-                      mostHatedCharacter: '',
-                      atmosphaere: 0,
-                      wiederhoerenswert: 0,
-                      story: 0,
-                      charakterdynamik: 0,
-                      fallquality: 0,
-                      gruselfaktor: 0,
-                      klassiker: false,
-                      bobcastGehoert: false,
-                      beschreibungDerFolge: '',
-                      ratingNotizen: createEmptyRatingNotizen(),
-                    } as Radioplay));
+                    // hydrate the runtime state too, preserving every existing local rating and note.
+                    const hydratedById = new Map(
+                      toUpdate.map((item) => [
+                        String(item.id),
+                        hydrateRadioplay(item as Partial<Radioplay>, {
+                          id: String(item.id),
+                          title: typeof item.title === 'string' ? item.title : 'Die Drei ???',
+                          episode: typeof item.episode === 'string' ? item.episode : `Folge ${item.id}`,
+                          year: typeof item.year === 'number' ? item.year : 0,
+                          coverImage: typeof item.coverImage === 'string' ? item.coverImage : undefined,
+                          zuerstGehoertAm: '',
+                          wiedergaben: 0,
+                          nostalgie: 0,
+                          lieblingscharakter: '',
+                          mostHatedCharacter: '',
+                          atmosphaere: 0,
+                          wiederhoerenswert: 0,
+                          story: 0,
+                          charakterdynamik: 0,
+                          fallquality: 0,
+                          gruselfaktor: 0,
+                          klassiker: false,
+                          bobcastGehoert: false,
+                          beschreibungDerFolge: '',
+                          ratingNotizen: createEmptyRatingNotizen(),
+                        } as Radioplay),
+                      ]),
+                    );
 
-                    setRadioplays((cur) => [...cur, ...hydrated]);
+                    setRadioplays((cur) => {
+                      const updated = cur.map((play) => hydratedById.get(play.id) ?? play);
+                      const curIds = new Set(updated.map((play) => play.id));
+                      return [
+                        ...updated,
+                        ...toAppend
+                          .filter((item) => !curIds.has(String(item.id)))
+                          .map((item) => hydratedById.get(String(item.id)) as Radioplay),
+                      ];
+                    });
                   }
                 } catch {
                   // ignore storage errors
