@@ -353,21 +353,19 @@ function mergeDuplicateRadioplays(plays: Array<Partial<Radioplay>>): Array<Parti
 
   for (const play of plays) {
     let id = typeof play.id === 'string' ? play.id : '';
-    if (
-      id !== 'S-013'
-      && typeof play.episode === 'string'
-      && (episodeNameFromLabel(play.episode).toLowerCase() === 'o geisterbaum'
-        || play.episode.trim().toLowerCase() === 'o geisterbaum')
-    ) {
-      id = 'S-013';
-    }
+    const episodeTitle = typeof play.episode === 'string'
+      ? episodeNameFromLabel(play.episode).trim().toLowerCase()
+      : '';
+    if (episodeTitle === 'o geisterbaum') id = 'S-013';
+    if (episodeTitle === 'das grab der inka-mumie') id = 'S-014';
     if (!id) continue;
-    const normalizedPlay = id === 'S-013'
-      ? {
-          ...play,
-          id,
-          episode: 'O Geisterbaum',
-        }
+    const canonicalSpecial = id === 'S-013'
+      ? { episode: 'S-013: O Geisterbaum', coverImage: 'covers/special-013.webp' }
+      : id === 'S-014'
+        ? { episode: 'S-014: Das Grab der Inka-Mumie', coverImage: 'covers/special-014.webp' }
+        : null;
+    const normalizedPlay = canonicalSpecial
+      ? { ...play, id, ...canonicalSpecial }
       : { ...play, id };
     const existing = mergedById.get(id);
     if (!existing) {
@@ -398,10 +396,16 @@ function mergeDuplicateRadioplays(plays: Array<Partial<Radioplay>>): Array<Parti
     mergedById.set(id, {
       ...existing,
       title: mergeText('title'),
-      episode: id === 'S-013' ? 'S-013: O Geisterbaum' : mergeText('episode'),
+      episode: id === 'S-013'
+        ? 'S-013: O Geisterbaum'
+        : id === 'S-014'
+          ? 'S-014: Das Grab der Inka-Mumie'
+          : mergeText('episode'),
       coverImage: id === 'S-013'
         ? 'covers/special-013.webp'
-        : mergeText('coverImage'),
+        : id === 'S-014'
+          ? 'covers/special-014.webp'
+          : mergeText('coverImage'),
       zuerstGehoertAm: mergeText('zuerstGehoertAm'),
       wiedergaben: mergeMaxNumber('wiedergaben'),
       nostalgie: mergeMaxNumber('nostalgie'),
