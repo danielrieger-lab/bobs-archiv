@@ -152,7 +152,14 @@ function loadBingoCards(): BingoCard[] {
 }
 
 function buildDefaultRadioplays(): Radioplay[] {
-  return (episodeCatalog as unknown as EpisodeCatalogEntry[])
+  const uniqueEntries = new Map<string, EpisodeCatalogEntry>();
+  (episodeCatalog as unknown as EpisodeCatalogEntry[]).forEach((entry) => {
+    if (!uniqueEntries.has(entry.id)) {
+      uniqueEntries.set(entry.id, entry);
+    }
+  });
+
+  return Array.from(uniqueEntries.values())
     .filter((entry) => entry.type !== 'kurz')
     .map((entry) => ({
     id: entry.id,
@@ -340,6 +347,70 @@ function hydrateRadioplay(raw: Partial<Radioplay>, fallback: Radioplay): Radiopl
   };
 }
 
+function mergeDuplicateRadioplays(plays: Array<Partial<Radioplay>>): Array<Partial<Radioplay>> {
+  const mergedById = new Map<string, Partial<Radioplay>>();
+
+  for (const play of plays) {
+    if (typeof play.id !== 'string') continue;
+    const existing = mergedById.get(play.id);
+    if (!existing) {
+      mergedById.set(play.id, { ...play });
+      continue;
+    }
+
+    const existingNotes = typeof existing.ratingNotizen === 'object' && existing.ratingNotizen !== null
+      ? existing.ratingNotizen as Partial<Record<RatingNoteKey, unknown>>
+      : {};
+    const nextNotes = typeof play.ratingNotizen === 'object' && play.ratingNotizen !== null
+      ? play.ratingNotizen as Partial<Record<RatingNoteKey, unknown>>
+      : {};
+    const mergeNote = (key: RatingNoteKey) =>
+      typeof nextNotes[key] === 'string' && nextNotes[key].trim()
+        ? nextNotes[key] as string
+        : typeof existingNotes[key] === 'string'
+          ? existingNotes[key] as string
+          : '';
+    const mergeText = (key: 'title' | 'episode' | 'coverImage' | 'zuerstGehoertAm' | 'lieblingscharakter' | 'mostHatedCharacter' | 'beschreibungDerFolge') =>
+      typeof play[key] === 'string' && play[key].trim() ? play[key] : existing[key];
+    const mergeMaxNumber = (key: 'wiedergaben' | 'nostalgie' | 'atmosphaere' | 'wiederhoerenswert' | 'story' | 'charakterdynamik' | 'fallquality' | 'gruselfaktor') =>
+      Math.max(
+        typeof existing[key] === 'number' ? existing[key] : 0,
+        typeof play[key] === 'number' ? play[key] : 0,
+      );
+
+    mergedById.set(play.id, {
+      ...existing,
+      title: mergeText('title'),
+      episode: mergeText('episode'),
+      coverImage: mergeText('coverImage'),
+      zuerstGehoertAm: mergeText('zuerstGehoertAm'),
+      wiedergaben: mergeMaxNumber('wiedergaben'),
+      nostalgie: mergeMaxNumber('nostalgie'),
+      lieblingscharakter: mergeText('lieblingscharakter'),
+      mostHatedCharacter: mergeText('mostHatedCharacter'),
+      atmosphaere: mergeMaxNumber('atmosphaere'),
+      wiederhoerenswert: mergeMaxNumber('wiederhoerenswert'),
+      story: mergeMaxNumber('story'),
+      charakterdynamik: mergeMaxNumber('charakterdynamik'),
+      fallquality: mergeMaxNumber('fallquality'),
+      gruselfaktor: mergeMaxNumber('gruselfaktor'),
+      klassiker: existing.klassiker === true || play.klassiker === true,
+      bobcastGehoert: existing.bobcastGehoert === true || play.bobcastGehoert === true,
+      beschreibungDerFolge: mergeText('beschreibungDerFolge'),
+      ratingNotizen: {
+        atmosphaere: mergeNote('atmosphaere'),
+        wiederhoerenswert: mergeNote('wiederhoerenswert'),
+        story: mergeNote('story'),
+        charakterdynamik: mergeNote('charakterdynamik'),
+        nostalgie: mergeNote('nostalgie'),
+        gruselfaktor: mergeNote('gruselfaktor'),
+      },
+    });
+  }
+
+  return Array.from(mergedById.values());
+}
+
 function autoResizeTextarea(element: HTMLTextAreaElement): void {
   element.style.height = 'auto';
   element.style.height = `${element.scrollHeight}px`;
@@ -376,7 +447,15 @@ function loadRadioplays(): Radioplay[] {
       }
     }
 
-    const { parsed } = storedPayload;
+    const parsed = mergeDuplicateRadioplays(storedPayload.parsed);
+    if (parsed.length !== storedPayload.parsed.length) {
+      const deduplicatedRaw = JSON.stringify(parsed);
+      try {
+        STORAGE_WRITE_KEYS.forEach((key) => localStorage.setItem(key, deduplicatedRaw));
+      } catch {
+        // keep app running even if iOS storage quota/availability fails
+      }
+    }
 
     const mergedDefaults = defaultRadioplays.map((fallback) => {
       const existing = parsed.find((item) => item.id === fallback.id);
